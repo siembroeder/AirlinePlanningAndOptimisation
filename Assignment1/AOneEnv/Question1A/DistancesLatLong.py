@@ -19,10 +19,10 @@ def compute_pairwise_distance(loc1, loc2):
 def compute_dij(port_df, init, dest):
     '''
     Returns the matrix d_ij including all the great circle distance between the airports in df.
-    df: pandas dataframe that should at least contain 2 columns, each pertaining to an airport. 
-        Each column should at least include the rows "Latitude (deg)" and "Longitude (deg)" corresponding to a location on earth.
+    port_df: pandas dataframe that should at least contain 2 columns, each pertaining to an airport. 
+             Each column should at least include the rows "Latitude (deg)" and "Longitude (deg)" corresponding to a location on earth.
+    init, dest:    column in port_df, should be city name, eg "London". Order of init and dest doesn't matter
     '''
-
     coords_dep = [port_df[init]['Latitude (deg)'], port_df[init]['Longitude (deg)']]
     coords_arr = [port_df[dest]['Latitude (deg)'], port_df[dest]['Longitude (deg)']]
 

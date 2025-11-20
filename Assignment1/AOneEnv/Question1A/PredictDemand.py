@@ -5,6 +5,9 @@ import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 
 def predict_demand_gravity(coeffs, ij_year):
+    '''
+    Calculate the demand from coefficients, population/gdp data, fuel price, distances
+    '''
 
     k, b1, b2, b3 = coeffs
 
@@ -26,8 +29,11 @@ def predict_demand_gravity(coeffs, ij_year):
 
 def extrapolate_gdp_pop(gdp_data, pop_data, pred_year = None):
     '''
-    src1: Matrix of NxN with N the number of airports
-    src2: df at least including columns i, j, Dij
+    Extrapolate the constant growth in years 2021 and 2024 in gdp and pop data to pred_year
+
+    gdp_data: df that should include columns "Country", "2021gdp", "2024gdp" 
+    pop_data: df that should include columns "Cities", "2021pop", "2024pop"
+    pred_year: Int64
     '''
     year1 = 2021
     year2 = 2024
@@ -69,7 +75,11 @@ def extrapolate_gdp_pop(gdp_data, pop_data, pred_year = None):
     return pd.DataFrame(gdp_rows), pd.DataFrame(pop_rows)
 
 
-def plot_demand_cities(dem_21, dem_24, dem_26, routes):
+def plot_demand_routes(dem_21, dem_24, dem_26, routes):
+    '''
+    Plotting function for demand across years 2021, 2024, 2026.
+    Plots all routes in the same graph.
+    '''
 
     dem_21 = dem_21.set_index(['i', 'j'])
     dem_24 = dem_24.set_index(['i', 'j'])
@@ -78,11 +88,11 @@ def plot_demand_cities(dem_21, dem_24, dem_26, routes):
 
     years = [21, 24, 26]
     
-    cmap = cm.tab10  # or any other colormap
+    cmap = cm.tab10  
     colors = {route: cmap(i % 10) for i, route in enumerate(routes)}
 
+
     fig, ax = plt.subplots(figsize=(10, 6))
-    
     for route in routes:
         dem = [dem_21['Dij'].loc[route], dem_24['Dij'].loc[route], dem_26['Dij'].loc[route]]
 

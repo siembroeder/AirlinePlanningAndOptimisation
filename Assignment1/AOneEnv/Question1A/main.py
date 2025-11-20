@@ -2,7 +2,7 @@
 from Read_input import read_excel_pandas
 from DistancesLatLong import compute_pairwise_distance, compute_dij
 from GravityOLS import execute_OLS_fit, convert_to_ij_format
-from PredictDemand import predict_demand_gravity, extrapolate_gdp_pop, plot_demand_cities
+from PredictDemand import predict_demand_gravity, extrapolate_gdp_pop, plot_demand_routes
 
 
 # Import packages
@@ -16,8 +16,9 @@ FUEL = 1.42 # Eur/Gallon
 
 
 def main():
-    # aircraft_path = r"C:\Users\siemb\Documents\Year5\AirlinePlannningOptimisation\Assignment1\Data\AircraftData.xlsx"
 
+    # Gather all the available data
+    # aircraft_path = r"C:\Users\siemb\Documents\Year5\AirlinePlannningOptimisation\Assignment1\Data\AircraftData.xlsx"
     pop_path   = r"C:\Users\siemb\Documents\Year5\AirlinePlannningOptimisation\Assignments\Assignment1\Data\pop_gdp.xlsx"
     pop_sheets = ["GDP_country","Population_city"]
 
@@ -32,19 +33,25 @@ def main():
     # print(GDP_data.head())
     # print(pop_data.head())
     # print(GDP_data.loc['PRT'].keys())
-    
+
+
+    # Calibrate the gravity model by using the 2021 data and OLS fitting to find the coeffs
     ij_data_2021   = convert_to_ij_format(airport_data, GDP_data, pop_data, year=2021, f=FUEL, demand_data=demand_data_2021)
     gravity_coeffs = execute_OLS_fit(ij_data_2021)
 
+    # Find Dij in 2024 using the given 2024 gdp and pop data 
     ij_data_2024   = convert_to_ij_format(airport_data, GDP_data, pop_data, year=2024, f=FUEL)
     demand_2024_ij = predict_demand_gravity(gravity_coeffs, ij_data_2024) 
 
+    # Calculate the 2026 gdp and pop data by assuming constant growth as observed from 2021 to 2024
     gdp_2026, pop_2026 = extrapolate_gdp_pop(GDP_data, pop_data, pred_year=2026)
 
+    # Find Dij in 2026 
     ij_data_2026       = convert_to_ij_format(airport_data, gdp_2026, pop_2026, year=2026, f=FUEL)
     demand_2026_ij     = predict_demand_gravity(gravity_coeffs, ij_data_2026)
  
-    plot_demand_cities(ij_data_2021, demand_2024_ij, demand_2026_ij, [('London', 'Paris'), ('Paris', 'London'), ('Amsterdam', 'Berlin'), ('Frankfurt', 'Madrid'), ('Warsaw', 'Berlin')])
+    # Visualize the demand for certain routes over the years 2021, 2024, 2026
+    plot_demand_routes(ij_data_2021, demand_2024_ij, demand_2026_ij, [('London', 'Paris'), ('Paris', 'London'), ('Amsterdam', 'Berlin'), ('Frankfurt', 'Madrid'), ('Warsaw', 'Berlin')])
     
     
     

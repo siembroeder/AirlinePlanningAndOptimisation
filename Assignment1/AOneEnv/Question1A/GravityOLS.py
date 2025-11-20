@@ -6,6 +6,10 @@ import numpy  as np
 import statsmodels.api as sm
 
 def convert_to_ij_format(airport_data, gdp_data, pop_data, f=0, year = '2000', demand_data = None):
+    '''
+    To execute OLS fit and to calculate demand Dij we gather the data in a df with columns i, j corresponding to routes 
+        and popi and popj etc for the data on that route.
+    '''
     rows = []           # list of dicts with i, j, fdij, Dij data, converted to df after
     i_indices = []      # Store indices of all pairs of ij with i \neq j
     j_indices = []
@@ -31,7 +35,6 @@ def convert_to_ij_format(airport_data, gdp_data, pop_data, f=0, year = '2000', d
 
     pairs_df     = pd.DataFrame(rows)   # Convert to df with columns i, j, f*dij, Dij
 
-    # To calibrate coeffs, only use 2021 data
     gdp_year = gdp_data[str(year)+'gdp']
     pop_year = pop_data[str(year)+'pop']
 
@@ -51,6 +54,10 @@ def convert_to_ij_format(airport_data, gdp_data, pop_data, f=0, year = '2000', d
 
 
 def execute_OLS_fit(gravity_data):
+    '''
+    Find the coefficients k, b1, b2, b3 of the gravity model based on 2021 data.
+    Linearize in the coeffs using logarithm. Note how k and b3 are extraced to compensate for this log
+    '''
 
     # Define log versions of data used for OLS fitting of gravity model linear in coeffs.
     gravity_log = pd.DataFrame()

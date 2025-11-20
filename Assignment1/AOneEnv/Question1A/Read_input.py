@@ -6,7 +6,7 @@ def read_excel_pandas(path: Path, sheets: list, indx = 0) -> list:
     """
     Reads input graph from an Excel file using pandas.read_excel().
 
-    Alternatively, use [Polars](https://pola.rs/).
+    indx: int or None, sets the index panda uses for df
     """
     df_list = []
     # Read sheets into DataFrames

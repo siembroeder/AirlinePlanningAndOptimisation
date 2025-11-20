@@ -74,7 +74,6 @@ def extrapolate_gdp_pop(gdp_data, pop_data, pred_year = None):
 
     return pd.DataFrame(gdp_rows), pd.DataFrame(pop_rows)
 
-
 def plot_demand_routes(dem_21, dem_24, dem_26, routes):
     '''
     Plotting function for demand across years 2021, 2024, 2026.
@@ -103,7 +102,35 @@ def plot_demand_routes(dem_21, dem_24, dem_26, routes):
     plt.ylim((0, max_demand*1.1 ))
     plt.legend()
     plt.show()
-    
+
+def check_fit_route(ij_data, coeffs):
+    '''
+    Loops through all ij pairs, computes the difference between the known demand and the 2021 demand as fitted by the gravity model.
+    output: percentage difference between fit and known demand.
+    '''
+
+    fit_demand = predict_demand_gravity(coeffs, ij_data)
+    fit_demand.rename(columns={'Dij':'fitDij'}, inplace=True)
+
+    demand_df = pd.concat([fit_demand['i'], fit_demand['j'], fit_demand['fitDij'], ij_data['Dij']], axis = 1)
+
+    total_known_demand = 0
+    total_difference   = 0
+
+    for i, (cityi, cityj) in enumerate(zip(demand_df['i'], demand_df['j'])):
+
+        row = demand_df[(demand_df['i'] == cityi) & (demand_df['j'] == cityj)]
+        known_demand     = row['Dij'].values
+        fit_demand_route = row['fitDij'].values
+        diff_route = abs(known_demand-fit_demand_route)
+
+        # route = str(cityi) + '-' + str(cityj)
+        # print(f'The difference between predicted and know demand on route: {route}:{diff_route}, frac: {diff_route / known_demand}')
+
+    total_difference += diff_route
+    total_known_demand += known_demand
+
+    return total_difference / total_known_demand
 
 
 

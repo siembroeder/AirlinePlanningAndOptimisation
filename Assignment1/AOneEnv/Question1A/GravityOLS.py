@@ -52,7 +52,6 @@ def convert_to_ij_format(airport_data, gdp_data, pop_data, f=0, year = '2000', d
 
     return ij_format_data
 
-
 def execute_OLS_fit(gravity_data):
     '''
     Find the coefficients k, b1, b2, b3 of the gravity model based on 2021 data.
@@ -83,7 +82,7 @@ def execute_OLS_fit(gravity_data):
     k  = np.exp(coeffs['const'])
 
     # print(all_ols_data.head())
-    print(model.summary())
+    # print(model.summary())
 
     print(f"OLS Result: \nb1={b1},b2={b2},b3={b3},k={k}")
 

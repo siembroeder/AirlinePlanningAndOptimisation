@@ -2,7 +2,7 @@
 from Read_input import read_excel_pandas
 from DistancesLatLong import compute_pairwise_distance, compute_dij
 from GravityOLS import execute_OLS_fit, convert_to_ij_format
-from PredictDemand import predict_demand_gravity, extrapolate_gdp_pop, plot_demand_routes
+from PredictDemand import predict_demand_gravity, extrapolate_gdp_pop, plot_demand_routes, check_fit_route
 
 
 # Import packages
@@ -38,6 +38,11 @@ def main():
     # Calibrate the gravity model by using the 2021 data and OLS fitting to find the coeffs
     ij_data_2021   = convert_to_ij_format(airport_data, GDP_data, pop_data, year=2021, f=FUEL, demand_data=demand_data_2021)
     gravity_coeffs = execute_OLS_fit(ij_data_2021)
+
+
+    # Check the difference between fitted demand and known demand in 2021
+    fit_percentage = check_fit_route(ij_data_2021, gravity_coeffs)
+    # print(f'Total percentage diff: {fit_percentage}')
 
     # Find Dij in 2024 using the given 2024 gdp and pop data 
     ij_data_2024   = convert_to_ij_format(airport_data, GDP_data, pop_data, year=2024, f=FUEL)

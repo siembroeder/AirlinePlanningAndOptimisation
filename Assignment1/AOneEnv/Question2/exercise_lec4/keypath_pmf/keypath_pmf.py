@@ -35,7 +35,6 @@ def main():
         new_itin = int(row['NewItin'])
         b[old_itin][new_itin] = row['RecapRate']
 
-
     # Daily unconstrained demand per flight
     Q = {f: sum(delta[p][f]*demand[p] for p in itins) for f in flight_nums}
 
@@ -49,7 +48,7 @@ def main():
     t = {}
     for p in itins:
         for r in itins:
-            if r != p and b[p][r] > 0:   # only reallocated passengers
+            if r != p:   # only reallocated passengers
                 t[p,r] = m.addVar(lb=0.0, vtype=GRB.INTEGER, name=f"t_{p}_{r}")
 
 
@@ -58,9 +57,9 @@ def main():
     # Capacity
     for i in flight_nums:
         lhs_removed     = quicksum(delta[p][i] * t[p,r] for (p,r) in t)
-        lhs_recaptured  = quicksum(delta[p][i] * b[r][p] * t[r,p] for (r,p) in t if b[r][p] > 0)
+        lhs_recaptured  = quicksum(delta[p][i] * b[r][p] * t[r,p] for (r,p) in t)
 
-        rhs = Q[i] - flights.loc[i,'Capacity']
+        rhs = Q[i] - capacity[i]
         m.addConstr(lhs_removed - lhs_recaptured >= rhs, name=f"cap_{i}")
 
 
@@ -85,6 +84,29 @@ def main():
 
 
 
+    total_revenue = 0.0
+
+    for p in itins:
+        # Revenue from passengers who stayed
+        stay_p = demand[p] - sum(t[p,r].X for r in itins if (p,r) in t)
+        total_revenue += revenue[p] * stay_p
+
+        # Revenue from reallocated passengers
+        for r in itins:
+            if (p,r) in t:
+                total_revenue += b[p][r] * revenue[r] * t[p,r].X # recapture rate corresponds to increase in revenue, recaptured pax don't bring full revenue
+
+
+
+    print("\nTotal revenue across all flights: {:.2f}".format(total_revenue))
+
+    # print("\nRevenue breakdown by itinerary:")
+    # for p in itins:
+    #     stay_p = demand[p] - sum(t[p,r].X for r in itins if (p,r) in t)
+    #     stay_rev = revenue[p] * stay_p
+    #     realloc_rev = sum(b[p][r] * revenue[r] * t[p,r].X for r in itins if (p,r) in t)
+        # print(f"Itinerary {p}: stayed {stay_p:.2f} pax, revenue = {stay_rev:.2f}; "
+            # f"reallocated revenue = {realloc_rev:.2f}, total = {stay_rev + realloc_rev:.2f}")
 
 
 

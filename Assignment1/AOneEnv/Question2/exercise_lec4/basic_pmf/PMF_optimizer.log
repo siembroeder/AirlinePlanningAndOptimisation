@@ -118,3 +118,33 @@ Solution count 2: 116345 86115
 
 Optimal solution found (tolerance 1.00e-04)
 Best objective 1.163450000000e+05, best bound 1.163450000000e+05, gap 0.0000%
+
+Gurobi 13.0.0 (win64) logging started Tue Nov 25 17:57:29 2025
+
+Set parameter LogFile to value "Question2/exercise_lec4/basic_pmf/PMF_optimizer.log"
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 8 threads
+
+Optimize a model with 25 rows, 32 columns and 77 nonzeros (Max)
+Model fingerprint: 0xebe4504a
+Model has 32 linear objective coefficients
+Variable types: 0 continuous, 32 integer (0 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+01]
+  Objective range  [5e+01, 2e+02]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 2e+02]
+Found heuristic solution: objective 86115.000000
+Presolve removed 25 rows and 32 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.01 seconds (0.00 work units)
+Thread count was 1 (of 8 available processors)
+
+Solution count 2: 116345 86115 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.163450000000e+05, best bound 1.163450000000e+05, gap 0.0000%

@@ -39,7 +39,7 @@ def main():
 
     # Initialize model
     m = Model('ex4')
-    m.params.LogFile = 'PMF_optimizer.log'
+    m.params.LogFile = 'Question2/exercise_lec4/basic_pmf/PMF_optimizer.log'
 
     x = {}
     for p in itins:
@@ -65,7 +65,7 @@ def main():
 
     if m.status == GRB.OPTIMAL or m.status == GRB.TIME_LIMIT:
 
-        m.write('PMF_model.lp')
+        m.write('Question2/exercise_lec4/basic_pmf/PMF_model.lp')
 
         print("\nOptimal revenue:", m.objVal)
         print("\nAccepted passengers per recapture flow (p -> r):")

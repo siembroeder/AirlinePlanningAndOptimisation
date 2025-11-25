@@ -51,12 +51,12 @@ def main():
 
     # Capacity constraint
     for f in flight_nums:
-        m.addConstr(quicksum(A[r][f] * x[p,r] for (p,r) in x) <= flights.loc[f, 'Capacity'], name = f"cap_{f}")
+        m.addConstr(quicksum(A[r][f] * x[p,r] for (p,r) in x) <= capacity[f], name = f"cap_{f}")
 
     # Demand constraint
     for r in itins:
         lhs = quicksum(x[p,r] / (recap_rates[p][r] if p != r else 1) for p in itins if (p,r) in x)
-        rhs = itins[r]['Demand']
+        rhs = demand[r]
         m.addConstr(lhs <= rhs, name = f'recap_{r}')
 
     

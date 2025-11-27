@@ -3,7 +3,7 @@
 from gurobipy import *
 
 from Question1A.main import main
-from ComputeParameters_1B import distances
+from .ComputeParameters_1B import distances
 import numpy as np
 
 

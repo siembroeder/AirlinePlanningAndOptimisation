@@ -1,5 +1,5 @@
 
-from DistancesLatLong import compute_dij
+from .DistancesLatLong import compute_dij
 
 import pandas as pd
 import numpy  as np

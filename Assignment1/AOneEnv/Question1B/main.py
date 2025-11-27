@@ -1,10 +1,12 @@
-from gurobipy import *
 
+from gurobipy import *
+import numpy as np
+import pandas  as pd
+
+# Custom imports
 from Assignment1.AOneEnv.Question1A.main import main
 from Assignment1.AOneEnv.Question1A.Read_input import read_excel_pandas
 from Assignment1.AOneEnv.Question1B.ComputeParameters_1B import distances, yields
-import numpy as np
-import pandas  as pd
 
 aircraft_path = r"C:\Users\jobru\Documents\TU Delft\MSc AE\Year 1\Courses Q2\APandO\Assignment files\AirlinePlanningAndOptimisation\Assignment1\Data\AircraftData.xlsx"
 aircraft_sheet = ["AircraftTypes"]
@@ -50,54 +52,46 @@ print("Yield matrix:\n", y)
 # AC = 2
 
 
-# Start modelling optimization problem
-m = Model('question1B')
-x = {}
-z = {}
-w = {}
-ac = {}
+# # Start modelling optimization problem
+# m = Model('practice')
+# x = {}
+# z = {}
+# for i in airports:
+#     for j in airports:
+#         x[i,j] = m.addVar(obj = y*distance[i][j],lb=0, vtype=GRB.INTEGER)
+#         z[i,j] = m.addVar(obj = -CASK*distance[i][j]*s, lb=0,vtype=GRB.INTEGER)
 
-for i in airports:
-    for j in airports:
-        x[i,j] = m.addVar(lb=0, vtype=GRB.INTEGER, name=''.join(['Direct flow from ', str(i), ' to ', str(j)]))
-        w[i,j] = m.addVar(lb=0,vtype=GRB.INTEGER, name=''.join(['Transfer flow from ',str(i), ' to ', str(j)]))
-        for k in aircraft_types:
-            z[i,j,k] = m.addVar(lb=0, vtype=GRB.INTEGER, name=''.join(['Flights from ',str(i), ' to ', str(j), ' by ', str(k)]))
+# m.update()
+# m.setObjective(m.getObjective(), GRB.MAXIMIZE)  # The objective is to maximize revenue
 
-for k in aircraft_types:
-        ac[k] = m.addVar(lb=0, vtype=GRB.INTEGER, name=''.join(['Number of ', str(k)]))
+# for i in airports:
+#     for j in airports:
+#         m.addConstr(x[i,j] <= q[i][j]) #C1
+#         m.addConstr(x[i, j] <=z[i,j]*s*LF) #C2
+#     m.addConstr(quicksum(z[i,j] for j in airports) ==  quicksum(z[j, i] for j in airports)) #C3
 
-m.update()
-m.setObjective(m.getObjective(), GRB.MAXIMIZE)  # The objective is to maximize revenue
-
-for i in airports:
-    for j in airports:
-        m.addConstr(x[i,j] <= q[i][j]) #C1
-        m.addConstr(x[i, j] <=z[i,j]*s*LF) #C2
-    m.addConstr(quicksum(z[i,j] for j in airports) ==  quicksum(z[j, i] for j in airports)) #C3
-
-m.addConstr(quicksum(quicksum((distance[i][j]/sp+LTO)*z[i,j] for i in airports) for j in airports) <= BT*AC) #C4
+# m.addConstr(quicksum(quicksum((distance[i][j]/sp+LTO)*z[i,j] for i in airports) for j in airports) <= BT*AC) #C4
 
 
-m.update()
-# m.write('test.lp')
-# Set time constraint for optimization (5minutes)
-# m.setParam('TimeLimit', 1 * 60)
-# m.setParam('MIPgap', 0.009)
-m.optimize()
-# m.write("testout.sol")
-status = m.status
+# m.update()
+# # m.write('test.lp')
+# # Set time constraint for optimization (5minutes)
+# # m.setParam('TimeLimit', 1 * 60)
+# # m.setParam('MIPgap', 0.009)
+# m.optimize()
+# # m.write("testout.sol")
+# status = m.status
 
-if status == GRB.Status.UNBOUNDED:
-    print('The model cannot be solved because it is unbounded')
+# if status == GRB.Status.UNBOUNDED:
+#     print('The model cannot be solved because it is unbounded')
 
-elif status == GRB.Status.OPTIMAL or True:
-    f_objective = m.objVal
-    print('***** RESULTS ******')
-    print('\nObjective Function Value: \t %g' % f_objective)
+# elif status == GRB.Status.OPTIMAL or True:
+#     f_objective = m.objVal
+#     print('***** RESULTS ******')
+#     print('\nObjective Function Value: \t %g' % f_objective)
 
-elif status != GRB.Status.INF_OR_UNBD and status != GRB.Status.INFEASIBLE:
-    print('Optimization was stopped with status %d' % status)
+# elif status != GRB.Status.INF_OR_UNBD and status != GRB.Status.INFEASIBLE:
+#     print('Optimization was stopped with status %d' % status)
 
 
 # # Print out Solutions

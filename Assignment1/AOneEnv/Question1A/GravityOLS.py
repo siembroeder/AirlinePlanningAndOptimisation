@@ -84,7 +84,7 @@ def execute_OLS_fit(gravity_data):
     # print(all_ols_data.head())
     # print(model.summary())
 
-    print(f"OLS Result: \nb1={b1},b2={b2},b3={b3},k={k}")
+    # print(f"OLS Result: \nb1={b1},b2={b2},b3={b3},k={k}")
 
     return k, b1, b2, b3
 

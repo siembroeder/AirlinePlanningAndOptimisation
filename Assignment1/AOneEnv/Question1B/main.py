@@ -1,10 +1,19 @@
-
-
 from gurobipy import *
 
 from Question1A.main import main
-from .ComputeParameters_1B import distances
+from Question1A.Read_input import read_excel_pandas
+from .ComputeParameters_1B import distances, yields
 import numpy as np
+import pandas  as pd
+
+aircraft_path = r"C:\Users\pop_r\OneDrive - Delft University of Technology\Desktop\AirlinePlanning\Assignment1\Data\AircraftData.xlsx"
+aircraft_sheet = ["AircraftTypes"]
+aircraft_data = read_excel_pandas(aircraft_path, aircraft_sheet)    # Load aircraft data
+
+
+# cd "C:\Users\pop_r\OneDrive - Delft University of Technology\Documents\SVV\AirlinePlanningAndOptimisation\Assignment1\AOneEnv"
+# python -m uv run -m Question1B.main
+
 
 
 # Constants:
@@ -15,11 +24,25 @@ BT = 10 * 7                                # Assumed 10 hours of block time per 
 
 
 # Data
-airport_data, q = main()                 # Using results obtained from question 1A for demand
-airports = airport_data.columns            # List of airport names
-print(airports)
-len_airports = len(airports)               # Number of airports
-distance = distances(airport_data)         # Distance matrix between all airports
+
+# Airports and routes
+airport_data, q = main()                        # Using results obtained from question 1A for demand
+airports = airport_data.columns                 # List of airport names
+len_airports = len(airports)                    # Number of airports
+distance = distances(airport_data)              # Distance matrix between all airports
+
+# Aircraft
+
+aircraft_data = aircraft_data[0]                                    # type(aircraft_data)=df
+print(aircraft_data.columns)
+# aircraft_names = aircraft_data[1:]      # List of aircraft types
+# keys = aircraft_data.keys()
+print(aircraft_data["Aircraft 1"]['Seats'])
+
+
+
+y = yields(distance)                            # Yield matrix based on distance matrix
+
 
 # CASK = 0.12
 
@@ -28,10 +51,7 @@ distance = distances(airport_data)         # Distance matrix between all airport
 # LTO = 20/60
 
 # AC = 2
-# y = 0.18  # yield
-# distance = [[0, 2236, 3201],
-#           [2236, 0, 3500],
-#           [3201, 3500, 0]]
+
 
 # # Start modelling optimization problem
 # m = Model('practice')

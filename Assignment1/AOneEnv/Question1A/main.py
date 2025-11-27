@@ -57,6 +57,8 @@ def main():
  
     # Visualize the demand for certain routes over the years 2021, 2024, 2026
     plot_demand_routes(ij_data_2021, demand_2024_ij, demand_2026_ij, [('London', 'Paris'), ('Paris', 'London'), ('Amsterdam', 'Berlin'), ('Frankfurt', 'Madrid'), ('Warsaw', 'Berlin')])
+
+    return airport_data, demand_2026_ij
     
     
     

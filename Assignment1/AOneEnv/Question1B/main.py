@@ -2,7 +2,7 @@ from gurobipy import *
 
 from Assignment1.AOneEnv.Question1A.main import main
 from Assignment1.AOneEnv.Question1A.Read_input import read_excel_pandas
-from .ComputeParameters_1B import distances, yields
+from Assignment1.AOneEnv.Question1B.ComputeParameters_1B import distances, yields
 import numpy as np
 import pandas  as pd
 

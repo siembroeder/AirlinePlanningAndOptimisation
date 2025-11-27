@@ -21,8 +21,6 @@ FUEL = 1.42                                # Eur/Gallon
 LF = 0.75                                  # Average load factor assumed 75%           
 BT = 10 * 7                                # Assumed 10 hours of block time per day per aircraft
 
-
-
 # Data
 
 # Airports and routes

@@ -103,7 +103,8 @@ for i in airports:
     for k in aircraft_types:
         m.addConstr(quicksum(z[i,j,k] for j in airports) ==  quicksum(z[j, i,k] for j in airports)) #C4
 
-# for j in airports:
+for j in airports:
+    m.addConstr(quicksum(quicksum(z[i,j,k] for i in airports) for k in aircraft_types) <= ls[j])  # C8
 
 for k in aircraft_types:
     m.addConstr(quicksum(quicksum((distance[i][j]/sp[k]+TAT[k]*(1 + 0.5 * (1 - g[j])))*z[i,j,k] for i in airports) for j in airports) <= BT*ac[k]) #C5

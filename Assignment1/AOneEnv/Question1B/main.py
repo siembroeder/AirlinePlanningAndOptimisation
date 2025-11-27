@@ -1,20 +1,22 @@
 from gurobipy import *
 
-from Question1A.main import main
-from Question1A.Read_input import read_excel_pandas
+from Assignment1.AOneEnv.Question1A.main import main
+from Assignment1.AOneEnv.Question1A.Read_input import read_excel_pandas
 from .ComputeParameters_1B import distances, yields
 import numpy as np
 import pandas  as pd
 
-aircraft_path = r"C:\Users\pop_r\OneDrive - Delft University of Technology\Desktop\AirlinePlanning\Assignment1\Data\AircraftData.xlsx"
+aircraft_path = r"C:\Users\jobru\Documents\TU Delft\MSc AE\Year 1\Courses Q2\APandO\Assignment files\AirlinePlanningAndOptimisation\Assignment1\Data\AircraftData.xlsx"
 aircraft_sheet = ["AircraftTypes"]
 aircraft_data = read_excel_pandas(aircraft_path, aircraft_sheet)    # Load aircraft data
 
-
+# Radu:
 # cd "C:\Users\pop_r\OneDrive - Delft University of Technology\Documents\SVV\AirlinePlanningAndOptimisation\Assignment1\AOneEnv"
 # python -m uv run -m Question1B.main
 
-
+# Job:
+# cd "C:\Users\jobru\Documents\TU Delft\MSc AE\Year 1\Courses Q2\APandO\Assignment files\AirlinePlanningAndOptimisation\Assignment1\AOneEnv"
+# python -m uv run -m Question1B.main
 
 # Constants:
 FUEL = 1.42                                # Eur/Gallon

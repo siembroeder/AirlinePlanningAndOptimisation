@@ -1,8 +1,8 @@
 # Import self-written functions
-from .Read_input import read_excel_pandas
-from .DistancesLatLong import compute_pairwise_distance, compute_dij
-from .GravityOLS import execute_OLS_fit, convert_to_ij_format
-from .PredictDemand import predict_demand_gravity, extrapolate_gdp_pop, plot_demand_routes, check_fit_route
+from Assignment1.AOneEnv.Question1A.Read_input import read_excel_pandas
+from Assignment1.AOneEnv.Question1A.DistancesLatLong import compute_pairwise_distance, compute_dij
+from Assignment1.AOneEnv.Question1A.GravityOLS import execute_OLS_fit, convert_to_ij_format
+from Assignment1.AOneEnv.Question1A.PredictDemand import predict_demand_gravity, extrapolate_gdp_pop, plot_demand_routes, check_fit_route
 
 
 # Import packages
@@ -19,7 +19,7 @@ def main():
 
     # Gather all the available data
     # aircraft_path = r"C:\Users\siemb\Documents\Year5\AirlinePlannningOptimisation\Assignment1\Data\AircraftData.xlsx"
-    
+
     # pop_path   = r"C:\Users\pop_r\OneDrive - Delft University of Technology\Desktop\AirlinePlanning\Assignment1\Data\pop_gdp.xlsx"
     pop_path = r"C:\Users\jobru\Documents\TU Delft\MSc AE\Year 1\Courses Q2\APandO\Assignment files\AirlinePlanningAndOptimisation\Assignment1\Data\pop_gdp.xlsx"
     pop_sheets = ["GDP_country","Population_city"]

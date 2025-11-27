@@ -28,6 +28,7 @@ def distances(airport_data):
     
     return distance
 
+
 def yields(distances):
 
     '''
@@ -42,6 +43,7 @@ def yields(distances):
                 y[i,j] = 5.9 * distances[i,j]**-0.76 + 0.043
     return y
     
+
 def load_aircraft_params(path):
     """
     Reads AircraftData.xlsx (layout like your screenshot) and builds
@@ -71,6 +73,7 @@ def load_aircraft_params(path):
         }
 
     return aircraft_params
+
 
 def C_X_k(ac_type, aircraft_params):
     """
@@ -109,6 +112,7 @@ def C_F_ij_k(d_ij, ac_type, aircraft_params, fuel_price=FUEL_PRICE):
     c_F = aircraft_params[ac_type]["c_F"]
     
     return c_F * (fuel_price ** 1.5) * d_ij
+
 
 def C_ij_k(origin, dest, d_ij, ac_type, aircraft_params, hub):
     """
@@ -178,3 +182,14 @@ def compute_all_C_ijk(airports, dist_matrix, aircraft_params, hub):
 
 
 
+# The code below is only runned when running the file directly
+if __name__ == "__main__":
+    print(f"This should be printed now")
+
+    ac_data_path = r"C:\Users\jobru\Documents\TU Delft\MSc AE\Year 1\Courses Q2\APandO\Assignment files\AirlinePlanningAndOptimisation\Assignment1\Data\AircraftData.xlsx"
+
+    ac_parameters = load_aircraft_params(ac_data_path)
+
+    print(f"ac_parametes: {ac_parameters}")
+    
+    pass

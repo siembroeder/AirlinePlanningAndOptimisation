@@ -81,3 +81,16 @@ def C_ij_k(origin, dest, d_ij, ac_type, aircraft_params, hub):
         C_total *= 0.7
 
     return C_total
+
+
+def leasing_cost(ac_type, aircraft_params):
+    """
+    Docstring for leasing_cost
+    
+    :param ac_type: Aircraft type
+    :param aircraft_params: Aircraft parameters
+
+    This function retrieves the leasing cost of an aircraft type
+    """
+    return aircraft_params[ac_type]["L"]
+

@@ -31,15 +31,12 @@ distance = distances(airport_data)              # Distance matrix between all ai
 
 # Aircraft
 
-aircraft_data = aircraft_data[0]                                    # type(aircraft_data)=df
-print(aircraft_data.columns)
-# aircraft_names = aircraft_data[1:]      # List of aircraft types
-# keys = aircraft_data.keys()
-print(aircraft_data["Aircraft 1"]['Seats'])
+aircraft_data = aircraft_data[0]                # type(aircraft_data)=df
 
 
 
 y = yields(distance)                            # Yield matrix based on distance matrix
+print("Yield matrix:\n", y)
 
 
 # CASK = 0.12

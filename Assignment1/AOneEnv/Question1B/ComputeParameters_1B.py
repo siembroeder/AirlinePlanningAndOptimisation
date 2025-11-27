@@ -4,7 +4,7 @@ import pandas as pd
 
 # Custom imports 
 from Question1A.DistancesLatLong import compute_dij
-from Costs import compute_all_C_ijk, leasing_cost
+from .Costs import compute_all_C_ijk, leasing_cost
 
 
 def distances(airport_data):
@@ -25,8 +25,21 @@ def distances(airport_data):
     
     return distance
 
+def yields(distances):
 
-def load_aircraft_params(path="AircraftData.xlsx"):
+    '''
+    Compute the yield matrix based on the distance matrix.
+    '''
+    y = np.zeros(distances.shape)
+    for i in range(distances.shape[0]):
+        for j in range(distances.shape[0]):
+            if i == j:
+                y[i,j] = 0
+            else:
+                y[i,j] = 5.9 * distances[i,j]**-0.76 + 0.043
+    return y
+    
+def load_aircraft_params(path):
     """
     Reads AircraftData.xlsx (layout like your screenshot) and builds
     aircraft_params = {

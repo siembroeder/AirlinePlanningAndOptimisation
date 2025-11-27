@@ -3,8 +3,8 @@ import numpy as np
 import pandas as pd
 
 # Custom imports 
-from Question1A.DistancesLatLong import compute_dij
-from .Costs import compute_all_C_ijk, leasing_cost
+from Assignment1.AOneEnv.Question1A.DistancesLatLong import compute_dij
+from Assignment1.AOneEnv.Question1B.Costs import compute_all_C_ijk, leasing_cost
 
 
 def distances(airport_data):

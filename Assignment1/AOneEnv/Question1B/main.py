@@ -51,6 +51,22 @@ print("Yield matrix:\n", y)
 
 # AC = 2
 
+# Variables for dummy constraints:
+
+a = np.empty((len_airports, len_airports, len_aircraft_types), dtype=int)
+b = np.empty((len_airports, len_airports, len_aircraft_types), dtype=int)
+
+for i in airports:
+    for j in airports:
+        for k in aircraft_types:
+            if distance[i][j] <= R[k]:
+                a[i][j][k] = 10000
+            else:
+                a[i][j][k] = 0
+            if r[i][j] <= RW[k]:
+                b[i][j][k] = 10000
+            else:
+                b[i][j][k] = 0
 
 # Start modelling optimization problem
 m = Model('question1B')
@@ -70,15 +86,28 @@ for k in aircraft_types:
         ac[k] = m.addVar(lb=0, vtype=GRB.INTEGER, name=''.join(['Number of ', str(k)]))
 
 m.update()
-m.setObjective(m.getObjective(), GRB.MAXIMIZE)  # The objective is to maximize revenue
+m.setObjective(quicksum(quicksum(y[i,j]*distance[i,j]*(x[i,j]+w[i,j]) for i in airports) for j in airports)
+              - quicksum(quicksum(quicksum(totaloperatingcost*z[i,j,k] for i in airports) for j in airports) for k in aircraft_types)
+              - quicksum(L*ac[k] for k in aircraft_types), GRB.MAXIMIZE)  # The objective is to maximize revenue
 
 for i in airports:
     for j in airports:
-        m.addConstr(x[i,j] <= q[i][j]) #C1
-        m.addConstr(x[i, j] <=z[i,j]*s*LF) #C2
-    m.addConstr(quicksum(z[i,j] for j in airports) ==  quicksum(z[j, i] for j in airports)) #C3
+        m.addConstr(x[i,j] + w[i,j]<= q[i][j])          #C1
+        m.addConstr(w[i, j] <= q[i][j] * g[i] * g[j])   #C2
+        m.addConstr(x[i,j] + quicksum(w[i,m] * (1-g[j]) for m in airports) + quicksum(w[m,j] * (1-g[i]) for m in airports) 
+                    <= quicksum(z[i,j,k] * s[k] * LF for k in aircraft_types))  #C3
+        
+        m.addConstr(z[i,j,k] <= a[i][j][k])  #C6
+        m.addConstr(z[i,j,k] <= b[i][j][k])  #C7
 
-m.addConstr(quicksum(quicksum((distance[i][j]/sp+LTO)*z[i,j] for i in airports) for j in airports) <= BT*AC) #C4
+    for k in aircraft_types:
+        m.addConstr(quicksum(z[i,j,k] for j in airports) ==  quicksum(z[j, i,k] for j in airports)) #C4
+
+# for j in airports:
+
+for k in aircraft_types:
+    m.addConstr(quicksum(quicksum((distance[i][j]/sp[k]+TAT[k]*(1 + 0.5 * (1 - g[j])))*z[i,j,k] for i in airports) for j in airports) <= BT*ac[k]) #C5
+
 
 
 m.update()

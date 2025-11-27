@@ -8,7 +8,8 @@ from Assignment1.AOneEnv.Question1A.main import main
 from Assignment1.AOneEnv.Question1A.Read_input import read_excel_pandas
 from Assignment1.AOneEnv.Question1B.ComputeParameters_1B import distances, yields
 
-aircraft_path = r"C:\Users\jobru\Documents\TU Delft\MSc AE\Year 1\Courses Q2\APandO\Assignment files\AirlinePlanningAndOptimisation\Assignment1\Data\AircraftData.xlsx"
+# aircraft_path = r"C:\Users\jobru\Documents\TU Delft\MSc AE\Year 1\Courses Q2\APandO\Assignment files\AirlinePlanningAndOptimisation\Assignment1\Data\AircraftData.xlsx"
+aircraft_path = r"C:\Users\pop_r\OneDrive - Delft University of Technology\Desktop\AirlinePlanning\Assignment1\Data\AircraftData.xlsx"
 aircraft_sheet = ["AircraftTypes"]
 aircraft_data = read_excel_pandas(aircraft_path, aircraft_sheet)    # Load aircraft data
 
@@ -40,8 +41,6 @@ aircraft_data = aircraft_data[0]                # type(aircraft_data)=df
 
 
 y = yields(distance)                            # Yield matrix based on distance matrix
-print("Yield matrix:\n", y)
-
 
 # CASK = 0.12
 

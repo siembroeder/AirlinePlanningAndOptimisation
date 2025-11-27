@@ -12,14 +12,15 @@ FUEL = 1.42                                # Eur/Gallon
 LF = 0.75                                  # Average load factor assumed 75%           
 BT = 10 * 7                                # Assumed 10 hours of block time per day per aircraft
 
-
-
 # Data
 airport_data, q = main()                 # Using results obtained from question 1A for demand
 airports = airport_data.columns            # List of airport names
 print(airports)
 len_airports = len(airports)               # Number of airports
 distance = distances(airport_data)         # Distance matrix between all airports
+
+
+
 
 # CASK = 0.12
 

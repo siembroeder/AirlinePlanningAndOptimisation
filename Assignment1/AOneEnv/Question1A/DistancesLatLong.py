@@ -7,7 +7,7 @@ def compute_pairwise_distance(loc1, loc2):
     Finds the distance between two airports at locations loc1 and loc2 via the equation given in appendix C-Airport Data.
     loc: [latitude, longitude] (in degrees)
     '''
-    RE = 6371000 # Radius of Earth in m
+    RE = 6371 # Radius of Earth in km
     lat1, long1 = np.radians(loc1)
     lat2, long2 = np.radians(loc2)
 

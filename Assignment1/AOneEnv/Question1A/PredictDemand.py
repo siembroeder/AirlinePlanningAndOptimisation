@@ -24,6 +24,7 @@ def predict_demand_gravity(coeffs, ij_year):
     pred_demand['j'] = ij_year['j']
 
     pred_demand['Dij'] = k*(popi*popj)**b1*(gdpi*gdpj)**b2 / (fdij)**b3
+    pred_demand['Dij'] = pred_demand['Dij'].astype(int)                     # Convert to integer number of passengers
 
     return pred_demand
 

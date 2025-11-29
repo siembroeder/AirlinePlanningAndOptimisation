@@ -18,14 +18,16 @@ FUEL = 1.42 # Eur/Gallon
 def main():
 
     # Gather all the available data
-    # aircraft_path = r"C:\Users\siemb\Documents\Year5\AirlinePlannningOptimisation\Assignment1\Data\AircraftData.xlsx"
+    aircraft_path = r"C:\Users\siemb\Documents\Year5\AirlinePlannningOptimisation\Assignment1\Data\AircraftData.xlsx"
 
-    pop_path   = r"C:\Users\pop_r\OneDrive - Delft University of Technology\Desktop\AirlinePlanning\Assignment1\Data\pop_gdp.xlsx"
+    # pop_path   = r"C:\Users\pop_r\OneDrive - Delft University of Technology\Desktop\AirlinePlanning\Assignment1\Data\pop_gdp.xlsx"
     # pop_path = r"C:\Users\jobru\Documents\TU Delft\MSc AE\Year 1\Courses Q2\APandO\Assignment files\AirlinePlanningAndOptimisation\Assignment1\Data\pop_gdp.xlsx"
+    pop_path = r"..\..\Assignment1\Data\pop_gdp.xlsx"
     pop_sheets = ["GDP_country","Population_city"]
 
-    demand_path   = r"C:\Users\pop_r\OneDrive - Delft University of Technology\Desktop\AirlinePlanning\Assignment1\Data\DemandGroup7.xlsx"
+    # demand_path   = r"C:\Users\pop_r\OneDrive - Delft University of Technology\Desktop\AirlinePlanning\Assignment1\Data\DemandGroup7.xlsx"
     # demand_path = r"C:\Users\jobru\Documents\TU Delft\MSc AE\Year 1\Courses Q2\APandO\Assignment files\AirlinePlanningAndOptimisation\Assignment1\Data\DemandGroup7.xlsx"
+    demand_path = r"..\..\Assignment1\Data\DemandGroup7.xlsx"
     demand_sheets = ["Airport_data", "Demand_week"]
 
     GDP_data, pop_data             = read_excel_pandas(pop_path, pop_sheets, indx=None)

@@ -9,10 +9,9 @@ from Question1A.Read_input import read_excel_pandas
 from .ComputeParameters_1B import demand_list, load_airport_params, yields, load_aircraft_params, operating_costs
 
 # aircraft_path = r"C:\Users\jobru\Documents\TU Delft\MSc AE\Year 1\Courses Q2\APandO\Assignment files\AirlinePlanningAndOptimisation\Assignment1\Data\AircraftData.xlsx"
-aircraft_path = r"C:\Users\pop_r\OneDrive - Delft University of Technology\Desktop\AirlinePlanning\Assignment1\Data\AircraftData.xlsx"
+# aircraft_path = r"C:\Users\pop_r\OneDrive - Delft University of Technology\Desktop\AirlinePlanning\Assignment1\Data\AircraftData.xlsx"
+aircraft_path = r"..\..\Assignment1\Data\AircraftData.xlsx"
 aircraft_sheet = ["AircraftTypes"]
-aircraft_data = read_excel_pandas(aircraft_path, aircraft_sheet)    # Load aircraft data
-aircraft_data = aircraft_data[0]                                    # type(aircraft_data)=df
 
 # Radu:
 # cd "C:\Users\pop_r\OneDrive - Delft University of Technology\Documents\SVV\AirlinePlanningAndOptimisation\Assignment1\AOneEnv" 

@@ -17,4 +17,4 @@ def read_excel_pandas(path: Path, sheets: list, indx = 0) -> list:
     return df_list
 
 
-# Dij = log(k)+b1log(pi*pj)+b2log(gi*gj)-b3log(f*dij)
+# Dij = log(k)+b1log(pi*pj)+b2log(gi*gj)-b3log(f*dij)   

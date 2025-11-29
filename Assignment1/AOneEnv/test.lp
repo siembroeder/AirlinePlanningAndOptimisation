@@ -1,6 +1,6 @@
 \ Model question1B
 \ LP format - for model browsing. Use MPS format to capture full model detail.
-\ Signature: 0x9c7c5f78f15dad14
+\ Signature: 0x9c7c5f78f15db459
 Maximize
   - 210 Flights_from_London_to_London_by_Aircraft_1
    - 420 Flights_from_London_to_London_by_Aircraft_2
@@ -14955,7 +14955,7 @@ Subject To
    + 8.608058983505893 Flights_from_Reykjavik_to_Heraklion_by_Aircraft_1
    + 0.4166666666666667 Flights_from_Reykjavik_to_Reykjavik_by_Aircraft_1
    + 7.184274570676982 Flights_from_Reykjavik_to_Palermo_by_Aircraft_1
-   + 6.784531860494825 Flights_from_Reykjavik_to_Madeira_by_Aircraft_1
+   + 6.784531860494826 Flights_from_Reykjavik_to_Madeira_by_Aircraft_1
    + 3.751647471689858 Flights_from_Palermo_to_London_by_Aircraft_1
    + 3.120921356919221 Flights_from_Palermo_to_Paris_by_Aircraft_1
    + 3.737857273689674 Flights_from_Palermo_to_Amsterdam_by_Aircraft_1
@@ -14993,7 +14993,7 @@ Subject To
    + 5.480908187953045 Flights_from_Madeira_to_Edinburgh_by_Aircraft_1
    + 7.504737693791045 Flights_from_Madeira_to_Bucharest_by_Aircraft_1
    + 7.415095847621679 Flights_from_Madeira_to_Heraklion_by_Aircraft_1
-   + 6.784531860494825 Flights_from_Madeira_to_Reykjavik_by_Aircraft_1
+   + 6.784531860494826 Flights_from_Madeira_to_Reykjavik_by_Aircraft_1
    + 5.470540244106266 Flights_from_Madeira_to_Palermo_by_Aircraft_1
    + 0.4166666666666667 Flights_from_Madeira_to_Madeira_by_Aircraft_1
    - 70 Number_of_Aircraft_1 <= 0

@@ -37,7 +37,6 @@ len_airports = len(airports)                                        # Number of 
 distance, r, ls, g = load_airport_params(airport_data)                       # Distance matrix between all airports, max runway length matrix for all routes, 
                                                                     # available weekly landing slots at each airport, hub indicator
 # Aircraft
-
 aircraft_data = read_excel_pandas(aircraft_path, aircraft_sheet)    # Load aircraft data
 aircraft_data = aircraft_data[0]                                    # type(aircraft_data)=df
 

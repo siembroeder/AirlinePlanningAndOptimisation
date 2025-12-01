@@ -1,6 +1,6 @@
 \ Model question1B
 \ LP format - for model browsing. Use MPS format to capture full model detail.
-\ Signature: 0x9c7c5f78f15db459
+\ Signature: 0x9c7c5f78f15dad14
 Maximize
   - 210 Flights_from_London_to_London_by_Aircraft_1
    - 420 Flights_from_London_to_London_by_Aircraft_2
@@ -2622,7 +2622,7 @@ Subject To
  R164: Flights_from_London_to_Warsaw_by_Aircraft_3 <= 10000
  R165: Flights_from_London_to_Warsaw_by_Aircraft_3 <= 10000
  R166: Flights_from_London_to_Warsaw_by_Aircraft_4 <= 10000
- R167: Flights_from_London_to_Warsaw_by_Aircraft_4 <= 10000
+ R167: Flights_from_London_to_Warsaw_by_Aircraft_4 <= 0
  R168: Direct_flow_from_London_to_Edinburgh
    + Transfer_flow_from_London_to_Edinburgh <= 399
  R169: Transfer_flow_from_London_to_Edinburgh <= 399
@@ -2639,7 +2639,7 @@ Subject To
  R176: Flights_from_London_to_Edinburgh_by_Aircraft_3 <= 10000
  R177: Flights_from_London_to_Edinburgh_by_Aircraft_3 <= 10000
  R178: Flights_from_London_to_Edinburgh_by_Aircraft_4 <= 10000
- R179: Flights_from_London_to_Edinburgh_by_Aircraft_4 <= 10000
+ R179: Flights_from_London_to_Edinburgh_by_Aircraft_4 <= 0
  R180: Direct_flow_from_London_to_Bucharest
    + Transfer_flow_from_London_to_Bucharest <= 75
  R181: Transfer_flow_from_London_to_Bucharest <= 75
@@ -2656,7 +2656,7 @@ Subject To
  R188: Flights_from_London_to_Bucharest_by_Aircraft_3 <= 10000
  R189: Flights_from_London_to_Bucharest_by_Aircraft_3 <= 10000
  R190: Flights_from_London_to_Bucharest_by_Aircraft_4 <= 10000
- R191: Flights_from_London_to_Bucharest_by_Aircraft_4 <= 10000
+ R191: Flights_from_London_to_Bucharest_by_Aircraft_4 <= 0
  R192: Direct_flow_from_London_to_Heraklion
    + Transfer_flow_from_London_to_Heraklion <= 17
  R193: Transfer_flow_from_London_to_Heraklion <= 17
@@ -2673,7 +2673,7 @@ Subject To
  R200: Flights_from_London_to_Heraklion_by_Aircraft_3 <= 10000
  R201: Flights_from_London_to_Heraklion_by_Aircraft_3 <= 10000
  R202: Flights_from_London_to_Heraklion_by_Aircraft_4 <= 10000
- R203: Flights_from_London_to_Heraklion_by_Aircraft_4 <= 10000
+ R203: Flights_from_London_to_Heraklion_by_Aircraft_4 <= 0
  R204: Direct_flow_from_London_to_Reykjavik
    + Transfer_flow_from_London_to_Reykjavik <= 45
  R205: Transfer_flow_from_London_to_Reykjavik <= 45
@@ -2690,7 +2690,7 @@ Subject To
  R212: Flights_from_London_to_Reykjavik_by_Aircraft_3 <= 10000
  R213: Flights_from_London_to_Reykjavik_by_Aircraft_3 <= 10000
  R214: Flights_from_London_to_Reykjavik_by_Aircraft_4 <= 10000
- R215: Flights_from_London_to_Reykjavik_by_Aircraft_4 <= 10000
+ R215: Flights_from_London_to_Reykjavik_by_Aircraft_4 <= 0
  R216: Direct_flow_from_London_to_Palermo
    + Transfer_flow_from_London_to_Palermo <= 81
  R217: Transfer_flow_from_London_to_Palermo <= 81
@@ -2707,7 +2707,7 @@ Subject To
  R224: Flights_from_London_to_Palermo_by_Aircraft_3 <= 10000
  R225: Flights_from_London_to_Palermo_by_Aircraft_3 <= 10000
  R226: Flights_from_London_to_Palermo_by_Aircraft_4 <= 10000
- R227: Flights_from_London_to_Palermo_by_Aircraft_4 <= 10000
+ R227: Flights_from_London_to_Palermo_by_Aircraft_4 <= 0
  R228: Direct_flow_from_London_to_Madeira
    + Transfer_flow_from_London_to_Madeira <= 17
  R229: Transfer_flow_from_London_to_Madeira <= 17
@@ -2724,7 +2724,7 @@ Subject To
  R236: Flights_from_London_to_Madeira_by_Aircraft_3 <= 10000
  R237: Flights_from_London_to_Madeira_by_Aircraft_3 <= 10000
  R238: Flights_from_London_to_Madeira_by_Aircraft_4 <= 10000
- R239: Flights_from_London_to_Madeira_by_Aircraft_4 <= 10000
+ R239: Flights_from_London_to_Madeira_by_Aircraft_4 <= 0
  R240: Direct_flow_from_Paris_to_London
    + Transfer_flow_from_Paris_to_London <= 1270
  R241: Transfer_flow_from_Paris_to_London <= 1270
@@ -2981,7 +2981,7 @@ Subject To
  R404: Flights_from_Paris_to_Warsaw_by_Aircraft_3 <= 10000
  R405: Flights_from_Paris_to_Warsaw_by_Aircraft_3 <= 10000
  R406: Flights_from_Paris_to_Warsaw_by_Aircraft_4 <= 10000
- R407: Flights_from_Paris_to_Warsaw_by_Aircraft_4 <= 10000
+ R407: Flights_from_Paris_to_Warsaw_by_Aircraft_4 <= 0
  R408: Direct_flow_from_Paris_to_Edinburgh
    + Transfer_flow_from_Paris_to_Edinburgh <= 97
  R409: Transfer_flow_from_Paris_to_Edinburgh <= 97
@@ -2998,7 +2998,7 @@ Subject To
  R416: Flights_from_Paris_to_Edinburgh_by_Aircraft_3 <= 10000
  R417: Flights_from_Paris_to_Edinburgh_by_Aircraft_3 <= 10000
  R418: Flights_from_Paris_to_Edinburgh_by_Aircraft_4 <= 10000
- R419: Flights_from_Paris_to_Edinburgh_by_Aircraft_4 <= 10000
+ R419: Flights_from_Paris_to_Edinburgh_by_Aircraft_4 <= 0
  R420: Direct_flow_from_Paris_to_Bucharest
    + Transfer_flow_from_Paris_to_Bucharest <= 38
  R421: Transfer_flow_from_Paris_to_Bucharest <= 38
@@ -3015,7 +3015,7 @@ Subject To
  R428: Flights_from_Paris_to_Bucharest_by_Aircraft_3 <= 10000
  R429: Flights_from_Paris_to_Bucharest_by_Aircraft_3 <= 10000
  R430: Flights_from_Paris_to_Bucharest_by_Aircraft_4 <= 10000
- R431: Flights_from_Paris_to_Bucharest_by_Aircraft_4 <= 10000
+ R431: Flights_from_Paris_to_Bucharest_by_Aircraft_4 <= 0
  R432: Direct_flow_from_Paris_to_Heraklion
    + Transfer_flow_from_Paris_to_Heraklion <= 8
  R433: Transfer_flow_from_Paris_to_Heraklion <= 8
@@ -3032,7 +3032,7 @@ Subject To
  R440: Flights_from_Paris_to_Heraklion_by_Aircraft_3 <= 10000
  R441: Flights_from_Paris_to_Heraklion_by_Aircraft_3 <= 10000
  R442: Flights_from_Paris_to_Heraklion_by_Aircraft_4 <= 10000
- R443: Flights_from_Paris_to_Heraklion_by_Aircraft_4 <= 10000
+ R443: Flights_from_Paris_to_Heraklion_by_Aircraft_4 <= 0
  R444: Direct_flow_from_Paris_to_Reykjavik
    + Transfer_flow_from_Paris_to_Reykjavik <= 16
  R445: Transfer_flow_from_Paris_to_Reykjavik <= 16
@@ -3049,7 +3049,7 @@ Subject To
  R452: Flights_from_Paris_to_Reykjavik_by_Aircraft_3 <= 10000
  R453: Flights_from_Paris_to_Reykjavik_by_Aircraft_3 <= 10000
  R454: Flights_from_Paris_to_Reykjavik_by_Aircraft_4 <= 10000
- R455: Flights_from_Paris_to_Reykjavik_by_Aircraft_4 <= 10000
+ R455: Flights_from_Paris_to_Reykjavik_by_Aircraft_4 <= 0
  R456: Direct_flow_from_Paris_to_Palermo
    + Transfer_flow_from_Paris_to_Palermo <= 45
  R457: Transfer_flow_from_Paris_to_Palermo <= 45
@@ -3066,7 +3066,7 @@ Subject To
  R464: Flights_from_Paris_to_Palermo_by_Aircraft_3 <= 10000
  R465: Flights_from_Paris_to_Palermo_by_Aircraft_3 <= 10000
  R466: Flights_from_Paris_to_Palermo_by_Aircraft_4 <= 10000
- R467: Flights_from_Paris_to_Palermo_by_Aircraft_4 <= 10000
+ R467: Flights_from_Paris_to_Palermo_by_Aircraft_4 <= 0
  R468: Direct_flow_from_Paris_to_Madeira
    + Transfer_flow_from_Paris_to_Madeira <= 7
  R469: Transfer_flow_from_Paris_to_Madeira <= 7
@@ -3083,7 +3083,7 @@ Subject To
  R476: Flights_from_Paris_to_Madeira_by_Aircraft_3 <= 10000
  R477: Flights_from_Paris_to_Madeira_by_Aircraft_3 <= 10000
  R478: Flights_from_Paris_to_Madeira_by_Aircraft_4 <= 10000
- R479: Flights_from_Paris_to_Madeira_by_Aircraft_4 <= 10000
+ R479: Flights_from_Paris_to_Madeira_by_Aircraft_4 <= 0
  R480: Direct_flow_from_Amsterdam_to_London
    + Transfer_flow_from_Amsterdam_to_London <= 823
  R481: Transfer_flow_from_Amsterdam_to_London <= 0
@@ -3616,7 +3616,7 @@ Subject To
  R644: Flights_from_Amsterdam_to_Warsaw_by_Aircraft_3 <= 10000
  R645: Flights_from_Amsterdam_to_Warsaw_by_Aircraft_3 <= 10000
  R646: Flights_from_Amsterdam_to_Warsaw_by_Aircraft_4 <= 10000
- R647: Flights_from_Amsterdam_to_Warsaw_by_Aircraft_4 <= 10000
+ R647: Flights_from_Amsterdam_to_Warsaw_by_Aircraft_4 <= 0
  R648: Direct_flow_from_Amsterdam_to_Edinburgh
    + Transfer_flow_from_Amsterdam_to_Edinburgh <= 93
  R649: Transfer_flow_from_Amsterdam_to_Edinburgh <= 0
@@ -3653,7 +3653,7 @@ Subject To
  R656: Flights_from_Amsterdam_to_Edinburgh_by_Aircraft_3 <= 10000
  R657: Flights_from_Amsterdam_to_Edinburgh_by_Aircraft_3 <= 10000
  R658: Flights_from_Amsterdam_to_Edinburgh_by_Aircraft_4 <= 10000
- R659: Flights_from_Amsterdam_to_Edinburgh_by_Aircraft_4 <= 10000
+ R659: Flights_from_Amsterdam_to_Edinburgh_by_Aircraft_4 <= 0
  R660: Direct_flow_from_Amsterdam_to_Bucharest
    + Transfer_flow_from_Amsterdam_to_Bucharest <= 28
  R661: Transfer_flow_from_Amsterdam_to_Bucharest <= 0
@@ -3690,7 +3690,7 @@ Subject To
  R668: Flights_from_Amsterdam_to_Bucharest_by_Aircraft_3 <= 10000
  R669: Flights_from_Amsterdam_to_Bucharest_by_Aircraft_3 <= 10000
  R670: Flights_from_Amsterdam_to_Bucharest_by_Aircraft_4 <= 10000
- R671: Flights_from_Amsterdam_to_Bucharest_by_Aircraft_4 <= 10000
+ R671: Flights_from_Amsterdam_to_Bucharest_by_Aircraft_4 <= 0
  R672: Direct_flow_from_Amsterdam_to_Heraklion
    + Transfer_flow_from_Amsterdam_to_Heraklion <= 5
  R673: Transfer_flow_from_Amsterdam_to_Heraklion <= 0
@@ -3727,7 +3727,7 @@ Subject To
  R680: Flights_from_Amsterdam_to_Heraklion_by_Aircraft_3 <= 10000
  R681: Flights_from_Amsterdam_to_Heraklion_by_Aircraft_3 <= 10000
  R682: Flights_from_Amsterdam_to_Heraklion_by_Aircraft_4 <= 10000
- R683: Flights_from_Amsterdam_to_Heraklion_by_Aircraft_4 <= 10000
+ R683: Flights_from_Amsterdam_to_Heraklion_by_Aircraft_4 <= 0
  R684: Direct_flow_from_Amsterdam_to_Reykjavik
    + Transfer_flow_from_Amsterdam_to_Reykjavik <= 12
  R685: Transfer_flow_from_Amsterdam_to_Reykjavik <= 0
@@ -3764,7 +3764,7 @@ Subject To
  R692: Flights_from_Amsterdam_to_Reykjavik_by_Aircraft_3 <= 10000
  R693: Flights_from_Amsterdam_to_Reykjavik_by_Aircraft_3 <= 10000
  R694: Flights_from_Amsterdam_to_Reykjavik_by_Aircraft_4 <= 10000
- R695: Flights_from_Amsterdam_to_Reykjavik_by_Aircraft_4 <= 10000
+ R695: Flights_from_Amsterdam_to_Reykjavik_by_Aircraft_4 <= 0
  R696: Direct_flow_from_Amsterdam_to_Palermo
    + Transfer_flow_from_Amsterdam_to_Palermo <= 27
  R697: Transfer_flow_from_Amsterdam_to_Palermo <= 0
@@ -3801,7 +3801,7 @@ Subject To
  R704: Flights_from_Amsterdam_to_Palermo_by_Aircraft_3 <= 10000
  R705: Flights_from_Amsterdam_to_Palermo_by_Aircraft_3 <= 10000
  R706: Flights_from_Amsterdam_to_Palermo_by_Aircraft_4 <= 10000
- R707: Flights_from_Amsterdam_to_Palermo_by_Aircraft_4 <= 10000
+ R707: Flights_from_Amsterdam_to_Palermo_by_Aircraft_4 <= 0
  R708: Direct_flow_from_Amsterdam_to_Madeira
    + Transfer_flow_from_Amsterdam_to_Madeira <= 4
  R709: Transfer_flow_from_Amsterdam_to_Madeira <= 0
@@ -3838,7 +3838,7 @@ Subject To
  R716: Flights_from_Amsterdam_to_Madeira_by_Aircraft_3 <= 10000
  R717: Flights_from_Amsterdam_to_Madeira_by_Aircraft_3 <= 10000
  R718: Flights_from_Amsterdam_to_Madeira_by_Aircraft_4 <= 10000
- R719: Flights_from_Amsterdam_to_Madeira_by_Aircraft_4 <= 10000
+ R719: Flights_from_Amsterdam_to_Madeira_by_Aircraft_4 <= 0
  R720: Direct_flow_from_Frankfurt_to_London
    + Transfer_flow_from_Frankfurt_to_London <= 383
  R721: Transfer_flow_from_Frankfurt_to_London <= 383
@@ -4096,7 +4096,7 @@ Subject To
  R884: Flights_from_Frankfurt_to_Warsaw_by_Aircraft_3 <= 10000
  R885: Flights_from_Frankfurt_to_Warsaw_by_Aircraft_3 <= 10000
  R886: Flights_from_Frankfurt_to_Warsaw_by_Aircraft_4 <= 10000
- R887: Flights_from_Frankfurt_to_Warsaw_by_Aircraft_4 <= 10000
+ R887: Flights_from_Frankfurt_to_Warsaw_by_Aircraft_4 <= 0
  R888: Direct_flow_from_Frankfurt_to_Edinburgh
    + Transfer_flow_from_Frankfurt_to_Edinburgh <= 51
  R889: Transfer_flow_from_Frankfurt_to_Edinburgh <= 51
@@ -4113,7 +4113,7 @@ Subject To
  R896: Flights_from_Frankfurt_to_Edinburgh_by_Aircraft_3 <= 10000
  R897: Flights_from_Frankfurt_to_Edinburgh_by_Aircraft_3 <= 10000
  R898: Flights_from_Frankfurt_to_Edinburgh_by_Aircraft_4 <= 10000
- R899: Flights_from_Frankfurt_to_Edinburgh_by_Aircraft_4 <= 10000
+ R899: Flights_from_Frankfurt_to_Edinburgh_by_Aircraft_4 <= 0
  R900: Direct_flow_from_Frankfurt_to_Bucharest
    + Transfer_flow_from_Frankfurt_to_Bucharest <= 32
  R901: Transfer_flow_from_Frankfurt_to_Bucharest <= 32
@@ -4130,7 +4130,7 @@ Subject To
  R908: Flights_from_Frankfurt_to_Bucharest_by_Aircraft_3 <= 10000
  R909: Flights_from_Frankfurt_to_Bucharest_by_Aircraft_3 <= 10000
  R910: Flights_from_Frankfurt_to_Bucharest_by_Aircraft_4 <= 10000
- R911: Flights_from_Frankfurt_to_Bucharest_by_Aircraft_4 <= 10000
+ R911: Flights_from_Frankfurt_to_Bucharest_by_Aircraft_4 <= 0
  R912: Direct_flow_from_Frankfurt_to_Heraklion
    + Transfer_flow_from_Frankfurt_to_Heraklion <= 6
  R913: Transfer_flow_from_Frankfurt_to_Heraklion <= 6
@@ -4147,7 +4147,7 @@ Subject To
  R920: Flights_from_Frankfurt_to_Heraklion_by_Aircraft_3 <= 10000
  R921: Flights_from_Frankfurt_to_Heraklion_by_Aircraft_3 <= 10000
  R922: Flights_from_Frankfurt_to_Heraklion_by_Aircraft_4 <= 10000
- R923: Flights_from_Frankfurt_to_Heraklion_by_Aircraft_4 <= 10000
+ R923: Flights_from_Frankfurt_to_Heraklion_by_Aircraft_4 <= 0
  R924: Direct_flow_from_Frankfurt_to_Reykjavik
    + Transfer_flow_from_Frankfurt_to_Reykjavik <= 9
  R925: Transfer_flow_from_Frankfurt_to_Reykjavik <= 9
@@ -4164,7 +4164,7 @@ Subject To
  R932: Flights_from_Frankfurt_to_Reykjavik_by_Aircraft_3 <= 10000
  R933: Flights_from_Frankfurt_to_Reykjavik_by_Aircraft_3 <= 10000
  R934: Flights_from_Frankfurt_to_Reykjavik_by_Aircraft_4 <= 10000
- R935: Flights_from_Frankfurt_to_Reykjavik_by_Aircraft_4 <= 10000
+ R935: Flights_from_Frankfurt_to_Reykjavik_by_Aircraft_4 <= 0
  R936: Direct_flow_from_Frankfurt_to_Palermo
    + Transfer_flow_from_Frankfurt_to_Palermo <= 32
  R937: Transfer_flow_from_Frankfurt_to_Palermo <= 32
@@ -4181,7 +4181,7 @@ Subject To
  R944: Flights_from_Frankfurt_to_Palermo_by_Aircraft_3 <= 10000
  R945: Flights_from_Frankfurt_to_Palermo_by_Aircraft_3 <= 10000
  R946: Flights_from_Frankfurt_to_Palermo_by_Aircraft_4 <= 10000
- R947: Flights_from_Frankfurt_to_Palermo_by_Aircraft_4 <= 10000
+ R947: Flights_from_Frankfurt_to_Palermo_by_Aircraft_4 <= 0
  R948: Direct_flow_from_Frankfurt_to_Madeira
    + Transfer_flow_from_Frankfurt_to_Madeira <= 4
  R949: Transfer_flow_from_Frankfurt_to_Madeira <= 4
@@ -4198,7 +4198,7 @@ Subject To
  R956: Flights_from_Frankfurt_to_Madeira_by_Aircraft_3 <= 10000
  R957: Flights_from_Frankfurt_to_Madeira_by_Aircraft_3 <= 10000
  R958: Flights_from_Frankfurt_to_Madeira_by_Aircraft_4 <= 10000
- R959: Flights_from_Frankfurt_to_Madeira_by_Aircraft_4 <= 10000
+ R959: Flights_from_Frankfurt_to_Madeira_by_Aircraft_4 <= 0
  R960: Direct_flow_from_Madrid_to_London
    + Transfer_flow_from_Madrid_to_London <= 295
  R961: Transfer_flow_from_Madrid_to_London <= 295
@@ -4456,7 +4456,7 @@ Subject To
  R1124: Flights_from_Madrid_to_Warsaw_by_Aircraft_3 <= 10000
  R1125: Flights_from_Madrid_to_Warsaw_by_Aircraft_3 <= 10000
  R1126: Flights_from_Madrid_to_Warsaw_by_Aircraft_4 <= 10000
- R1127: Flights_from_Madrid_to_Warsaw_by_Aircraft_4 <= 10000
+ R1127: Flights_from_Madrid_to_Warsaw_by_Aircraft_4 <= 0
  R1128: Direct_flow_from_Madrid_to_Edinburgh
    + Transfer_flow_from_Madrid_to_Edinburgh <= 46
  R1129: Transfer_flow_from_Madrid_to_Edinburgh <= 46
@@ -4473,7 +4473,7 @@ Subject To
  R1136: Flights_from_Madrid_to_Edinburgh_by_Aircraft_3 <= 10000
  R1137: Flights_from_Madrid_to_Edinburgh_by_Aircraft_3 <= 10000
  R1138: Flights_from_Madrid_to_Edinburgh_by_Aircraft_4 <= 10000
- R1139: Flights_from_Madrid_to_Edinburgh_by_Aircraft_4 <= 10000
+ R1139: Flights_from_Madrid_to_Edinburgh_by_Aircraft_4 <= 0
  R1140: Direct_flow_from_Madrid_to_Bucharest
    + Transfer_flow_from_Madrid_to_Bucharest <= 29
  R1141: Transfer_flow_from_Madrid_to_Bucharest <= 29
@@ -4490,7 +4490,7 @@ Subject To
  R1148: Flights_from_Madrid_to_Bucharest_by_Aircraft_3 <= 10000
  R1149: Flights_from_Madrid_to_Bucharest_by_Aircraft_3 <= 10000
  R1150: Flights_from_Madrid_to_Bucharest_by_Aircraft_4 <= 10000
- R1151: Flights_from_Madrid_to_Bucharest_by_Aircraft_4 <= 10000
+ R1151: Flights_from_Madrid_to_Bucharest_by_Aircraft_4 <= 0
  R1152: Direct_flow_from_Madrid_to_Heraklion
    + Transfer_flow_from_Madrid_to_Heraklion <= 8
  R1153: Transfer_flow_from_Madrid_to_Heraklion <= 8
@@ -4507,7 +4507,7 @@ Subject To
  R1160: Flights_from_Madrid_to_Heraklion_by_Aircraft_3 <= 10000
  R1161: Flights_from_Madrid_to_Heraklion_by_Aircraft_3 <= 10000
  R1162: Flights_from_Madrid_to_Heraklion_by_Aircraft_4 <= 10000
- R1163: Flights_from_Madrid_to_Heraklion_by_Aircraft_4 <= 10000
+ R1163: Flights_from_Madrid_to_Heraklion_by_Aircraft_4 <= 0
  R1164: Direct_flow_from_Madrid_to_Reykjavik
    + Transfer_flow_from_Madrid_to_Reykjavik <= 12
  R1165: Transfer_flow_from_Madrid_to_Reykjavik <= 12
@@ -4524,7 +4524,7 @@ Subject To
  R1172: Flights_from_Madrid_to_Reykjavik_by_Aircraft_3 <= 10000
  R1173: Flights_from_Madrid_to_Reykjavik_by_Aircraft_3 <= 10000
  R1174: Flights_from_Madrid_to_Reykjavik_by_Aircraft_4 <= 10000
- R1175: Flights_from_Madrid_to_Reykjavik_by_Aircraft_4 <= 10000
+ R1175: Flights_from_Madrid_to_Reykjavik_by_Aircraft_4 <= 0
  R1176: Direct_flow_from_Madrid_to_Palermo
    + Transfer_flow_from_Madrid_to_Palermo <= 49
  R1177: Transfer_flow_from_Madrid_to_Palermo <= 49
@@ -4541,7 +4541,7 @@ Subject To
  R1184: Flights_from_Madrid_to_Palermo_by_Aircraft_3 <= 10000
  R1185: Flights_from_Madrid_to_Palermo_by_Aircraft_3 <= 10000
  R1186: Flights_from_Madrid_to_Palermo_by_Aircraft_4 <= 10000
- R1187: Flights_from_Madrid_to_Palermo_by_Aircraft_4 <= 10000
+ R1187: Flights_from_Madrid_to_Palermo_by_Aircraft_4 <= 0
  R1188: Direct_flow_from_Madrid_to_Madeira
    + Transfer_flow_from_Madrid_to_Madeira <= 15
  R1189: Transfer_flow_from_Madrid_to_Madeira <= 15
@@ -4558,7 +4558,7 @@ Subject To
  R1196: Flights_from_Madrid_to_Madeira_by_Aircraft_3 <= 10000
  R1197: Flights_from_Madrid_to_Madeira_by_Aircraft_3 <= 10000
  R1198: Flights_from_Madrid_to_Madeira_by_Aircraft_4 <= 10000
- R1199: Flights_from_Madrid_to_Madeira_by_Aircraft_4 <= 10000
+ R1199: Flights_from_Madrid_to_Madeira_by_Aircraft_4 <= 0
  R1200: Direct_flow_from_Barcelona_to_London
    + Transfer_flow_from_Barcelona_to_London <= 223
  R1201: Transfer_flow_from_Barcelona_to_London <= 223
@@ -4816,7 +4816,7 @@ Subject To
  R1364: Flights_from_Barcelona_to_Warsaw_by_Aircraft_3 <= 10000
  R1365: Flights_from_Barcelona_to_Warsaw_by_Aircraft_3 <= 10000
  R1366: Flights_from_Barcelona_to_Warsaw_by_Aircraft_4 <= 10000
- R1367: Flights_from_Barcelona_to_Warsaw_by_Aircraft_4 <= 10000
+ R1367: Flights_from_Barcelona_to_Warsaw_by_Aircraft_4 <= 0
  R1368: Direct_flow_from_Barcelona_to_Edinburgh
    + Transfer_flow_from_Barcelona_to_Edinburgh <= 32
  R1369: Transfer_flow_from_Barcelona_to_Edinburgh <= 32
@@ -4833,7 +4833,7 @@ Subject To
  R1376: Flights_from_Barcelona_to_Edinburgh_by_Aircraft_3 <= 10000
  R1377: Flights_from_Barcelona_to_Edinburgh_by_Aircraft_3 <= 10000
  R1378: Flights_from_Barcelona_to_Edinburgh_by_Aircraft_4 <= 10000
- R1379: Flights_from_Barcelona_to_Edinburgh_by_Aircraft_4 <= 10000
+ R1379: Flights_from_Barcelona_to_Edinburgh_by_Aircraft_4 <= 0
  R1380: Direct_flow_from_Barcelona_to_Bucharest
    + Transfer_flow_from_Barcelona_to_Bucharest <= 25
  R1381: Transfer_flow_from_Barcelona_to_Bucharest <= 25
@@ -4850,7 +4850,7 @@ Subject To
  R1388: Flights_from_Barcelona_to_Bucharest_by_Aircraft_3 <= 10000
  R1389: Flights_from_Barcelona_to_Bucharest_by_Aircraft_3 <= 10000
  R1390: Flights_from_Barcelona_to_Bucharest_by_Aircraft_4 <= 10000
- R1391: Flights_from_Barcelona_to_Bucharest_by_Aircraft_4 <= 10000
+ R1391: Flights_from_Barcelona_to_Bucharest_by_Aircraft_4 <= 0
  R1392: Direct_flow_from_Barcelona_to_Heraklion
    + Transfer_flow_from_Barcelona_to_Heraklion <= 7
  R1393: Transfer_flow_from_Barcelona_to_Heraklion <= 7
@@ -4867,7 +4867,7 @@ Subject To
  R1400: Flights_from_Barcelona_to_Heraklion_by_Aircraft_3 <= 10000
  R1401: Flights_from_Barcelona_to_Heraklion_by_Aircraft_3 <= 10000
  R1402: Flights_from_Barcelona_to_Heraklion_by_Aircraft_4 <= 10000
- R1403: Flights_from_Barcelona_to_Heraklion_by_Aircraft_4 <= 10000
+ R1403: Flights_from_Barcelona_to_Heraklion_by_Aircraft_4 <= 0
  R1404: Direct_flow_from_Barcelona_to_Reykjavik
    + Transfer_flow_from_Barcelona_to_Reykjavik <= 8
  R1405: Transfer_flow_from_Barcelona_to_Reykjavik <= 8
@@ -4884,7 +4884,7 @@ Subject To
  R1412: Flights_from_Barcelona_to_Reykjavik_by_Aircraft_3 <= 10000
  R1413: Flights_from_Barcelona_to_Reykjavik_by_Aircraft_3 <= 10000
  R1414: Flights_from_Barcelona_to_Reykjavik_by_Aircraft_4 <= 10000
- R1415: Flights_from_Barcelona_to_Reykjavik_by_Aircraft_4 <= 10000
+ R1415: Flights_from_Barcelona_to_Reykjavik_by_Aircraft_4 <= 0
  R1416: Direct_flow_from_Barcelona_to_Palermo
    + Transfer_flow_from_Barcelona_to_Palermo <= 52
  R1417: Transfer_flow_from_Barcelona_to_Palermo <= 52
@@ -4901,7 +4901,7 @@ Subject To
  R1424: Flights_from_Barcelona_to_Palermo_by_Aircraft_3 <= 10000
  R1425: Flights_from_Barcelona_to_Palermo_by_Aircraft_3 <= 10000
  R1426: Flights_from_Barcelona_to_Palermo_by_Aircraft_4 <= 10000
- R1427: Flights_from_Barcelona_to_Palermo_by_Aircraft_4 <= 10000
+ R1427: Flights_from_Barcelona_to_Palermo_by_Aircraft_4 <= 0
  R1428: Direct_flow_from_Barcelona_to_Madeira
    + Transfer_flow_from_Barcelona_to_Madeira <= 7
  R1429: Transfer_flow_from_Barcelona_to_Madeira <= 7
@@ -4918,7 +4918,7 @@ Subject To
  R1436: Flights_from_Barcelona_to_Madeira_by_Aircraft_3 <= 10000
  R1437: Flights_from_Barcelona_to_Madeira_by_Aircraft_3 <= 10000
  R1438: Flights_from_Barcelona_to_Madeira_by_Aircraft_4 <= 10000
- R1439: Flights_from_Barcelona_to_Madeira_by_Aircraft_4 <= 10000
+ R1439: Flights_from_Barcelona_to_Madeira_by_Aircraft_4 <= 0
  R1440: Direct_flow_from_Munich_to_London
    + Transfer_flow_from_Munich_to_London <= 352
  R1441: Transfer_flow_from_Munich_to_London <= 352
@@ -5176,7 +5176,7 @@ Subject To
  R1604: Flights_from_Munich_to_Warsaw_by_Aircraft_3 <= 10000
  R1605: Flights_from_Munich_to_Warsaw_by_Aircraft_3 <= 10000
  R1606: Flights_from_Munich_to_Warsaw_by_Aircraft_4 <= 10000
- R1607: Flights_from_Munich_to_Warsaw_by_Aircraft_4 <= 10000
+ R1607: Flights_from_Munich_to_Warsaw_by_Aircraft_4 <= 0
  R1608: Direct_flow_from_Munich_to_Edinburgh
    + Transfer_flow_from_Munich_to_Edinburgh <= 53
  R1609: Transfer_flow_from_Munich_to_Edinburgh <= 53
@@ -5193,7 +5193,7 @@ Subject To
  R1616: Flights_from_Munich_to_Edinburgh_by_Aircraft_3 <= 10000
  R1617: Flights_from_Munich_to_Edinburgh_by_Aircraft_3 <= 10000
  R1618: Flights_from_Munich_to_Edinburgh_by_Aircraft_4 <= 10000
- R1619: Flights_from_Munich_to_Edinburgh_by_Aircraft_4 <= 10000
+ R1619: Flights_from_Munich_to_Edinburgh_by_Aircraft_4 <= 0
  R1620: Direct_flow_from_Munich_to_Bucharest
    + Transfer_flow_from_Munich_to_Bucharest <= 59
  R1621: Transfer_flow_from_Munich_to_Bucharest <= 59
@@ -5210,7 +5210,7 @@ Subject To
  R1628: Flights_from_Munich_to_Bucharest_by_Aircraft_3 <= 10000
  R1629: Flights_from_Munich_to_Bucharest_by_Aircraft_3 <= 10000
  R1630: Flights_from_Munich_to_Bucharest_by_Aircraft_4 <= 10000
- R1631: Flights_from_Munich_to_Bucharest_by_Aircraft_4 <= 10000
+ R1631: Flights_from_Munich_to_Bucharest_by_Aircraft_4 <= 0
  R1632: Direct_flow_from_Munich_to_Heraklion
    + Transfer_flow_from_Munich_to_Heraklion <= 11
  R1633: Transfer_flow_from_Munich_to_Heraklion <= 11
@@ -5227,7 +5227,7 @@ Subject To
  R1640: Flights_from_Munich_to_Heraklion_by_Aircraft_3 <= 10000
  R1641: Flights_from_Munich_to_Heraklion_by_Aircraft_3 <= 10000
  R1642: Flights_from_Munich_to_Heraklion_by_Aircraft_4 <= 10000
- R1643: Flights_from_Munich_to_Heraklion_by_Aircraft_4 <= 10000
+ R1643: Flights_from_Munich_to_Heraklion_by_Aircraft_4 <= 0
  R1644: Direct_flow_from_Munich_to_Reykjavik
    + Transfer_flow_from_Munich_to_Reykjavik <= 11
  R1645: Transfer_flow_from_Munich_to_Reykjavik <= 11
@@ -5244,7 +5244,7 @@ Subject To
  R1652: Flights_from_Munich_to_Reykjavik_by_Aircraft_3 <= 10000
  R1653: Flights_from_Munich_to_Reykjavik_by_Aircraft_3 <= 10000
  R1654: Flights_from_Munich_to_Reykjavik_by_Aircraft_4 <= 10000
- R1655: Flights_from_Munich_to_Reykjavik_by_Aircraft_4 <= 10000
+ R1655: Flights_from_Munich_to_Reykjavik_by_Aircraft_4 <= 0
  R1656: Direct_flow_from_Munich_to_Palermo
    + Transfer_flow_from_Munich_to_Palermo <= 56
  R1657: Transfer_flow_from_Munich_to_Palermo <= 56
@@ -5261,7 +5261,7 @@ Subject To
  R1664: Flights_from_Munich_to_Palermo_by_Aircraft_3 <= 10000
  R1665: Flights_from_Munich_to_Palermo_by_Aircraft_3 <= 10000
  R1666: Flights_from_Munich_to_Palermo_by_Aircraft_4 <= 10000
- R1667: Flights_from_Munich_to_Palermo_by_Aircraft_4 <= 10000
+ R1667: Flights_from_Munich_to_Palermo_by_Aircraft_4 <= 0
  R1668: Direct_flow_from_Munich_to_Madeira
    + Transfer_flow_from_Munich_to_Madeira <= 5
  R1669: Transfer_flow_from_Munich_to_Madeira <= 5
@@ -5278,7 +5278,7 @@ Subject To
  R1676: Flights_from_Munich_to_Madeira_by_Aircraft_3 <= 10000
  R1677: Flights_from_Munich_to_Madeira_by_Aircraft_3 <= 10000
  R1678: Flights_from_Munich_to_Madeira_by_Aircraft_4 <= 10000
- R1679: Flights_from_Munich_to_Madeira_by_Aircraft_4 <= 10000
+ R1679: Flights_from_Munich_to_Madeira_by_Aircraft_4 <= 0
  R1680: Direct_flow_from_Rome_to_London + Transfer_flow_from_Rome_to_London
    <= 240
  R1681: Transfer_flow_from_Rome_to_London <= 240
@@ -5533,7 +5533,7 @@ Subject To
  R1844: Flights_from_Rome_to_Warsaw_by_Aircraft_3 <= 10000
  R1845: Flights_from_Rome_to_Warsaw_by_Aircraft_3 <= 10000
  R1846: Flights_from_Rome_to_Warsaw_by_Aircraft_4 <= 10000
- R1847: Flights_from_Rome_to_Warsaw_by_Aircraft_4 <= 10000
+ R1847: Flights_from_Rome_to_Warsaw_by_Aircraft_4 <= 0
  R1848: Direct_flow_from_Rome_to_Edinburgh
    + Transfer_flow_from_Rome_to_Edinburgh <= 38
  R1849: Transfer_flow_from_Rome_to_Edinburgh <= 38
@@ -5550,7 +5550,7 @@ Subject To
  R1856: Flights_from_Rome_to_Edinburgh_by_Aircraft_3 <= 10000
  R1857: Flights_from_Rome_to_Edinburgh_by_Aircraft_3 <= 10000
  R1858: Flights_from_Rome_to_Edinburgh_by_Aircraft_4 <= 10000
- R1859: Flights_from_Rome_to_Edinburgh_by_Aircraft_4 <= 10000
+ R1859: Flights_from_Rome_to_Edinburgh_by_Aircraft_4 <= 0
  R1860: Direct_flow_from_Rome_to_Bucharest
    + Transfer_flow_from_Rome_to_Bucharest <= 68
  R1861: Transfer_flow_from_Rome_to_Bucharest <= 68
@@ -5567,7 +5567,7 @@ Subject To
  R1868: Flights_from_Rome_to_Bucharest_by_Aircraft_3 <= 10000
  R1869: Flights_from_Rome_to_Bucharest_by_Aircraft_3 <= 10000
  R1870: Flights_from_Rome_to_Bucharest_by_Aircraft_4 <= 10000
- R1871: Flights_from_Rome_to_Bucharest_by_Aircraft_4 <= 10000
+ R1871: Flights_from_Rome_to_Bucharest_by_Aircraft_4 <= 0
  R1872: Direct_flow_from_Rome_to_Heraklion
    + Transfer_flow_from_Rome_to_Heraklion <= 18
  R1873: Transfer_flow_from_Rome_to_Heraklion <= 18
@@ -5584,7 +5584,7 @@ Subject To
  R1880: Flights_from_Rome_to_Heraklion_by_Aircraft_3 <= 10000
  R1881: Flights_from_Rome_to_Heraklion_by_Aircraft_3 <= 10000
  R1882: Flights_from_Rome_to_Heraklion_by_Aircraft_4 <= 10000
- R1883: Flights_from_Rome_to_Heraklion_by_Aircraft_4 <= 10000
+ R1883: Flights_from_Rome_to_Heraklion_by_Aircraft_4 <= 0
  R1884: Direct_flow_from_Rome_to_Reykjavik
    + Transfer_flow_from_Rome_to_Reykjavik <= 10
  R1885: Transfer_flow_from_Rome_to_Reykjavik <= 10
@@ -5601,7 +5601,7 @@ Subject To
  R1892: Flights_from_Rome_to_Reykjavik_by_Aircraft_3 <= 10000
  R1893: Flights_from_Rome_to_Reykjavik_by_Aircraft_3 <= 10000
  R1894: Flights_from_Rome_to_Reykjavik_by_Aircraft_4 <= 10000
- R1895: Flights_from_Rome_to_Reykjavik_by_Aircraft_4 <= 10000
+ R1895: Flights_from_Rome_to_Reykjavik_by_Aircraft_4 <= 0
  R1896: Direct_flow_from_Rome_to_Palermo
    + Transfer_flow_from_Rome_to_Palermo <= 212
  R1897: Transfer_flow_from_Rome_to_Palermo <= 212
@@ -5618,7 +5618,7 @@ Subject To
  R1904: Flights_from_Rome_to_Palermo_by_Aircraft_3 <= 10000
  R1905: Flights_from_Rome_to_Palermo_by_Aircraft_3 <= 10000
  R1906: Flights_from_Rome_to_Palermo_by_Aircraft_4 <= 10000
- R1907: Flights_from_Rome_to_Palermo_by_Aircraft_4 <= 10000
+ R1907: Flights_from_Rome_to_Palermo_by_Aircraft_4 <= 0
  R1908: Direct_flow_from_Rome_to_Madeira
    + Transfer_flow_from_Rome_to_Madeira <= 7
  R1909: Transfer_flow_from_Rome_to_Madeira <= 7
@@ -5635,7 +5635,7 @@ Subject To
  R1916: Flights_from_Rome_to_Madeira_by_Aircraft_3 <= 10000
  R1917: Flights_from_Rome_to_Madeira_by_Aircraft_3 <= 10000
  R1918: Flights_from_Rome_to_Madeira_by_Aircraft_4 <= 10000
- R1919: Flights_from_Rome_to_Madeira_by_Aircraft_4 <= 10000
+ R1919: Flights_from_Rome_to_Madeira_by_Aircraft_4 <= 0
  R1920: Direct_flow_from_Dublin_to_London
    + Transfer_flow_from_Dublin_to_London <= 886
  R1921: Transfer_flow_from_Dublin_to_London <= 886
@@ -5893,7 +5893,7 @@ Subject To
  R2084: Flights_from_Dublin_to_Warsaw_by_Aircraft_3 <= 10000
  R2085: Flights_from_Dublin_to_Warsaw_by_Aircraft_3 <= 10000
  R2086: Flights_from_Dublin_to_Warsaw_by_Aircraft_4 <= 10000
- R2087: Flights_from_Dublin_to_Warsaw_by_Aircraft_4 <= 10000
+ R2087: Flights_from_Dublin_to_Warsaw_by_Aircraft_4 <= 0
  R2088: Direct_flow_from_Dublin_to_Edinburgh
    + Transfer_flow_from_Dublin_to_Edinburgh <= 285
  R2089: Transfer_flow_from_Dublin_to_Edinburgh <= 285
@@ -5910,7 +5910,7 @@ Subject To
  R2096: Flights_from_Dublin_to_Edinburgh_by_Aircraft_3 <= 10000
  R2097: Flights_from_Dublin_to_Edinburgh_by_Aircraft_3 <= 10000
  R2098: Flights_from_Dublin_to_Edinburgh_by_Aircraft_4 <= 10000
- R2099: Flights_from_Dublin_to_Edinburgh_by_Aircraft_4 <= 10000
+ R2099: Flights_from_Dublin_to_Edinburgh_by_Aircraft_4 <= 0
  R2100: Direct_flow_from_Dublin_to_Bucharest
    + Transfer_flow_from_Dublin_to_Bucharest <= 25
  R2101: Transfer_flow_from_Dublin_to_Bucharest <= 25
@@ -5927,7 +5927,7 @@ Subject To
  R2108: Flights_from_Dublin_to_Bucharest_by_Aircraft_3 <= 10000
  R2109: Flights_from_Dublin_to_Bucharest_by_Aircraft_3 <= 10000
  R2110: Flights_from_Dublin_to_Bucharest_by_Aircraft_4 <= 10000
- R2111: Flights_from_Dublin_to_Bucharest_by_Aircraft_4 <= 10000
+ R2111: Flights_from_Dublin_to_Bucharest_by_Aircraft_4 <= 0
  R2112: Direct_flow_from_Dublin_to_Heraklion
    + Transfer_flow_from_Dublin_to_Heraklion <= 6
  R2113: Transfer_flow_from_Dublin_to_Heraklion <= 6
@@ -5944,7 +5944,7 @@ Subject To
  R2120: Flights_from_Dublin_to_Heraklion_by_Aircraft_3 <= 10000
  R2121: Flights_from_Dublin_to_Heraklion_by_Aircraft_3 <= 10000
  R2122: Flights_from_Dublin_to_Heraklion_by_Aircraft_4 <= 10000
- R2123: Flights_from_Dublin_to_Heraklion_by_Aircraft_4 <= 10000
+ R2123: Flights_from_Dublin_to_Heraklion_by_Aircraft_4 <= 0
  R2124: Direct_flow_from_Dublin_to_Reykjavik
    + Transfer_flow_from_Dublin_to_Reykjavik <= 24
  R2125: Transfer_flow_from_Dublin_to_Reykjavik <= 24
@@ -5961,7 +5961,7 @@ Subject To
  R2132: Flights_from_Dublin_to_Reykjavik_by_Aircraft_3 <= 10000
  R2133: Flights_from_Dublin_to_Reykjavik_by_Aircraft_3 <= 10000
  R2134: Flights_from_Dublin_to_Reykjavik_by_Aircraft_4 <= 10000
- R2135: Flights_from_Dublin_to_Reykjavik_by_Aircraft_4 <= 10000
+ R2135: Flights_from_Dublin_to_Reykjavik_by_Aircraft_4 <= 0
  R2136: Direct_flow_from_Dublin_to_Palermo
    + Transfer_flow_from_Dublin_to_Palermo <= 26
  R2137: Transfer_flow_from_Dublin_to_Palermo <= 26
@@ -5978,7 +5978,7 @@ Subject To
  R2144: Flights_from_Dublin_to_Palermo_by_Aircraft_3 <= 10000
  R2145: Flights_from_Dublin_to_Palermo_by_Aircraft_3 <= 10000
  R2146: Flights_from_Dublin_to_Palermo_by_Aircraft_4 <= 10000
- R2147: Flights_from_Dublin_to_Palermo_by_Aircraft_4 <= 10000
+ R2147: Flights_from_Dublin_to_Palermo_by_Aircraft_4 <= 0
  R2148: Direct_flow_from_Dublin_to_Madeira
    + Transfer_flow_from_Dublin_to_Madeira <= 7
  R2149: Transfer_flow_from_Dublin_to_Madeira <= 7
@@ -5995,7 +5995,7 @@ Subject To
  R2156: Flights_from_Dublin_to_Madeira_by_Aircraft_3 <= 10000
  R2157: Flights_from_Dublin_to_Madeira_by_Aircraft_3 <= 10000
  R2158: Flights_from_Dublin_to_Madeira_by_Aircraft_4 <= 10000
- R2159: Flights_from_Dublin_to_Madeira_by_Aircraft_4 <= 10000
+ R2159: Flights_from_Dublin_to_Madeira_by_Aircraft_4 <= 0
  R2160: Direct_flow_from_Stockholm_to_London
    + Transfer_flow_from_Stockholm_to_London <= 172
  R2161: Transfer_flow_from_Stockholm_to_London <= 172
@@ -6253,7 +6253,7 @@ Subject To
  R2324: Flights_from_Stockholm_to_Warsaw_by_Aircraft_3 <= 10000
  R2325: Flights_from_Stockholm_to_Warsaw_by_Aircraft_3 <= 10000
  R2326: Flights_from_Stockholm_to_Warsaw_by_Aircraft_4 <= 10000
- R2327: Flights_from_Stockholm_to_Warsaw_by_Aircraft_4 <= 10000
+ R2327: Flights_from_Stockholm_to_Warsaw_by_Aircraft_4 <= 0
  R2328: Direct_flow_from_Stockholm_to_Edinburgh
    + Transfer_flow_from_Stockholm_to_Edinburgh <= 44
  R2329: Transfer_flow_from_Stockholm_to_Edinburgh <= 44
@@ -6270,7 +6270,7 @@ Subject To
  R2336: Flights_from_Stockholm_to_Edinburgh_by_Aircraft_3 <= 10000
  R2337: Flights_from_Stockholm_to_Edinburgh_by_Aircraft_3 <= 10000
  R2338: Flights_from_Stockholm_to_Edinburgh_by_Aircraft_4 <= 10000
- R2339: Flights_from_Stockholm_to_Edinburgh_by_Aircraft_4 <= 10000
+ R2339: Flights_from_Stockholm_to_Edinburgh_by_Aircraft_4 <= 0
  R2340: Direct_flow_from_Stockholm_to_Bucharest
    + Transfer_flow_from_Stockholm_to_Bucharest <= 30
  R2341: Transfer_flow_from_Stockholm_to_Bucharest <= 30
@@ -6287,7 +6287,7 @@ Subject To
  R2348: Flights_from_Stockholm_to_Bucharest_by_Aircraft_3 <= 10000
  R2349: Flights_from_Stockholm_to_Bucharest_by_Aircraft_3 <= 10000
  R2350: Flights_from_Stockholm_to_Bucharest_by_Aircraft_4 <= 10000
- R2351: Flights_from_Stockholm_to_Bucharest_by_Aircraft_4 <= 10000
+ R2351: Flights_from_Stockholm_to_Bucharest_by_Aircraft_4 <= 0
  R2352: Direct_flow_from_Stockholm_to_Heraklion
    + Transfer_flow_from_Stockholm_to_Heraklion <= 5
  R2353: Transfer_flow_from_Stockholm_to_Heraklion <= 5
@@ -6304,7 +6304,7 @@ Subject To
  R2360: Flights_from_Stockholm_to_Heraklion_by_Aircraft_3 <= 10000
  R2361: Flights_from_Stockholm_to_Heraklion_by_Aircraft_3 <= 10000
  R2362: Flights_from_Stockholm_to_Heraklion_by_Aircraft_4 <= 10000
- R2363: Flights_from_Stockholm_to_Heraklion_by_Aircraft_4 <= 10000
+ R2363: Flights_from_Stockholm_to_Heraklion_by_Aircraft_4 <= 0
  R2364: Direct_flow_from_Stockholm_to_Reykjavik
    + Transfer_flow_from_Stockholm_to_Reykjavik <= 12
  R2365: Transfer_flow_from_Stockholm_to_Reykjavik <= 12
@@ -6321,7 +6321,7 @@ Subject To
  R2372: Flights_from_Stockholm_to_Reykjavik_by_Aircraft_3 <= 10000
  R2373: Flights_from_Stockholm_to_Reykjavik_by_Aircraft_3 <= 10000
  R2374: Flights_from_Stockholm_to_Reykjavik_by_Aircraft_4 <= 10000
- R2375: Flights_from_Stockholm_to_Reykjavik_by_Aircraft_4 <= 10000
+ R2375: Flights_from_Stockholm_to_Reykjavik_by_Aircraft_4 <= 0
  R2376: Direct_flow_from_Stockholm_to_Palermo
    + Transfer_flow_from_Stockholm_to_Palermo <= 19
  R2377: Transfer_flow_from_Stockholm_to_Palermo <= 19
@@ -6338,7 +6338,7 @@ Subject To
  R2384: Flights_from_Stockholm_to_Palermo_by_Aircraft_3 <= 10000
  R2385: Flights_from_Stockholm_to_Palermo_by_Aircraft_3 <= 10000
  R2386: Flights_from_Stockholm_to_Palermo_by_Aircraft_4 <= 10000
- R2387: Flights_from_Stockholm_to_Palermo_by_Aircraft_4 <= 10000
+ R2387: Flights_from_Stockholm_to_Palermo_by_Aircraft_4 <= 0
  R2388: Direct_flow_from_Stockholm_to_Madeira
    + Transfer_flow_from_Stockholm_to_Madeira <= 3
  R2389: Transfer_flow_from_Stockholm_to_Madeira <= 3
@@ -6355,7 +6355,7 @@ Subject To
  R2396: Flights_from_Stockholm_to_Madeira_by_Aircraft_3 <= 10000
  R2397: Flights_from_Stockholm_to_Madeira_by_Aircraft_3 <= 10000
  R2398: Flights_from_Stockholm_to_Madeira_by_Aircraft_4 <= 10000
- R2399: Flights_from_Stockholm_to_Madeira_by_Aircraft_4 <= 10000
+ R2399: Flights_from_Stockholm_to_Madeira_by_Aircraft_4 <= 0
  R2400: Direct_flow_from_Lisbon_to_London
    + Transfer_flow_from_Lisbon_to_London <= 71
  R2401: Transfer_flow_from_Lisbon_to_London <= 71
@@ -6613,7 +6613,7 @@ Subject To
  R2564: Flights_from_Lisbon_to_Warsaw_by_Aircraft_3 <= 10000
  R2565: Flights_from_Lisbon_to_Warsaw_by_Aircraft_3 <= 10000
  R2566: Flights_from_Lisbon_to_Warsaw_by_Aircraft_4 <= 10000
- R2567: Flights_from_Lisbon_to_Warsaw_by_Aircraft_4 <= 10000
+ R2567: Flights_from_Lisbon_to_Warsaw_by_Aircraft_4 <= 0
  R2568: Direct_flow_from_Lisbon_to_Edinburgh
    + Transfer_flow_from_Lisbon_to_Edinburgh <= 12
  R2569: Transfer_flow_from_Lisbon_to_Edinburgh <= 12
@@ -6630,7 +6630,7 @@ Subject To
  R2576: Flights_from_Lisbon_to_Edinburgh_by_Aircraft_3 <= 10000
  R2577: Flights_from_Lisbon_to_Edinburgh_by_Aircraft_3 <= 10000
  R2578: Flights_from_Lisbon_to_Edinburgh_by_Aircraft_4 <= 10000
- R2579: Flights_from_Lisbon_to_Edinburgh_by_Aircraft_4 <= 10000
+ R2579: Flights_from_Lisbon_to_Edinburgh_by_Aircraft_4 <= 0
  R2580: Direct_flow_from_Lisbon_to_Bucharest
    + Transfer_flow_from_Lisbon_to_Bucharest <= 7
  R2581: Transfer_flow_from_Lisbon_to_Bucharest <= 7
@@ -6647,7 +6647,7 @@ Subject To
  R2588: Flights_from_Lisbon_to_Bucharest_by_Aircraft_3 <= 10000
  R2589: Flights_from_Lisbon_to_Bucharest_by_Aircraft_3 <= 10000
  R2590: Flights_from_Lisbon_to_Bucharest_by_Aircraft_4 <= 10000
- R2591: Flights_from_Lisbon_to_Bucharest_by_Aircraft_4 <= 10000
+ R2591: Flights_from_Lisbon_to_Bucharest_by_Aircraft_4 <= 0
  R2592: Direct_flow_from_Lisbon_to_Heraklion
    + Transfer_flow_from_Lisbon_to_Heraklion <= 2
  R2593: Transfer_flow_from_Lisbon_to_Heraklion <= 2
@@ -6664,7 +6664,7 @@ Subject To
  R2600: Flights_from_Lisbon_to_Heraklion_by_Aircraft_3 <= 10000
  R2601: Flights_from_Lisbon_to_Heraklion_by_Aircraft_3 <= 10000
  R2602: Flights_from_Lisbon_to_Heraklion_by_Aircraft_4 <= 10000
- R2603: Flights_from_Lisbon_to_Heraklion_by_Aircraft_4 <= 10000
+ R2603: Flights_from_Lisbon_to_Heraklion_by_Aircraft_4 <= 0
  R2604: Direct_flow_from_Lisbon_to_Reykjavik
    + Transfer_flow_from_Lisbon_to_Reykjavik <= 3
  R2605: Transfer_flow_from_Lisbon_to_Reykjavik <= 3
@@ -6681,7 +6681,7 @@ Subject To
  R2612: Flights_from_Lisbon_to_Reykjavik_by_Aircraft_3 <= 10000
  R2613: Flights_from_Lisbon_to_Reykjavik_by_Aircraft_3 <= 10000
  R2614: Flights_from_Lisbon_to_Reykjavik_by_Aircraft_4 <= 10000
- R2615: Flights_from_Lisbon_to_Reykjavik_by_Aircraft_4 <= 10000
+ R2615: Flights_from_Lisbon_to_Reykjavik_by_Aircraft_4 <= 0
  R2616: Direct_flow_from_Lisbon_to_Palermo
    + Transfer_flow_from_Lisbon_to_Palermo <= 11
  R2617: Transfer_flow_from_Lisbon_to_Palermo <= 11
@@ -6698,7 +6698,7 @@ Subject To
  R2624: Flights_from_Lisbon_to_Palermo_by_Aircraft_3 <= 10000
  R2625: Flights_from_Lisbon_to_Palermo_by_Aircraft_3 <= 10000
  R2626: Flights_from_Lisbon_to_Palermo_by_Aircraft_4 <= 10000
- R2627: Flights_from_Lisbon_to_Palermo_by_Aircraft_4 <= 10000
+ R2627: Flights_from_Lisbon_to_Palermo_by_Aircraft_4 <= 0
  R2628: Direct_flow_from_Lisbon_to_Madeira
    + Transfer_flow_from_Lisbon_to_Madeira <= 8
  R2629: Transfer_flow_from_Lisbon_to_Madeira <= 8
@@ -6715,7 +6715,7 @@ Subject To
  R2636: Flights_from_Lisbon_to_Madeira_by_Aircraft_3 <= 10000
  R2637: Flights_from_Lisbon_to_Madeira_by_Aircraft_3 <= 10000
  R2638: Flights_from_Lisbon_to_Madeira_by_Aircraft_4 <= 10000
- R2639: Flights_from_Lisbon_to_Madeira_by_Aircraft_4 <= 10000
+ R2639: Flights_from_Lisbon_to_Madeira_by_Aircraft_4 <= 0
  R2640: Direct_flow_from_Berlin_to_London
    + Transfer_flow_from_Berlin_to_London <= 570
  R2641: Transfer_flow_from_Berlin_to_London <= 570
@@ -6973,7 +6973,7 @@ Subject To
  R2804: Flights_from_Berlin_to_Warsaw_by_Aircraft_3 <= 10000
  R2805: Flights_from_Berlin_to_Warsaw_by_Aircraft_3 <= 10000
  R2806: Flights_from_Berlin_to_Warsaw_by_Aircraft_4 <= 10000
- R2807: Flights_from_Berlin_to_Warsaw_by_Aircraft_4 <= 10000
+ R2807: Flights_from_Berlin_to_Warsaw_by_Aircraft_4 <= 0
  R2808: Direct_flow_from_Berlin_to_Edinburgh
    + Transfer_flow_from_Berlin_to_Edinburgh <= 104
  R2809: Transfer_flow_from_Berlin_to_Edinburgh <= 104
@@ -6990,7 +6990,7 @@ Subject To
  R2816: Flights_from_Berlin_to_Edinburgh_by_Aircraft_3 <= 10000
  R2817: Flights_from_Berlin_to_Edinburgh_by_Aircraft_3 <= 10000
  R2818: Flights_from_Berlin_to_Edinburgh_by_Aircraft_4 <= 10000
- R2819: Flights_from_Berlin_to_Edinburgh_by_Aircraft_4 <= 10000
+ R2819: Flights_from_Berlin_to_Edinburgh_by_Aircraft_4 <= 0
  R2820: Direct_flow_from_Berlin_to_Bucharest
    + Transfer_flow_from_Berlin_to_Bucharest <= 86
  R2821: Transfer_flow_from_Berlin_to_Bucharest <= 86
@@ -7007,7 +7007,7 @@ Subject To
  R2828: Flights_from_Berlin_to_Bucharest_by_Aircraft_3 <= 10000
  R2829: Flights_from_Berlin_to_Bucharest_by_Aircraft_3 <= 10000
  R2830: Flights_from_Berlin_to_Bucharest_by_Aircraft_4 <= 10000
- R2831: Flights_from_Berlin_to_Bucharest_by_Aircraft_4 <= 10000
+ R2831: Flights_from_Berlin_to_Bucharest_by_Aircraft_4 <= 0
  R2832: Direct_flow_from_Berlin_to_Heraklion
    + Transfer_flow_from_Berlin_to_Heraklion <= 15
  R2833: Transfer_flow_from_Berlin_to_Heraklion <= 15
@@ -7024,7 +7024,7 @@ Subject To
  R2840: Flights_from_Berlin_to_Heraklion_by_Aircraft_3 <= 10000
  R2841: Flights_from_Berlin_to_Heraklion_by_Aircraft_3 <= 10000
  R2842: Flights_from_Berlin_to_Heraklion_by_Aircraft_4 <= 10000
- R2843: Flights_from_Berlin_to_Heraklion_by_Aircraft_4 <= 10000
+ R2843: Flights_from_Berlin_to_Heraklion_by_Aircraft_4 <= 0
  R2844: Direct_flow_from_Berlin_to_Reykjavik
    + Transfer_flow_from_Berlin_to_Reykjavik <= 22
  R2845: Transfer_flow_from_Berlin_to_Reykjavik <= 22
@@ -7041,7 +7041,7 @@ Subject To
  R2852: Flights_from_Berlin_to_Reykjavik_by_Aircraft_3 <= 10000
  R2853: Flights_from_Berlin_to_Reykjavik_by_Aircraft_3 <= 10000
  R2854: Flights_from_Berlin_to_Reykjavik_by_Aircraft_4 <= 10000
- R2855: Flights_from_Berlin_to_Reykjavik_by_Aircraft_4 <= 10000
+ R2855: Flights_from_Berlin_to_Reykjavik_by_Aircraft_4 <= 0
  R2856: Direct_flow_from_Berlin_to_Palermo
    + Transfer_flow_from_Berlin_to_Palermo <= 61
  R2857: Transfer_flow_from_Berlin_to_Palermo <= 61
@@ -7058,7 +7058,7 @@ Subject To
  R2864: Flights_from_Berlin_to_Palermo_by_Aircraft_3 <= 10000
  R2865: Flights_from_Berlin_to_Palermo_by_Aircraft_3 <= 10000
  R2866: Flights_from_Berlin_to_Palermo_by_Aircraft_4 <= 10000
- R2867: Flights_from_Berlin_to_Palermo_by_Aircraft_4 <= 10000
+ R2867: Flights_from_Berlin_to_Palermo_by_Aircraft_4 <= 0
  R2868: Direct_flow_from_Berlin_to_Madeira
    + Transfer_flow_from_Berlin_to_Madeira <= 8
  R2869: Transfer_flow_from_Berlin_to_Madeira <= 8
@@ -7075,7 +7075,7 @@ Subject To
  R2876: Flights_from_Berlin_to_Madeira_by_Aircraft_3 <= 10000
  R2877: Flights_from_Berlin_to_Madeira_by_Aircraft_3 <= 10000
  R2878: Flights_from_Berlin_to_Madeira_by_Aircraft_4 <= 10000
- R2879: Flights_from_Berlin_to_Madeira_by_Aircraft_4 <= 10000
+ R2879: Flights_from_Berlin_to_Madeira_by_Aircraft_4 <= 0
  R2880: Direct_flow_from_Helsinki_to_London
    + Transfer_flow_from_Helsinki_to_London <= 97
  R2881: Transfer_flow_from_Helsinki_to_London <= 97
@@ -7333,7 +7333,7 @@ Subject To
  R3044: Flights_from_Helsinki_to_Warsaw_by_Aircraft_3 <= 10000
  R3045: Flights_from_Helsinki_to_Warsaw_by_Aircraft_3 <= 10000
  R3046: Flights_from_Helsinki_to_Warsaw_by_Aircraft_4 <= 10000
- R3047: Flights_from_Helsinki_to_Warsaw_by_Aircraft_4 <= 10000
+ R3047: Flights_from_Helsinki_to_Warsaw_by_Aircraft_4 <= 0
  R3048: Direct_flow_from_Helsinki_to_Edinburgh
    + Transfer_flow_from_Helsinki_to_Edinburgh <= 24
  R3049: Transfer_flow_from_Helsinki_to_Edinburgh <= 24
@@ -7350,7 +7350,7 @@ Subject To
  R3056: Flights_from_Helsinki_to_Edinburgh_by_Aircraft_3 <= 10000
  R3057: Flights_from_Helsinki_to_Edinburgh_by_Aircraft_3 <= 10000
  R3058: Flights_from_Helsinki_to_Edinburgh_by_Aircraft_4 <= 10000
- R3059: Flights_from_Helsinki_to_Edinburgh_by_Aircraft_4 <= 10000
+ R3059: Flights_from_Helsinki_to_Edinburgh_by_Aircraft_4 <= 0
  R3060: Direct_flow_from_Helsinki_to_Bucharest
    + Transfer_flow_from_Helsinki_to_Bucharest <= 22
  R3061: Transfer_flow_from_Helsinki_to_Bucharest <= 22
@@ -7367,7 +7367,7 @@ Subject To
  R3068: Flights_from_Helsinki_to_Bucharest_by_Aircraft_3 <= 10000
  R3069: Flights_from_Helsinki_to_Bucharest_by_Aircraft_3 <= 10000
  R3070: Flights_from_Helsinki_to_Bucharest_by_Aircraft_4 <= 10000
- R3071: Flights_from_Helsinki_to_Bucharest_by_Aircraft_4 <= 10000
+ R3071: Flights_from_Helsinki_to_Bucharest_by_Aircraft_4 <= 0
  R3072: Direct_flow_from_Helsinki_to_Heraklion
    + Transfer_flow_from_Helsinki_to_Heraklion <= 4
  R3073: Transfer_flow_from_Helsinki_to_Heraklion <= 4
@@ -7384,7 +7384,7 @@ Subject To
  R3080: Flights_from_Helsinki_to_Heraklion_by_Aircraft_3 <= 10000
  R3081: Flights_from_Helsinki_to_Heraklion_by_Aircraft_3 <= 10000
  R3082: Flights_from_Helsinki_to_Heraklion_by_Aircraft_4 <= 10000
- R3083: Flights_from_Helsinki_to_Heraklion_by_Aircraft_4 <= 10000
+ R3083: Flights_from_Helsinki_to_Heraklion_by_Aircraft_4 <= 0
  R3084: Direct_flow_from_Helsinki_to_Reykjavik
    + Transfer_flow_from_Helsinki_to_Reykjavik <= 8
  R3085: Transfer_flow_from_Helsinki_to_Reykjavik <= 8
@@ -7401,7 +7401,7 @@ Subject To
  R3092: Flights_from_Helsinki_to_Reykjavik_by_Aircraft_3 <= 10000
  R3093: Flights_from_Helsinki_to_Reykjavik_by_Aircraft_3 <= 10000
  R3094: Flights_from_Helsinki_to_Reykjavik_by_Aircraft_4 <= 10000
- R3095: Flights_from_Helsinki_to_Reykjavik_by_Aircraft_4 <= 10000
+ R3095: Flights_from_Helsinki_to_Reykjavik_by_Aircraft_4 <= 0
  R3096: Direct_flow_from_Helsinki_to_Palermo
    + Transfer_flow_from_Helsinki_to_Palermo <= 13
  R3097: Transfer_flow_from_Helsinki_to_Palermo <= 13
@@ -7418,7 +7418,7 @@ Subject To
  R3104: Flights_from_Helsinki_to_Palermo_by_Aircraft_3 <= 10000
  R3105: Flights_from_Helsinki_to_Palermo_by_Aircraft_3 <= 10000
  R3106: Flights_from_Helsinki_to_Palermo_by_Aircraft_4 <= 10000
- R3107: Flights_from_Helsinki_to_Palermo_by_Aircraft_4 <= 10000
+ R3107: Flights_from_Helsinki_to_Palermo_by_Aircraft_4 <= 0
  R3108: Direct_flow_from_Helsinki_to_Madeira
    + Transfer_flow_from_Helsinki_to_Madeira <= 2
  R3109: Transfer_flow_from_Helsinki_to_Madeira <= 2
@@ -7435,7 +7435,7 @@ Subject To
  R3116: Flights_from_Helsinki_to_Madeira_by_Aircraft_3 <= 10000
  R3117: Flights_from_Helsinki_to_Madeira_by_Aircraft_3 <= 10000
  R3118: Flights_from_Helsinki_to_Madeira_by_Aircraft_4 <= 10000
- R3119: Flights_from_Helsinki_to_Madeira_by_Aircraft_4 <= 10000
+ R3119: Flights_from_Helsinki_to_Madeira_by_Aircraft_4 <= 0
  R3120: Direct_flow_from_Warsaw_to_London
    + Transfer_flow_from_Warsaw_to_London <= 132
  R3121: Transfer_flow_from_Warsaw_to_London <= 132
@@ -7452,7 +7452,7 @@ Subject To
  R3128: Flights_from_Warsaw_to_London_by_Aircraft_3 <= 10000
  R3129: Flights_from_Warsaw_to_London_by_Aircraft_3 <= 10000
  R3130: Flights_from_Warsaw_to_London_by_Aircraft_4 <= 10000
- R3131: Flights_from_Warsaw_to_London_by_Aircraft_4 <= 10000
+ R3131: Flights_from_Warsaw_to_London_by_Aircraft_4 <= 0
  R3132: Direct_flow_from_Warsaw_to_Paris
    + Transfer_flow_from_Warsaw_to_Paris <= 64
  R3133: Transfer_flow_from_Warsaw_to_Paris <= 64
@@ -7469,7 +7469,7 @@ Subject To
  R3140: Flights_from_Warsaw_to_Paris_by_Aircraft_3 <= 10000
  R3141: Flights_from_Warsaw_to_Paris_by_Aircraft_3 <= 10000
  R3142: Flights_from_Warsaw_to_Paris_by_Aircraft_4 <= 10000
- R3143: Flights_from_Warsaw_to_Paris_by_Aircraft_4 <= 10000
+ R3143: Flights_from_Warsaw_to_Paris_by_Aircraft_4 <= 0
  R3144: Direct_flow_from_Warsaw_to_Amsterdam
    + Transfer_flow_from_Warsaw_to_Amsterdam <= 57
  R3145: Transfer_flow_from_Warsaw_to_Amsterdam <= 0
@@ -7506,7 +7506,7 @@ Subject To
  R3152: Flights_from_Warsaw_to_Amsterdam_by_Aircraft_3 <= 10000
  R3153: Flights_from_Warsaw_to_Amsterdam_by_Aircraft_3 <= 10000
  R3154: Flights_from_Warsaw_to_Amsterdam_by_Aircraft_4 <= 10000
- R3155: Flights_from_Warsaw_to_Amsterdam_by_Aircraft_4 <= 10000
+ R3155: Flights_from_Warsaw_to_Amsterdam_by_Aircraft_4 <= 0
  R3156: Direct_flow_from_Warsaw_to_Frankfurt
    + Transfer_flow_from_Warsaw_to_Frankfurt <= 66
  R3157: Transfer_flow_from_Warsaw_to_Frankfurt <= 66
@@ -7523,7 +7523,7 @@ Subject To
  R3164: Flights_from_Warsaw_to_Frankfurt_by_Aircraft_3 <= 10000
  R3165: Flights_from_Warsaw_to_Frankfurt_by_Aircraft_3 <= 10000
  R3166: Flights_from_Warsaw_to_Frankfurt_by_Aircraft_4 <= 10000
- R3167: Flights_from_Warsaw_to_Frankfurt_by_Aircraft_4 <= 10000
+ R3167: Flights_from_Warsaw_to_Frankfurt_by_Aircraft_4 <= 0
  R3168: Direct_flow_from_Warsaw_to_Madrid
    + Transfer_flow_from_Warsaw_to_Madrid <= 36
  R3169: Transfer_flow_from_Warsaw_to_Madrid <= 36
@@ -7540,7 +7540,7 @@ Subject To
  R3176: Flights_from_Warsaw_to_Madrid_by_Aircraft_3 <= 10000
  R3177: Flights_from_Warsaw_to_Madrid_by_Aircraft_3 <= 10000
  R3178: Flights_from_Warsaw_to_Madrid_by_Aircraft_4 <= 10000
- R3179: Flights_from_Warsaw_to_Madrid_by_Aircraft_4 <= 10000
+ R3179: Flights_from_Warsaw_to_Madrid_by_Aircraft_4 <= 0
  R3180: Direct_flow_from_Warsaw_to_Barcelona
    + Transfer_flow_from_Warsaw_to_Barcelona <= 31
  R3181: Transfer_flow_from_Warsaw_to_Barcelona <= 31
@@ -7557,7 +7557,7 @@ Subject To
  R3188: Flights_from_Warsaw_to_Barcelona_by_Aircraft_3 <= 10000
  R3189: Flights_from_Warsaw_to_Barcelona_by_Aircraft_3 <= 10000
  R3190: Flights_from_Warsaw_to_Barcelona_by_Aircraft_4 <= 10000
- R3191: Flights_from_Warsaw_to_Barcelona_by_Aircraft_4 <= 10000
+ R3191: Flights_from_Warsaw_to_Barcelona_by_Aircraft_4 <= 0
  R3192: Direct_flow_from_Warsaw_to_Munich
    + Transfer_flow_from_Warsaw_to_Munich <= 112
  R3193: Transfer_flow_from_Warsaw_to_Munich <= 112
@@ -7574,7 +7574,7 @@ Subject To
  R3200: Flights_from_Warsaw_to_Munich_by_Aircraft_3 <= 10000
  R3201: Flights_from_Warsaw_to_Munich_by_Aircraft_3 <= 10000
  R3202: Flights_from_Warsaw_to_Munich_by_Aircraft_4 <= 10000
- R3203: Flights_from_Warsaw_to_Munich_by_Aircraft_4 <= 10000
+ R3203: Flights_from_Warsaw_to_Munich_by_Aircraft_4 <= 0
  R3204: Direct_flow_from_Warsaw_to_Rome + Transfer_flow_from_Warsaw_to_Rome
    <= 67
  R3205: Transfer_flow_from_Warsaw_to_Rome <= 67
@@ -7591,7 +7591,7 @@ Subject To
  R3212: Flights_from_Warsaw_to_Rome_by_Aircraft_3 <= 10000
  R3213: Flights_from_Warsaw_to_Rome_by_Aircraft_3 <= 10000
  R3214: Flights_from_Warsaw_to_Rome_by_Aircraft_4 <= 10000
- R3215: Flights_from_Warsaw_to_Rome_by_Aircraft_4 <= 10000
+ R3215: Flights_from_Warsaw_to_Rome_by_Aircraft_4 <= 0
  R3216: Direct_flow_from_Warsaw_to_Dublin
    + Transfer_flow_from_Warsaw_to_Dublin <= 42
  R3217: Transfer_flow_from_Warsaw_to_Dublin <= 42
@@ -7608,7 +7608,7 @@ Subject To
  R3224: Flights_from_Warsaw_to_Dublin_by_Aircraft_3 <= 10000
  R3225: Flights_from_Warsaw_to_Dublin_by_Aircraft_3 <= 10000
  R3226: Flights_from_Warsaw_to_Dublin_by_Aircraft_4 <= 10000
- R3227: Flights_from_Warsaw_to_Dublin_by_Aircraft_4 <= 10000
+ R3227: Flights_from_Warsaw_to_Dublin_by_Aircraft_4 <= 0
  R3228: Direct_flow_from_Warsaw_to_Stockholm
    + Transfer_flow_from_Warsaw_to_Stockholm <= 83
  R3229: Transfer_flow_from_Warsaw_to_Stockholm <= 83
@@ -7625,7 +7625,7 @@ Subject To
  R3236: Flights_from_Warsaw_to_Stockholm_by_Aircraft_3 <= 10000
  R3237: Flights_from_Warsaw_to_Stockholm_by_Aircraft_3 <= 10000
  R3238: Flights_from_Warsaw_to_Stockholm_by_Aircraft_4 <= 10000
- R3239: Flights_from_Warsaw_to_Stockholm_by_Aircraft_4 <= 10000
+ R3239: Flights_from_Warsaw_to_Stockholm_by_Aircraft_4 <= 0
  R3240: Direct_flow_from_Warsaw_to_Lisbon
    + Transfer_flow_from_Warsaw_to_Lisbon <= 9
  R3241: Transfer_flow_from_Warsaw_to_Lisbon <= 9
@@ -7642,7 +7642,7 @@ Subject To
  R3248: Flights_from_Warsaw_to_Lisbon_by_Aircraft_3 <= 10000
  R3249: Flights_from_Warsaw_to_Lisbon_by_Aircraft_3 <= 10000
  R3250: Flights_from_Warsaw_to_Lisbon_by_Aircraft_4 <= 10000
- R3251: Flights_from_Warsaw_to_Lisbon_by_Aircraft_4 <= 10000
+ R3251: Flights_from_Warsaw_to_Lisbon_by_Aircraft_4 <= 0
  R3252: Direct_flow_from_Warsaw_to_Berlin
    + Transfer_flow_from_Warsaw_to_Berlin <= 292
  R3253: Transfer_flow_from_Warsaw_to_Berlin <= 292
@@ -7659,7 +7659,7 @@ Subject To
  R3260: Flights_from_Warsaw_to_Berlin_by_Aircraft_3 <= 10000
  R3261: Flights_from_Warsaw_to_Berlin_by_Aircraft_3 <= 10000
  R3262: Flights_from_Warsaw_to_Berlin_by_Aircraft_4 <= 10000
- R3263: Flights_from_Warsaw_to_Berlin_by_Aircraft_4 <= 10000
+ R3263: Flights_from_Warsaw_to_Berlin_by_Aircraft_4 <= 0
  R3264: Direct_flow_from_Warsaw_to_Helsinki
    + Transfer_flow_from_Warsaw_to_Helsinki <= 55
  R3265: Transfer_flow_from_Warsaw_to_Helsinki <= 55
@@ -7676,7 +7676,7 @@ Subject To
  R3272: Flights_from_Warsaw_to_Helsinki_by_Aircraft_3 <= 10000
  R3273: Flights_from_Warsaw_to_Helsinki_by_Aircraft_3 <= 10000
  R3274: Flights_from_Warsaw_to_Helsinki_by_Aircraft_4 <= 10000
- R3275: Flights_from_Warsaw_to_Helsinki_by_Aircraft_4 <= 10000
+ R3275: Flights_from_Warsaw_to_Helsinki_by_Aircraft_4 <= 0
  R3276: Direct_flow_from_Warsaw_to_Warsaw
    + Transfer_flow_from_Warsaw_to_Warsaw <= 0
  R3277: Transfer_flow_from_Warsaw_to_Warsaw <= 0
@@ -7812,7 +7812,7 @@ Subject To
  R3368: Flights_from_Edinburgh_to_London_by_Aircraft_3 <= 10000
  R3369: Flights_from_Edinburgh_to_London_by_Aircraft_3 <= 10000
  R3370: Flights_from_Edinburgh_to_London_by_Aircraft_4 <= 10000
- R3371: Flights_from_Edinburgh_to_London_by_Aircraft_4 <= 10000
+ R3371: Flights_from_Edinburgh_to_London_by_Aircraft_4 <= 0
  R3372: Direct_flow_from_Edinburgh_to_Paris
    + Transfer_flow_from_Edinburgh_to_Paris <= 97
  R3373: Transfer_flow_from_Edinburgh_to_Paris <= 97
@@ -7829,7 +7829,7 @@ Subject To
  R3380: Flights_from_Edinburgh_to_Paris_by_Aircraft_3 <= 10000
  R3381: Flights_from_Edinburgh_to_Paris_by_Aircraft_3 <= 10000
  R3382: Flights_from_Edinburgh_to_Paris_by_Aircraft_4 <= 10000
- R3383: Flights_from_Edinburgh_to_Paris_by_Aircraft_4 <= 10000
+ R3383: Flights_from_Edinburgh_to_Paris_by_Aircraft_4 <= 0
  R3384: Direct_flow_from_Edinburgh_to_Amsterdam
    + Transfer_flow_from_Edinburgh_to_Amsterdam <= 93
  R3385: Transfer_flow_from_Edinburgh_to_Amsterdam <= 0
@@ -7866,7 +7866,7 @@ Subject To
  R3392: Flights_from_Edinburgh_to_Amsterdam_by_Aircraft_3 <= 10000
  R3393: Flights_from_Edinburgh_to_Amsterdam_by_Aircraft_3 <= 10000
  R3394: Flights_from_Edinburgh_to_Amsterdam_by_Aircraft_4 <= 10000
- R3395: Flights_from_Edinburgh_to_Amsterdam_by_Aircraft_4 <= 10000
+ R3395: Flights_from_Edinburgh_to_Amsterdam_by_Aircraft_4 <= 0
  R3396: Direct_flow_from_Edinburgh_to_Frankfurt
    + Transfer_flow_from_Edinburgh_to_Frankfurt <= 51
  R3397: Transfer_flow_from_Edinburgh_to_Frankfurt <= 51
@@ -7883,7 +7883,7 @@ Subject To
  R3404: Flights_from_Edinburgh_to_Frankfurt_by_Aircraft_3 <= 10000
  R3405: Flights_from_Edinburgh_to_Frankfurt_by_Aircraft_3 <= 10000
  R3406: Flights_from_Edinburgh_to_Frankfurt_by_Aircraft_4 <= 10000
- R3407: Flights_from_Edinburgh_to_Frankfurt_by_Aircraft_4 <= 10000
+ R3407: Flights_from_Edinburgh_to_Frankfurt_by_Aircraft_4 <= 0
  R3408: Direct_flow_from_Edinburgh_to_Madrid
    + Transfer_flow_from_Edinburgh_to_Madrid <= 46
  R3409: Transfer_flow_from_Edinburgh_to_Madrid <= 46
@@ -7900,7 +7900,7 @@ Subject To
  R3416: Flights_from_Edinburgh_to_Madrid_by_Aircraft_3 <= 10000
  R3417: Flights_from_Edinburgh_to_Madrid_by_Aircraft_3 <= 10000
  R3418: Flights_from_Edinburgh_to_Madrid_by_Aircraft_4 <= 10000
- R3419: Flights_from_Edinburgh_to_Madrid_by_Aircraft_4 <= 10000
+ R3419: Flights_from_Edinburgh_to_Madrid_by_Aircraft_4 <= 0
  R3420: Direct_flow_from_Edinburgh_to_Barcelona
    + Transfer_flow_from_Edinburgh_to_Barcelona <= 32
  R3421: Transfer_flow_from_Edinburgh_to_Barcelona <= 32
@@ -7917,7 +7917,7 @@ Subject To
  R3428: Flights_from_Edinburgh_to_Barcelona_by_Aircraft_3 <= 10000
  R3429: Flights_from_Edinburgh_to_Barcelona_by_Aircraft_3 <= 10000
  R3430: Flights_from_Edinburgh_to_Barcelona_by_Aircraft_4 <= 10000
- R3431: Flights_from_Edinburgh_to_Barcelona_by_Aircraft_4 <= 10000
+ R3431: Flights_from_Edinburgh_to_Barcelona_by_Aircraft_4 <= 0
  R3432: Direct_flow_from_Edinburgh_to_Munich
    + Transfer_flow_from_Edinburgh_to_Munich <= 53
  R3433: Transfer_flow_from_Edinburgh_to_Munich <= 53
@@ -7934,7 +7934,7 @@ Subject To
  R3440: Flights_from_Edinburgh_to_Munich_by_Aircraft_3 <= 10000
  R3441: Flights_from_Edinburgh_to_Munich_by_Aircraft_3 <= 10000
  R3442: Flights_from_Edinburgh_to_Munich_by_Aircraft_4 <= 10000
- R3443: Flights_from_Edinburgh_to_Munich_by_Aircraft_4 <= 10000
+ R3443: Flights_from_Edinburgh_to_Munich_by_Aircraft_4 <= 0
  R3444: Direct_flow_from_Edinburgh_to_Rome
    + Transfer_flow_from_Edinburgh_to_Rome <= 38
  R3445: Transfer_flow_from_Edinburgh_to_Rome <= 38
@@ -7951,7 +7951,7 @@ Subject To
  R3452: Flights_from_Edinburgh_to_Rome_by_Aircraft_3 <= 10000
  R3453: Flights_from_Edinburgh_to_Rome_by_Aircraft_3 <= 10000
  R3454: Flights_from_Edinburgh_to_Rome_by_Aircraft_4 <= 10000
- R3455: Flights_from_Edinburgh_to_Rome_by_Aircraft_4 <= 10000
+ R3455: Flights_from_Edinburgh_to_Rome_by_Aircraft_4 <= 0
  R3456: Direct_flow_from_Edinburgh_to_Dublin
    + Transfer_flow_from_Edinburgh_to_Dublin <= 285
  R3457: Transfer_flow_from_Edinburgh_to_Dublin <= 285
@@ -7968,7 +7968,7 @@ Subject To
  R3464: Flights_from_Edinburgh_to_Dublin_by_Aircraft_3 <= 10000
  R3465: Flights_from_Edinburgh_to_Dublin_by_Aircraft_3 <= 10000
  R3466: Flights_from_Edinburgh_to_Dublin_by_Aircraft_4 <= 10000
- R3467: Flights_from_Edinburgh_to_Dublin_by_Aircraft_4 <= 10000
+ R3467: Flights_from_Edinburgh_to_Dublin_by_Aircraft_4 <= 0
  R3468: Direct_flow_from_Edinburgh_to_Stockholm
    + Transfer_flow_from_Edinburgh_to_Stockholm <= 44
  R3469: Transfer_flow_from_Edinburgh_to_Stockholm <= 44
@@ -7985,7 +7985,7 @@ Subject To
  R3476: Flights_from_Edinburgh_to_Stockholm_by_Aircraft_3 <= 10000
  R3477: Flights_from_Edinburgh_to_Stockholm_by_Aircraft_3 <= 10000
  R3478: Flights_from_Edinburgh_to_Stockholm_by_Aircraft_4 <= 10000
- R3479: Flights_from_Edinburgh_to_Stockholm_by_Aircraft_4 <= 10000
+ R3479: Flights_from_Edinburgh_to_Stockholm_by_Aircraft_4 <= 0
  R3480: Direct_flow_from_Edinburgh_to_Lisbon
    + Transfer_flow_from_Edinburgh_to_Lisbon <= 12
  R3481: Transfer_flow_from_Edinburgh_to_Lisbon <= 12
@@ -8002,7 +8002,7 @@ Subject To
  R3488: Flights_from_Edinburgh_to_Lisbon_by_Aircraft_3 <= 10000
  R3489: Flights_from_Edinburgh_to_Lisbon_by_Aircraft_3 <= 10000
  R3490: Flights_from_Edinburgh_to_Lisbon_by_Aircraft_4 <= 10000
- R3491: Flights_from_Edinburgh_to_Lisbon_by_Aircraft_4 <= 10000
+ R3491: Flights_from_Edinburgh_to_Lisbon_by_Aircraft_4 <= 0
  R3492: Direct_flow_from_Edinburgh_to_Berlin
    + Transfer_flow_from_Edinburgh_to_Berlin <= 104
  R3493: Transfer_flow_from_Edinburgh_to_Berlin <= 104
@@ -8019,7 +8019,7 @@ Subject To
  R3500: Flights_from_Edinburgh_to_Berlin_by_Aircraft_3 <= 10000
  R3501: Flights_from_Edinburgh_to_Berlin_by_Aircraft_3 <= 10000
  R3502: Flights_from_Edinburgh_to_Berlin_by_Aircraft_4 <= 10000
- R3503: Flights_from_Edinburgh_to_Berlin_by_Aircraft_4 <= 10000
+ R3503: Flights_from_Edinburgh_to_Berlin_by_Aircraft_4 <= 0
  R3504: Direct_flow_from_Edinburgh_to_Helsinki
    + Transfer_flow_from_Edinburgh_to_Helsinki <= 24
  R3505: Transfer_flow_from_Edinburgh_to_Helsinki <= 24
@@ -8036,7 +8036,7 @@ Subject To
  R3512: Flights_from_Edinburgh_to_Helsinki_by_Aircraft_3 <= 10000
  R3513: Flights_from_Edinburgh_to_Helsinki_by_Aircraft_3 <= 10000
  R3514: Flights_from_Edinburgh_to_Helsinki_by_Aircraft_4 <= 10000
- R3515: Flights_from_Edinburgh_to_Helsinki_by_Aircraft_4 <= 10000
+ R3515: Flights_from_Edinburgh_to_Helsinki_by_Aircraft_4 <= 0
  R3516: Direct_flow_from_Edinburgh_to_Warsaw
    + Transfer_flow_from_Edinburgh_to_Warsaw <= 26
  R3517: Transfer_flow_from_Edinburgh_to_Warsaw <= 26
@@ -8172,7 +8172,7 @@ Subject To
  R3608: Flights_from_Bucharest_to_London_by_Aircraft_3 <= 10000
  R3609: Flights_from_Bucharest_to_London_by_Aircraft_3 <= 10000
  R3610: Flights_from_Bucharest_to_London_by_Aircraft_4 <= 10000
- R3611: Flights_from_Bucharest_to_London_by_Aircraft_4 <= 10000
+ R3611: Flights_from_Bucharest_to_London_by_Aircraft_4 <= 0
  R3612: Direct_flow_from_Bucharest_to_Paris
    + Transfer_flow_from_Bucharest_to_Paris <= 38
  R3613: Transfer_flow_from_Bucharest_to_Paris <= 38
@@ -8189,7 +8189,7 @@ Subject To
  R3620: Flights_from_Bucharest_to_Paris_by_Aircraft_3 <= 10000
  R3621: Flights_from_Bucharest_to_Paris_by_Aircraft_3 <= 10000
  R3622: Flights_from_Bucharest_to_Paris_by_Aircraft_4 <= 10000
- R3623: Flights_from_Bucharest_to_Paris_by_Aircraft_4 <= 10000
+ R3623: Flights_from_Bucharest_to_Paris_by_Aircraft_4 <= 0
  R3624: Direct_flow_from_Bucharest_to_Amsterdam
    + Transfer_flow_from_Bucharest_to_Amsterdam <= 28
  R3625: Transfer_flow_from_Bucharest_to_Amsterdam <= 0
@@ -8226,7 +8226,7 @@ Subject To
  R3632: Flights_from_Bucharest_to_Amsterdam_by_Aircraft_3 <= 10000
  R3633: Flights_from_Bucharest_to_Amsterdam_by_Aircraft_3 <= 10000
  R3634: Flights_from_Bucharest_to_Amsterdam_by_Aircraft_4 <= 10000
- R3635: Flights_from_Bucharest_to_Amsterdam_by_Aircraft_4 <= 10000
+ R3635: Flights_from_Bucharest_to_Amsterdam_by_Aircraft_4 <= 0
  R3636: Direct_flow_from_Bucharest_to_Frankfurt
    + Transfer_flow_from_Bucharest_to_Frankfurt <= 32
  R3637: Transfer_flow_from_Bucharest_to_Frankfurt <= 32
@@ -8243,7 +8243,7 @@ Subject To
  R3644: Flights_from_Bucharest_to_Frankfurt_by_Aircraft_3 <= 10000
  R3645: Flights_from_Bucharest_to_Frankfurt_by_Aircraft_3 <= 10000
  R3646: Flights_from_Bucharest_to_Frankfurt_by_Aircraft_4 <= 10000
- R3647: Flights_from_Bucharest_to_Frankfurt_by_Aircraft_4 <= 10000
+ R3647: Flights_from_Bucharest_to_Frankfurt_by_Aircraft_4 <= 0
  R3648: Direct_flow_from_Bucharest_to_Madrid
    + Transfer_flow_from_Bucharest_to_Madrid <= 29
  R3649: Transfer_flow_from_Bucharest_to_Madrid <= 29
@@ -8260,7 +8260,7 @@ Subject To
  R3656: Flights_from_Bucharest_to_Madrid_by_Aircraft_3 <= 10000
  R3657: Flights_from_Bucharest_to_Madrid_by_Aircraft_3 <= 10000
  R3658: Flights_from_Bucharest_to_Madrid_by_Aircraft_4 <= 10000
- R3659: Flights_from_Bucharest_to_Madrid_by_Aircraft_4 <= 10000
+ R3659: Flights_from_Bucharest_to_Madrid_by_Aircraft_4 <= 0
  R3660: Direct_flow_from_Bucharest_to_Barcelona
    + Transfer_flow_from_Bucharest_to_Barcelona <= 25
  R3661: Transfer_flow_from_Bucharest_to_Barcelona <= 25
@@ -8277,7 +8277,7 @@ Subject To
  R3668: Flights_from_Bucharest_to_Barcelona_by_Aircraft_3 <= 10000
  R3669: Flights_from_Bucharest_to_Barcelona_by_Aircraft_3 <= 10000
  R3670: Flights_from_Bucharest_to_Barcelona_by_Aircraft_4 <= 10000
- R3671: Flights_from_Bucharest_to_Barcelona_by_Aircraft_4 <= 10000
+ R3671: Flights_from_Bucharest_to_Barcelona_by_Aircraft_4 <= 0
  R3672: Direct_flow_from_Bucharest_to_Munich
    + Transfer_flow_from_Bucharest_to_Munich <= 59
  R3673: Transfer_flow_from_Bucharest_to_Munich <= 59
@@ -8294,7 +8294,7 @@ Subject To
  R3680: Flights_from_Bucharest_to_Munich_by_Aircraft_3 <= 10000
  R3681: Flights_from_Bucharest_to_Munich_by_Aircraft_3 <= 10000
  R3682: Flights_from_Bucharest_to_Munich_by_Aircraft_4 <= 10000
- R3683: Flights_from_Bucharest_to_Munich_by_Aircraft_4 <= 10000
+ R3683: Flights_from_Bucharest_to_Munich_by_Aircraft_4 <= 0
  R3684: Direct_flow_from_Bucharest_to_Rome
    + Transfer_flow_from_Bucharest_to_Rome <= 68
  R3685: Transfer_flow_from_Bucharest_to_Rome <= 68
@@ -8311,7 +8311,7 @@ Subject To
  R3692: Flights_from_Bucharest_to_Rome_by_Aircraft_3 <= 10000
  R3693: Flights_from_Bucharest_to_Rome_by_Aircraft_3 <= 10000
  R3694: Flights_from_Bucharest_to_Rome_by_Aircraft_4 <= 10000
- R3695: Flights_from_Bucharest_to_Rome_by_Aircraft_4 <= 10000
+ R3695: Flights_from_Bucharest_to_Rome_by_Aircraft_4 <= 0
  R3696: Direct_flow_from_Bucharest_to_Dublin
    + Transfer_flow_from_Bucharest_to_Dublin <= 25
  R3697: Transfer_flow_from_Bucharest_to_Dublin <= 25
@@ -8328,7 +8328,7 @@ Subject To
  R3704: Flights_from_Bucharest_to_Dublin_by_Aircraft_3 <= 10000
  R3705: Flights_from_Bucharest_to_Dublin_by_Aircraft_3 <= 10000
  R3706: Flights_from_Bucharest_to_Dublin_by_Aircraft_4 <= 10000
- R3707: Flights_from_Bucharest_to_Dublin_by_Aircraft_4 <= 10000
+ R3707: Flights_from_Bucharest_to_Dublin_by_Aircraft_4 <= 0
  R3708: Direct_flow_from_Bucharest_to_Stockholm
    + Transfer_flow_from_Bucharest_to_Stockholm <= 30
  R3709: Transfer_flow_from_Bucharest_to_Stockholm <= 30
@@ -8345,7 +8345,7 @@ Subject To
  R3716: Flights_from_Bucharest_to_Stockholm_by_Aircraft_3 <= 10000
  R3717: Flights_from_Bucharest_to_Stockholm_by_Aircraft_3 <= 10000
  R3718: Flights_from_Bucharest_to_Stockholm_by_Aircraft_4 <= 10000
- R3719: Flights_from_Bucharest_to_Stockholm_by_Aircraft_4 <= 10000
+ R3719: Flights_from_Bucharest_to_Stockholm_by_Aircraft_4 <= 0
  R3720: Direct_flow_from_Bucharest_to_Lisbon
    + Transfer_flow_from_Bucharest_to_Lisbon <= 7
  R3721: Transfer_flow_from_Bucharest_to_Lisbon <= 7
@@ -8362,7 +8362,7 @@ Subject To
  R3728: Flights_from_Bucharest_to_Lisbon_by_Aircraft_3 <= 10000
  R3729: Flights_from_Bucharest_to_Lisbon_by_Aircraft_3 <= 10000
  R3730: Flights_from_Bucharest_to_Lisbon_by_Aircraft_4 <= 10000
- R3731: Flights_from_Bucharest_to_Lisbon_by_Aircraft_4 <= 10000
+ R3731: Flights_from_Bucharest_to_Lisbon_by_Aircraft_4 <= 0
  R3732: Direct_flow_from_Bucharest_to_Berlin
    + Transfer_flow_from_Bucharest_to_Berlin <= 86
  R3733: Transfer_flow_from_Bucharest_to_Berlin <= 86
@@ -8379,7 +8379,7 @@ Subject To
  R3740: Flights_from_Bucharest_to_Berlin_by_Aircraft_3 <= 10000
  R3741: Flights_from_Bucharest_to_Berlin_by_Aircraft_3 <= 10000
  R3742: Flights_from_Bucharest_to_Berlin_by_Aircraft_4 <= 10000
- R3743: Flights_from_Bucharest_to_Berlin_by_Aircraft_4 <= 10000
+ R3743: Flights_from_Bucharest_to_Berlin_by_Aircraft_4 <= 0
  R3744: Direct_flow_from_Bucharest_to_Helsinki
    + Transfer_flow_from_Bucharest_to_Helsinki <= 22
  R3745: Transfer_flow_from_Bucharest_to_Helsinki <= 22
@@ -8396,7 +8396,7 @@ Subject To
  R3752: Flights_from_Bucharest_to_Helsinki_by_Aircraft_3 <= 10000
  R3753: Flights_from_Bucharest_to_Helsinki_by_Aircraft_3 <= 10000
  R3754: Flights_from_Bucharest_to_Helsinki_by_Aircraft_4 <= 10000
- R3755: Flights_from_Bucharest_to_Helsinki_by_Aircraft_4 <= 10000
+ R3755: Flights_from_Bucharest_to_Helsinki_by_Aircraft_4 <= 0
  R3756: Direct_flow_from_Bucharest_to_Warsaw
    + Transfer_flow_from_Bucharest_to_Warsaw <= 50
  R3757: Transfer_flow_from_Bucharest_to_Warsaw <= 50
@@ -8532,7 +8532,7 @@ Subject To
  R3848: Flights_from_Heraklion_to_London_by_Aircraft_3 <= 10000
  R3849: Flights_from_Heraklion_to_London_by_Aircraft_3 <= 10000
  R3850: Flights_from_Heraklion_to_London_by_Aircraft_4 <= 10000
- R3851: Flights_from_Heraklion_to_London_by_Aircraft_4 <= 10000
+ R3851: Flights_from_Heraklion_to_London_by_Aircraft_4 <= 0
  R3852: Direct_flow_from_Heraklion_to_Paris
    + Transfer_flow_from_Heraklion_to_Paris <= 8
  R3853: Transfer_flow_from_Heraklion_to_Paris <= 8
@@ -8549,7 +8549,7 @@ Subject To
  R3860: Flights_from_Heraklion_to_Paris_by_Aircraft_3 <= 10000
  R3861: Flights_from_Heraklion_to_Paris_by_Aircraft_3 <= 10000
  R3862: Flights_from_Heraklion_to_Paris_by_Aircraft_4 <= 10000
- R3863: Flights_from_Heraklion_to_Paris_by_Aircraft_4 <= 10000
+ R3863: Flights_from_Heraklion_to_Paris_by_Aircraft_4 <= 0
  R3864: Direct_flow_from_Heraklion_to_Amsterdam
    + Transfer_flow_from_Heraklion_to_Amsterdam <= 5
  R3865: Transfer_flow_from_Heraklion_to_Amsterdam <= 0
@@ -8586,7 +8586,7 @@ Subject To
  R3872: Flights_from_Heraklion_to_Amsterdam_by_Aircraft_3 <= 10000
  R3873: Flights_from_Heraklion_to_Amsterdam_by_Aircraft_3 <= 10000
  R3874: Flights_from_Heraklion_to_Amsterdam_by_Aircraft_4 <= 10000
- R3875: Flights_from_Heraklion_to_Amsterdam_by_Aircraft_4 <= 10000
+ R3875: Flights_from_Heraklion_to_Amsterdam_by_Aircraft_4 <= 0
  R3876: Direct_flow_from_Heraklion_to_Frankfurt
    + Transfer_flow_from_Heraklion_to_Frankfurt <= 6
  R3877: Transfer_flow_from_Heraklion_to_Frankfurt <= 6
@@ -8603,7 +8603,7 @@ Subject To
  R3884: Flights_from_Heraklion_to_Frankfurt_by_Aircraft_3 <= 10000
  R3885: Flights_from_Heraklion_to_Frankfurt_by_Aircraft_3 <= 10000
  R3886: Flights_from_Heraklion_to_Frankfurt_by_Aircraft_4 <= 10000
- R3887: Flights_from_Heraklion_to_Frankfurt_by_Aircraft_4 <= 10000
+ R3887: Flights_from_Heraklion_to_Frankfurt_by_Aircraft_4 <= 0
  R3888: Direct_flow_from_Heraklion_to_Madrid
    + Transfer_flow_from_Heraklion_to_Madrid <= 8
  R3889: Transfer_flow_from_Heraklion_to_Madrid <= 8
@@ -8620,7 +8620,7 @@ Subject To
  R3896: Flights_from_Heraklion_to_Madrid_by_Aircraft_3 <= 10000
  R3897: Flights_from_Heraklion_to_Madrid_by_Aircraft_3 <= 10000
  R3898: Flights_from_Heraklion_to_Madrid_by_Aircraft_4 <= 10000
- R3899: Flights_from_Heraklion_to_Madrid_by_Aircraft_4 <= 10000
+ R3899: Flights_from_Heraklion_to_Madrid_by_Aircraft_4 <= 0
  R3900: Direct_flow_from_Heraklion_to_Barcelona
    + Transfer_flow_from_Heraklion_to_Barcelona <= 7
  R3901: Transfer_flow_from_Heraklion_to_Barcelona <= 7
@@ -8637,7 +8637,7 @@ Subject To
  R3908: Flights_from_Heraklion_to_Barcelona_by_Aircraft_3 <= 10000
  R3909: Flights_from_Heraklion_to_Barcelona_by_Aircraft_3 <= 10000
  R3910: Flights_from_Heraklion_to_Barcelona_by_Aircraft_4 <= 10000
- R3911: Flights_from_Heraklion_to_Barcelona_by_Aircraft_4 <= 10000
+ R3911: Flights_from_Heraklion_to_Barcelona_by_Aircraft_4 <= 0
  R3912: Direct_flow_from_Heraklion_to_Munich
    + Transfer_flow_from_Heraklion_to_Munich <= 11
  R3913: Transfer_flow_from_Heraklion_to_Munich <= 11
@@ -8654,7 +8654,7 @@ Subject To
  R3920: Flights_from_Heraklion_to_Munich_by_Aircraft_3 <= 10000
  R3921: Flights_from_Heraklion_to_Munich_by_Aircraft_3 <= 10000
  R3922: Flights_from_Heraklion_to_Munich_by_Aircraft_4 <= 10000
- R3923: Flights_from_Heraklion_to_Munich_by_Aircraft_4 <= 10000
+ R3923: Flights_from_Heraklion_to_Munich_by_Aircraft_4 <= 0
  R3924: Direct_flow_from_Heraklion_to_Rome
    + Transfer_flow_from_Heraklion_to_Rome <= 18
  R3925: Transfer_flow_from_Heraklion_to_Rome <= 18
@@ -8671,7 +8671,7 @@ Subject To
  R3932: Flights_from_Heraklion_to_Rome_by_Aircraft_3 <= 10000
  R3933: Flights_from_Heraklion_to_Rome_by_Aircraft_3 <= 10000
  R3934: Flights_from_Heraklion_to_Rome_by_Aircraft_4 <= 10000
- R3935: Flights_from_Heraklion_to_Rome_by_Aircraft_4 <= 10000
+ R3935: Flights_from_Heraklion_to_Rome_by_Aircraft_4 <= 0
  R3936: Direct_flow_from_Heraklion_to_Dublin
    + Transfer_flow_from_Heraklion_to_Dublin <= 6
  R3937: Transfer_flow_from_Heraklion_to_Dublin <= 6
@@ -8688,7 +8688,7 @@ Subject To
  R3944: Flights_from_Heraklion_to_Dublin_by_Aircraft_3 <= 10000
  R3945: Flights_from_Heraklion_to_Dublin_by_Aircraft_3 <= 10000
  R3946: Flights_from_Heraklion_to_Dublin_by_Aircraft_4 <= 10000
- R3947: Flights_from_Heraklion_to_Dublin_by_Aircraft_4 <= 10000
+ R3947: Flights_from_Heraklion_to_Dublin_by_Aircraft_4 <= 0
  R3948: Direct_flow_from_Heraklion_to_Stockholm
    + Transfer_flow_from_Heraklion_to_Stockholm <= 5
  R3949: Transfer_flow_from_Heraklion_to_Stockholm <= 5
@@ -8705,7 +8705,7 @@ Subject To
  R3956: Flights_from_Heraklion_to_Stockholm_by_Aircraft_3 <= 10000
  R3957: Flights_from_Heraklion_to_Stockholm_by_Aircraft_3 <= 10000
  R3958: Flights_from_Heraklion_to_Stockholm_by_Aircraft_4 <= 10000
- R3959: Flights_from_Heraklion_to_Stockholm_by_Aircraft_4 <= 10000
+ R3959: Flights_from_Heraklion_to_Stockholm_by_Aircraft_4 <= 0
  R3960: Direct_flow_from_Heraklion_to_Lisbon
    + Transfer_flow_from_Heraklion_to_Lisbon <= 2
  R3961: Transfer_flow_from_Heraklion_to_Lisbon <= 2
@@ -8722,7 +8722,7 @@ Subject To
  R3968: Flights_from_Heraklion_to_Lisbon_by_Aircraft_3 <= 10000
  R3969: Flights_from_Heraklion_to_Lisbon_by_Aircraft_3 <= 10000
  R3970: Flights_from_Heraklion_to_Lisbon_by_Aircraft_4 <= 10000
- R3971: Flights_from_Heraklion_to_Lisbon_by_Aircraft_4 <= 10000
+ R3971: Flights_from_Heraklion_to_Lisbon_by_Aircraft_4 <= 0
  R3972: Direct_flow_from_Heraklion_to_Berlin
    + Transfer_flow_from_Heraklion_to_Berlin <= 15
  R3973: Transfer_flow_from_Heraklion_to_Berlin <= 15
@@ -8739,7 +8739,7 @@ Subject To
  R3980: Flights_from_Heraklion_to_Berlin_by_Aircraft_3 <= 10000
  R3981: Flights_from_Heraklion_to_Berlin_by_Aircraft_3 <= 10000
  R3982: Flights_from_Heraklion_to_Berlin_by_Aircraft_4 <= 10000
- R3983: Flights_from_Heraklion_to_Berlin_by_Aircraft_4 <= 10000
+ R3983: Flights_from_Heraklion_to_Berlin_by_Aircraft_4 <= 0
  R3984: Direct_flow_from_Heraklion_to_Helsinki
    + Transfer_flow_from_Heraklion_to_Helsinki <= 4
  R3985: Transfer_flow_from_Heraklion_to_Helsinki <= 4
@@ -8756,7 +8756,7 @@ Subject To
  R3992: Flights_from_Heraklion_to_Helsinki_by_Aircraft_3 <= 10000
  R3993: Flights_from_Heraklion_to_Helsinki_by_Aircraft_3 <= 10000
  R3994: Flights_from_Heraklion_to_Helsinki_by_Aircraft_4 <= 10000
- R3995: Flights_from_Heraklion_to_Helsinki_by_Aircraft_4 <= 10000
+ R3995: Flights_from_Heraklion_to_Helsinki_by_Aircraft_4 <= 0
  R3996: Direct_flow_from_Heraklion_to_Warsaw
    + Transfer_flow_from_Heraklion_to_Warsaw <= 6
  R3997: Transfer_flow_from_Heraklion_to_Warsaw <= 6
@@ -8892,7 +8892,7 @@ Subject To
  R4088: Flights_from_Reykjavik_to_London_by_Aircraft_3 <= 10000
  R4089: Flights_from_Reykjavik_to_London_by_Aircraft_3 <= 10000
  R4090: Flights_from_Reykjavik_to_London_by_Aircraft_4 <= 10000
- R4091: Flights_from_Reykjavik_to_London_by_Aircraft_4 <= 10000
+ R4091: Flights_from_Reykjavik_to_London_by_Aircraft_4 <= 0
  R4092: Direct_flow_from_Reykjavik_to_Paris
    + Transfer_flow_from_Reykjavik_to_Paris <= 16
  R4093: Transfer_flow_from_Reykjavik_to_Paris <= 16
@@ -8909,7 +8909,7 @@ Subject To
  R4100: Flights_from_Reykjavik_to_Paris_by_Aircraft_3 <= 10000
  R4101: Flights_from_Reykjavik_to_Paris_by_Aircraft_3 <= 10000
  R4102: Flights_from_Reykjavik_to_Paris_by_Aircraft_4 <= 10000
- R4103: Flights_from_Reykjavik_to_Paris_by_Aircraft_4 <= 10000
+ R4103: Flights_from_Reykjavik_to_Paris_by_Aircraft_4 <= 0
  R4104: Direct_flow_from_Reykjavik_to_Amsterdam
    + Transfer_flow_from_Reykjavik_to_Amsterdam <= 12
  R4105: Transfer_flow_from_Reykjavik_to_Amsterdam <= 0
@@ -8946,7 +8946,7 @@ Subject To
  R4112: Flights_from_Reykjavik_to_Amsterdam_by_Aircraft_3 <= 10000
  R4113: Flights_from_Reykjavik_to_Amsterdam_by_Aircraft_3 <= 10000
  R4114: Flights_from_Reykjavik_to_Amsterdam_by_Aircraft_4 <= 10000
- R4115: Flights_from_Reykjavik_to_Amsterdam_by_Aircraft_4 <= 10000
+ R4115: Flights_from_Reykjavik_to_Amsterdam_by_Aircraft_4 <= 0
  R4116: Direct_flow_from_Reykjavik_to_Frankfurt
    + Transfer_flow_from_Reykjavik_to_Frankfurt <= 9
  R4117: Transfer_flow_from_Reykjavik_to_Frankfurt <= 9
@@ -8963,7 +8963,7 @@ Subject To
  R4124: Flights_from_Reykjavik_to_Frankfurt_by_Aircraft_3 <= 10000
  R4125: Flights_from_Reykjavik_to_Frankfurt_by_Aircraft_3 <= 10000
  R4126: Flights_from_Reykjavik_to_Frankfurt_by_Aircraft_4 <= 10000
- R4127: Flights_from_Reykjavik_to_Frankfurt_by_Aircraft_4 <= 10000
+ R4127: Flights_from_Reykjavik_to_Frankfurt_by_Aircraft_4 <= 0
  R4128: Direct_flow_from_Reykjavik_to_Madrid
    + Transfer_flow_from_Reykjavik_to_Madrid <= 12
  R4129: Transfer_flow_from_Reykjavik_to_Madrid <= 12
@@ -8980,7 +8980,7 @@ Subject To
  R4136: Flights_from_Reykjavik_to_Madrid_by_Aircraft_3 <= 10000
  R4137: Flights_from_Reykjavik_to_Madrid_by_Aircraft_3 <= 10000
  R4138: Flights_from_Reykjavik_to_Madrid_by_Aircraft_4 <= 10000
- R4139: Flights_from_Reykjavik_to_Madrid_by_Aircraft_4 <= 10000
+ R4139: Flights_from_Reykjavik_to_Madrid_by_Aircraft_4 <= 0
  R4140: Direct_flow_from_Reykjavik_to_Barcelona
    + Transfer_flow_from_Reykjavik_to_Barcelona <= 8
  R4141: Transfer_flow_from_Reykjavik_to_Barcelona <= 8
@@ -8997,7 +8997,7 @@ Subject To
  R4148: Flights_from_Reykjavik_to_Barcelona_by_Aircraft_3 <= 10000
  R4149: Flights_from_Reykjavik_to_Barcelona_by_Aircraft_3 <= 10000
  R4150: Flights_from_Reykjavik_to_Barcelona_by_Aircraft_4 <= 10000
- R4151: Flights_from_Reykjavik_to_Barcelona_by_Aircraft_4 <= 10000
+ R4151: Flights_from_Reykjavik_to_Barcelona_by_Aircraft_4 <= 0
  R4152: Direct_flow_from_Reykjavik_to_Munich
    + Transfer_flow_from_Reykjavik_to_Munich <= 11
  R4153: Transfer_flow_from_Reykjavik_to_Munich <= 11
@@ -9014,7 +9014,7 @@ Subject To
  R4160: Flights_from_Reykjavik_to_Munich_by_Aircraft_3 <= 10000
  R4161: Flights_from_Reykjavik_to_Munich_by_Aircraft_3 <= 10000
  R4162: Flights_from_Reykjavik_to_Munich_by_Aircraft_4 <= 10000
- R4163: Flights_from_Reykjavik_to_Munich_by_Aircraft_4 <= 10000
+ R4163: Flights_from_Reykjavik_to_Munich_by_Aircraft_4 <= 0
  R4164: Direct_flow_from_Reykjavik_to_Rome
    + Transfer_flow_from_Reykjavik_to_Rome <= 10
  R4165: Transfer_flow_from_Reykjavik_to_Rome <= 10
@@ -9031,7 +9031,7 @@ Subject To
  R4172: Flights_from_Reykjavik_to_Rome_by_Aircraft_3 <= 10000
  R4173: Flights_from_Reykjavik_to_Rome_by_Aircraft_3 <= 10000
  R4174: Flights_from_Reykjavik_to_Rome_by_Aircraft_4 <= 10000
- R4175: Flights_from_Reykjavik_to_Rome_by_Aircraft_4 <= 10000
+ R4175: Flights_from_Reykjavik_to_Rome_by_Aircraft_4 <= 0
  R4176: Direct_flow_from_Reykjavik_to_Dublin
    + Transfer_flow_from_Reykjavik_to_Dublin <= 24
  R4177: Transfer_flow_from_Reykjavik_to_Dublin <= 24
@@ -9048,7 +9048,7 @@ Subject To
  R4184: Flights_from_Reykjavik_to_Dublin_by_Aircraft_3 <= 10000
  R4185: Flights_from_Reykjavik_to_Dublin_by_Aircraft_3 <= 10000
  R4186: Flights_from_Reykjavik_to_Dublin_by_Aircraft_4 <= 10000
- R4187: Flights_from_Reykjavik_to_Dublin_by_Aircraft_4 <= 10000
+ R4187: Flights_from_Reykjavik_to_Dublin_by_Aircraft_4 <= 0
  R4188: Direct_flow_from_Reykjavik_to_Stockholm
    + Transfer_flow_from_Reykjavik_to_Stockholm <= 12
  R4189: Transfer_flow_from_Reykjavik_to_Stockholm <= 12
@@ -9065,7 +9065,7 @@ Subject To
  R4196: Flights_from_Reykjavik_to_Stockholm_by_Aircraft_3 <= 10000
  R4197: Flights_from_Reykjavik_to_Stockholm_by_Aircraft_3 <= 10000
  R4198: Flights_from_Reykjavik_to_Stockholm_by_Aircraft_4 <= 10000
- R4199: Flights_from_Reykjavik_to_Stockholm_by_Aircraft_4 <= 10000
+ R4199: Flights_from_Reykjavik_to_Stockholm_by_Aircraft_4 <= 0
  R4200: Direct_flow_from_Reykjavik_to_Lisbon
    + Transfer_flow_from_Reykjavik_to_Lisbon <= 3
  R4201: Transfer_flow_from_Reykjavik_to_Lisbon <= 3
@@ -9082,7 +9082,7 @@ Subject To
  R4208: Flights_from_Reykjavik_to_Lisbon_by_Aircraft_3 <= 10000
  R4209: Flights_from_Reykjavik_to_Lisbon_by_Aircraft_3 <= 10000
  R4210: Flights_from_Reykjavik_to_Lisbon_by_Aircraft_4 <= 10000
- R4211: Flights_from_Reykjavik_to_Lisbon_by_Aircraft_4 <= 10000
+ R4211: Flights_from_Reykjavik_to_Lisbon_by_Aircraft_4 <= 0
  R4212: Direct_flow_from_Reykjavik_to_Berlin
    + Transfer_flow_from_Reykjavik_to_Berlin <= 22
  R4213: Transfer_flow_from_Reykjavik_to_Berlin <= 22
@@ -9099,7 +9099,7 @@ Subject To
  R4220: Flights_from_Reykjavik_to_Berlin_by_Aircraft_3 <= 10000
  R4221: Flights_from_Reykjavik_to_Berlin_by_Aircraft_3 <= 10000
  R4222: Flights_from_Reykjavik_to_Berlin_by_Aircraft_4 <= 10000
- R4223: Flights_from_Reykjavik_to_Berlin_by_Aircraft_4 <= 10000
+ R4223: Flights_from_Reykjavik_to_Berlin_by_Aircraft_4 <= 0
  R4224: Direct_flow_from_Reykjavik_to_Helsinki
    + Transfer_flow_from_Reykjavik_to_Helsinki <= 8
  R4225: Transfer_flow_from_Reykjavik_to_Helsinki <= 8
@@ -9116,7 +9116,7 @@ Subject To
  R4232: Flights_from_Reykjavik_to_Helsinki_by_Aircraft_3 <= 10000
  R4233: Flights_from_Reykjavik_to_Helsinki_by_Aircraft_3 <= 10000
  R4234: Flights_from_Reykjavik_to_Helsinki_by_Aircraft_4 <= 10000
- R4235: Flights_from_Reykjavik_to_Helsinki_by_Aircraft_4 <= 10000
+ R4235: Flights_from_Reykjavik_to_Helsinki_by_Aircraft_4 <= 0
  R4236: Direct_flow_from_Reykjavik_to_Warsaw
    + Transfer_flow_from_Reykjavik_to_Warsaw <= 7
  R4237: Transfer_flow_from_Reykjavik_to_Warsaw <= 7
@@ -9252,7 +9252,7 @@ Subject To
  R4328: Flights_from_Palermo_to_London_by_Aircraft_3 <= 10000
  R4329: Flights_from_Palermo_to_London_by_Aircraft_3 <= 10000
  R4330: Flights_from_Palermo_to_London_by_Aircraft_4 <= 10000
- R4331: Flights_from_Palermo_to_London_by_Aircraft_4 <= 10000
+ R4331: Flights_from_Palermo_to_London_by_Aircraft_4 <= 0
  R4332: Direct_flow_from_Palermo_to_Paris
    + Transfer_flow_from_Palermo_to_Paris <= 45
  R4333: Transfer_flow_from_Palermo_to_Paris <= 45
@@ -9269,7 +9269,7 @@ Subject To
  R4340: Flights_from_Palermo_to_Paris_by_Aircraft_3 <= 10000
  R4341: Flights_from_Palermo_to_Paris_by_Aircraft_3 <= 10000
  R4342: Flights_from_Palermo_to_Paris_by_Aircraft_4 <= 10000
- R4343: Flights_from_Palermo_to_Paris_by_Aircraft_4 <= 10000
+ R4343: Flights_from_Palermo_to_Paris_by_Aircraft_4 <= 0
  R4344: Direct_flow_from_Palermo_to_Amsterdam
    + Transfer_flow_from_Palermo_to_Amsterdam <= 27
  R4345: Transfer_flow_from_Palermo_to_Amsterdam <= 0
@@ -9306,7 +9306,7 @@ Subject To
  R4352: Flights_from_Palermo_to_Amsterdam_by_Aircraft_3 <= 10000
  R4353: Flights_from_Palermo_to_Amsterdam_by_Aircraft_3 <= 10000
  R4354: Flights_from_Palermo_to_Amsterdam_by_Aircraft_4 <= 10000
- R4355: Flights_from_Palermo_to_Amsterdam_by_Aircraft_4 <= 10000
+ R4355: Flights_from_Palermo_to_Amsterdam_by_Aircraft_4 <= 0
  R4356: Direct_flow_from_Palermo_to_Frankfurt
    + Transfer_flow_from_Palermo_to_Frankfurt <= 32
  R4357: Transfer_flow_from_Palermo_to_Frankfurt <= 32
@@ -9323,7 +9323,7 @@ Subject To
  R4364: Flights_from_Palermo_to_Frankfurt_by_Aircraft_3 <= 10000
  R4365: Flights_from_Palermo_to_Frankfurt_by_Aircraft_3 <= 10000
  R4366: Flights_from_Palermo_to_Frankfurt_by_Aircraft_4 <= 10000
- R4367: Flights_from_Palermo_to_Frankfurt_by_Aircraft_4 <= 10000
+ R4367: Flights_from_Palermo_to_Frankfurt_by_Aircraft_4 <= 0
  R4368: Direct_flow_from_Palermo_to_Madrid
    + Transfer_flow_from_Palermo_to_Madrid <= 49
  R4369: Transfer_flow_from_Palermo_to_Madrid <= 49
@@ -9340,7 +9340,7 @@ Subject To
  R4376: Flights_from_Palermo_to_Madrid_by_Aircraft_3 <= 10000
  R4377: Flights_from_Palermo_to_Madrid_by_Aircraft_3 <= 10000
  R4378: Flights_from_Palermo_to_Madrid_by_Aircraft_4 <= 10000
- R4379: Flights_from_Palermo_to_Madrid_by_Aircraft_4 <= 10000
+ R4379: Flights_from_Palermo_to_Madrid_by_Aircraft_4 <= 0
  R4380: Direct_flow_from_Palermo_to_Barcelona
    + Transfer_flow_from_Palermo_to_Barcelona <= 52
  R4381: Transfer_flow_from_Palermo_to_Barcelona <= 52
@@ -9357,7 +9357,7 @@ Subject To
  R4388: Flights_from_Palermo_to_Barcelona_by_Aircraft_3 <= 10000
  R4389: Flights_from_Palermo_to_Barcelona_by_Aircraft_3 <= 10000
  R4390: Flights_from_Palermo_to_Barcelona_by_Aircraft_4 <= 10000
- R4391: Flights_from_Palermo_to_Barcelona_by_Aircraft_4 <= 10000
+ R4391: Flights_from_Palermo_to_Barcelona_by_Aircraft_4 <= 0
  R4392: Direct_flow_from_Palermo_to_Munich
    + Transfer_flow_from_Palermo_to_Munich <= 56
  R4393: Transfer_flow_from_Palermo_to_Munich <= 56
@@ -9374,7 +9374,7 @@ Subject To
  R4400: Flights_from_Palermo_to_Munich_by_Aircraft_3 <= 10000
  R4401: Flights_from_Palermo_to_Munich_by_Aircraft_3 <= 10000
  R4402: Flights_from_Palermo_to_Munich_by_Aircraft_4 <= 10000
- R4403: Flights_from_Palermo_to_Munich_by_Aircraft_4 <= 10000
+ R4403: Flights_from_Palermo_to_Munich_by_Aircraft_4 <= 0
  R4404: Direct_flow_from_Palermo_to_Rome
    + Transfer_flow_from_Palermo_to_Rome <= 212
  R4405: Transfer_flow_from_Palermo_to_Rome <= 212
@@ -9391,7 +9391,7 @@ Subject To
  R4412: Flights_from_Palermo_to_Rome_by_Aircraft_3 <= 10000
  R4413: Flights_from_Palermo_to_Rome_by_Aircraft_3 <= 10000
  R4414: Flights_from_Palermo_to_Rome_by_Aircraft_4 <= 10000
- R4415: Flights_from_Palermo_to_Rome_by_Aircraft_4 <= 10000
+ R4415: Flights_from_Palermo_to_Rome_by_Aircraft_4 <= 0
  R4416: Direct_flow_from_Palermo_to_Dublin
    + Transfer_flow_from_Palermo_to_Dublin <= 26
  R4417: Transfer_flow_from_Palermo_to_Dublin <= 26
@@ -9408,7 +9408,7 @@ Subject To
  R4424: Flights_from_Palermo_to_Dublin_by_Aircraft_3 <= 10000
  R4425: Flights_from_Palermo_to_Dublin_by_Aircraft_3 <= 10000
  R4426: Flights_from_Palermo_to_Dublin_by_Aircraft_4 <= 10000
- R4427: Flights_from_Palermo_to_Dublin_by_Aircraft_4 <= 10000
+ R4427: Flights_from_Palermo_to_Dublin_by_Aircraft_4 <= 0
  R4428: Direct_flow_from_Palermo_to_Stockholm
    + Transfer_flow_from_Palermo_to_Stockholm <= 19
  R4429: Transfer_flow_from_Palermo_to_Stockholm <= 19
@@ -9425,7 +9425,7 @@ Subject To
  R4436: Flights_from_Palermo_to_Stockholm_by_Aircraft_3 <= 10000
  R4437: Flights_from_Palermo_to_Stockholm_by_Aircraft_3 <= 10000
  R4438: Flights_from_Palermo_to_Stockholm_by_Aircraft_4 <= 10000
- R4439: Flights_from_Palermo_to_Stockholm_by_Aircraft_4 <= 10000
+ R4439: Flights_from_Palermo_to_Stockholm_by_Aircraft_4 <= 0
  R4440: Direct_flow_from_Palermo_to_Lisbon
    + Transfer_flow_from_Palermo_to_Lisbon <= 11
  R4441: Transfer_flow_from_Palermo_to_Lisbon <= 11
@@ -9442,7 +9442,7 @@ Subject To
  R4448: Flights_from_Palermo_to_Lisbon_by_Aircraft_3 <= 10000
  R4449: Flights_from_Palermo_to_Lisbon_by_Aircraft_3 <= 10000
  R4450: Flights_from_Palermo_to_Lisbon_by_Aircraft_4 <= 10000
- R4451: Flights_from_Palermo_to_Lisbon_by_Aircraft_4 <= 10000
+ R4451: Flights_from_Palermo_to_Lisbon_by_Aircraft_4 <= 0
  R4452: Direct_flow_from_Palermo_to_Berlin
    + Transfer_flow_from_Palermo_to_Berlin <= 61
  R4453: Transfer_flow_from_Palermo_to_Berlin <= 61
@@ -9459,7 +9459,7 @@ Subject To
  R4460: Flights_from_Palermo_to_Berlin_by_Aircraft_3 <= 10000
  R4461: Flights_from_Palermo_to_Berlin_by_Aircraft_3 <= 10000
  R4462: Flights_from_Palermo_to_Berlin_by_Aircraft_4 <= 10000
- R4463: Flights_from_Palermo_to_Berlin_by_Aircraft_4 <= 10000
+ R4463: Flights_from_Palermo_to_Berlin_by_Aircraft_4 <= 0
  R4464: Direct_flow_from_Palermo_to_Helsinki
    + Transfer_flow_from_Palermo_to_Helsinki <= 13
  R4465: Transfer_flow_from_Palermo_to_Helsinki <= 13
@@ -9476,7 +9476,7 @@ Subject To
  R4472: Flights_from_Palermo_to_Helsinki_by_Aircraft_3 <= 10000
  R4473: Flights_from_Palermo_to_Helsinki_by_Aircraft_3 <= 10000
  R4474: Flights_from_Palermo_to_Helsinki_by_Aircraft_4 <= 10000
- R4475: Flights_from_Palermo_to_Helsinki_by_Aircraft_4 <= 10000
+ R4475: Flights_from_Palermo_to_Helsinki_by_Aircraft_4 <= 0
  R4476: Direct_flow_from_Palermo_to_Warsaw
    + Transfer_flow_from_Palermo_to_Warsaw <= 23
  R4477: Transfer_flow_from_Palermo_to_Warsaw <= 23
@@ -9612,7 +9612,7 @@ Subject To
  R4568: Flights_from_Madeira_to_London_by_Aircraft_3 <= 10000
  R4569: Flights_from_Madeira_to_London_by_Aircraft_3 <= 10000
  R4570: Flights_from_Madeira_to_London_by_Aircraft_4 <= 10000
- R4571: Flights_from_Madeira_to_London_by_Aircraft_4 <= 10000
+ R4571: Flights_from_Madeira_to_London_by_Aircraft_4 <= 0
  R4572: Direct_flow_from_Madeira_to_Paris
    + Transfer_flow_from_Madeira_to_Paris <= 7
  R4573: Transfer_flow_from_Madeira_to_Paris <= 7
@@ -9629,7 +9629,7 @@ Subject To
  R4580: Flights_from_Madeira_to_Paris_by_Aircraft_3 <= 10000
  R4581: Flights_from_Madeira_to_Paris_by_Aircraft_3 <= 10000
  R4582: Flights_from_Madeira_to_Paris_by_Aircraft_4 <= 10000
- R4583: Flights_from_Madeira_to_Paris_by_Aircraft_4 <= 10000
+ R4583: Flights_from_Madeira_to_Paris_by_Aircraft_4 <= 0
  R4584: Direct_flow_from_Madeira_to_Amsterdam
    + Transfer_flow_from_Madeira_to_Amsterdam <= 4
  R4585: Transfer_flow_from_Madeira_to_Amsterdam <= 0
@@ -9666,7 +9666,7 @@ Subject To
  R4592: Flights_from_Madeira_to_Amsterdam_by_Aircraft_3 <= 10000
  R4593: Flights_from_Madeira_to_Amsterdam_by_Aircraft_3 <= 10000
  R4594: Flights_from_Madeira_to_Amsterdam_by_Aircraft_4 <= 10000
- R4595: Flights_from_Madeira_to_Amsterdam_by_Aircraft_4 <= 10000
+ R4595: Flights_from_Madeira_to_Amsterdam_by_Aircraft_4 <= 0
  R4596: Direct_flow_from_Madeira_to_Frankfurt
    + Transfer_flow_from_Madeira_to_Frankfurt <= 4
  R4597: Transfer_flow_from_Madeira_to_Frankfurt <= 4
@@ -9683,7 +9683,7 @@ Subject To
  R4604: Flights_from_Madeira_to_Frankfurt_by_Aircraft_3 <= 10000
  R4605: Flights_from_Madeira_to_Frankfurt_by_Aircraft_3 <= 10000
  R4606: Flights_from_Madeira_to_Frankfurt_by_Aircraft_4 <= 10000
- R4607: Flights_from_Madeira_to_Frankfurt_by_Aircraft_4 <= 10000
+ R4607: Flights_from_Madeira_to_Frankfurt_by_Aircraft_4 <= 0
  R4608: Direct_flow_from_Madeira_to_Madrid
    + Transfer_flow_from_Madeira_to_Madrid <= 15
  R4609: Transfer_flow_from_Madeira_to_Madrid <= 15
@@ -9700,7 +9700,7 @@ Subject To
  R4616: Flights_from_Madeira_to_Madrid_by_Aircraft_3 <= 10000
  R4617: Flights_from_Madeira_to_Madrid_by_Aircraft_3 <= 10000
  R4618: Flights_from_Madeira_to_Madrid_by_Aircraft_4 <= 10000
- R4619: Flights_from_Madeira_to_Madrid_by_Aircraft_4 <= 10000
+ R4619: Flights_from_Madeira_to_Madrid_by_Aircraft_4 <= 0
  R4620: Direct_flow_from_Madeira_to_Barcelona
    + Transfer_flow_from_Madeira_to_Barcelona <= 7
  R4621: Transfer_flow_from_Madeira_to_Barcelona <= 7
@@ -9717,7 +9717,7 @@ Subject To
  R4628: Flights_from_Madeira_to_Barcelona_by_Aircraft_3 <= 10000
  R4629: Flights_from_Madeira_to_Barcelona_by_Aircraft_3 <= 10000
  R4630: Flights_from_Madeira_to_Barcelona_by_Aircraft_4 <= 10000
- R4631: Flights_from_Madeira_to_Barcelona_by_Aircraft_4 <= 10000
+ R4631: Flights_from_Madeira_to_Barcelona_by_Aircraft_4 <= 0
  R4632: Direct_flow_from_Madeira_to_Munich
    + Transfer_flow_from_Madeira_to_Munich <= 5
  R4633: Transfer_flow_from_Madeira_to_Munich <= 5
@@ -9734,7 +9734,7 @@ Subject To
  R4640: Flights_from_Madeira_to_Munich_by_Aircraft_3 <= 10000
  R4641: Flights_from_Madeira_to_Munich_by_Aircraft_3 <= 10000
  R4642: Flights_from_Madeira_to_Munich_by_Aircraft_4 <= 10000
- R4643: Flights_from_Madeira_to_Munich_by_Aircraft_4 <= 10000
+ R4643: Flights_from_Madeira_to_Munich_by_Aircraft_4 <= 0
  R4644: Direct_flow_from_Madeira_to_Rome
    + Transfer_flow_from_Madeira_to_Rome <= 7
  R4645: Transfer_flow_from_Madeira_to_Rome <= 7
@@ -9751,7 +9751,7 @@ Subject To
  R4652: Flights_from_Madeira_to_Rome_by_Aircraft_3 <= 10000
  R4653: Flights_from_Madeira_to_Rome_by_Aircraft_3 <= 10000
  R4654: Flights_from_Madeira_to_Rome_by_Aircraft_4 <= 10000
- R4655: Flights_from_Madeira_to_Rome_by_Aircraft_4 <= 10000
+ R4655: Flights_from_Madeira_to_Rome_by_Aircraft_4 <= 0
  R4656: Direct_flow_from_Madeira_to_Dublin
    + Transfer_flow_from_Madeira_to_Dublin <= 7
  R4657: Transfer_flow_from_Madeira_to_Dublin <= 7
@@ -9768,7 +9768,7 @@ Subject To
  R4664: Flights_from_Madeira_to_Dublin_by_Aircraft_3 <= 10000
  R4665: Flights_from_Madeira_to_Dublin_by_Aircraft_3 <= 10000
  R4666: Flights_from_Madeira_to_Dublin_by_Aircraft_4 <= 10000
- R4667: Flights_from_Madeira_to_Dublin_by_Aircraft_4 <= 10000
+ R4667: Flights_from_Madeira_to_Dublin_by_Aircraft_4 <= 0
  R4668: Direct_flow_from_Madeira_to_Stockholm
    + Transfer_flow_from_Madeira_to_Stockholm <= 3
  R4669: Transfer_flow_from_Madeira_to_Stockholm <= 3
@@ -9785,7 +9785,7 @@ Subject To
  R4676: Flights_from_Madeira_to_Stockholm_by_Aircraft_3 <= 10000
  R4677: Flights_from_Madeira_to_Stockholm_by_Aircraft_3 <= 10000
  R4678: Flights_from_Madeira_to_Stockholm_by_Aircraft_4 <= 10000
- R4679: Flights_from_Madeira_to_Stockholm_by_Aircraft_4 <= 10000
+ R4679: Flights_from_Madeira_to_Stockholm_by_Aircraft_4 <= 0
  R4680: Direct_flow_from_Madeira_to_Lisbon
    + Transfer_flow_from_Madeira_to_Lisbon <= 8
  R4681: Transfer_flow_from_Madeira_to_Lisbon <= 8
@@ -9802,7 +9802,7 @@ Subject To
  R4688: Flights_from_Madeira_to_Lisbon_by_Aircraft_3 <= 10000
  R4689: Flights_from_Madeira_to_Lisbon_by_Aircraft_3 <= 10000
  R4690: Flights_from_Madeira_to_Lisbon_by_Aircraft_4 <= 10000
- R4691: Flights_from_Madeira_to_Lisbon_by_Aircraft_4 <= 10000
+ R4691: Flights_from_Madeira_to_Lisbon_by_Aircraft_4 <= 0
  R4692: Direct_flow_from_Madeira_to_Berlin
    + Transfer_flow_from_Madeira_to_Berlin <= 8
  R4693: Transfer_flow_from_Madeira_to_Berlin <= 8
@@ -9819,7 +9819,7 @@ Subject To
  R4700: Flights_from_Madeira_to_Berlin_by_Aircraft_3 <= 10000
  R4701: Flights_from_Madeira_to_Berlin_by_Aircraft_3 <= 10000
  R4702: Flights_from_Madeira_to_Berlin_by_Aircraft_4 <= 10000
- R4703: Flights_from_Madeira_to_Berlin_by_Aircraft_4 <= 10000
+ R4703: Flights_from_Madeira_to_Berlin_by_Aircraft_4 <= 0
  R4704: Direct_flow_from_Madeira_to_Helsinki
    + Transfer_flow_from_Madeira_to_Helsinki <= 2
  R4705: Transfer_flow_from_Madeira_to_Helsinki <= 2
@@ -9836,7 +9836,7 @@ Subject To
  R4712: Flights_from_Madeira_to_Helsinki_by_Aircraft_3 <= 10000
  R4713: Flights_from_Madeira_to_Helsinki_by_Aircraft_3 <= 10000
  R4714: Flights_from_Madeira_to_Helsinki_by_Aircraft_4 <= 10000
- R4715: Flights_from_Madeira_to_Helsinki_by_Aircraft_4 <= 10000
+ R4715: Flights_from_Madeira_to_Helsinki_by_Aircraft_4 <= 0
  R4716: Direct_flow_from_Madeira_to_Warsaw
    + Transfer_flow_from_Madeira_to_Warsaw <= 2
  R4717: Transfer_flow_from_Madeira_to_Warsaw <= 2
@@ -14955,7 +14955,7 @@ Subject To
    + 8.608058983505893 Flights_from_Reykjavik_to_Heraklion_by_Aircraft_1
    + 0.4166666666666667 Flights_from_Reykjavik_to_Reykjavik_by_Aircraft_1
    + 7.184274570676982 Flights_from_Reykjavik_to_Palermo_by_Aircraft_1
-   + 6.784531860494826 Flights_from_Reykjavik_to_Madeira_by_Aircraft_1
+   + 6.784531860494825 Flights_from_Reykjavik_to_Madeira_by_Aircraft_1
    + 3.751647471689858 Flights_from_Palermo_to_London_by_Aircraft_1
    + 3.120921356919221 Flights_from_Palermo_to_Paris_by_Aircraft_1
    + 3.737857273689674 Flights_from_Palermo_to_Amsterdam_by_Aircraft_1
@@ -14993,7 +14993,7 @@ Subject To
    + 5.480908187953045 Flights_from_Madeira_to_Edinburgh_by_Aircraft_1
    + 7.504737693791045 Flights_from_Madeira_to_Bucharest_by_Aircraft_1
    + 7.415095847621679 Flights_from_Madeira_to_Heraklion_by_Aircraft_1
-   + 6.784531860494826 Flights_from_Madeira_to_Reykjavik_by_Aircraft_1
+   + 6.784531860494825 Flights_from_Madeira_to_Reykjavik_by_Aircraft_1
    + 5.470540244106266 Flights_from_Madeira_to_Palermo_by_Aircraft_1
    + 0.4166666666666667 Flights_from_Madeira_to_Madeira_by_Aircraft_1
    - 70 Number_of_Aircraft_1 <= 0

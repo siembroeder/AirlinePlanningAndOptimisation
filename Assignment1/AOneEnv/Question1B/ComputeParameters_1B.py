@@ -1,15 +1,16 @@
-# General imports
 import numpy as np 
 import pandas as pd
 
-# Custom imports 
+# Functions imports 
 from Question1A.DistancesLatLong import compute_dij
 from Question1A.main import main
 
 def demand_list(airport_data, q):
+    """
+    Compute the demand matrix based on airport data and demand dataframe computed in Question 1A.
 
+    """
     airports = airport_data.columns  
-
     demand_list = np.zeros((len(airports), len(airports)), dtype=int)
     
     for i, porti in enumerate(airports):
@@ -19,17 +20,18 @@ def demand_list(airport_data, q):
             else:
                 demand_list[i][j] = int(q.loc[(q['i'] == porti) & (q['j'] == portj), 'Dij'].iloc[0])
 
-
     return demand_list
 
-
 def load_airport_params(airport_data):
+    """
+    Compute airport parameters from airport data Excel file.
 
+    """
     airports = airport_data.columns
     len_airports = len(airports)
     
     distance = np.zeros((len_airports, len_airports))       # Distance matrix between all airports
-    r = np.zeros((len_airports, len_airports))              # Max runway length matrix for all routes
+    r = np.zeros((len_airports, len_airports))              # Min runway length matrix for all routes - most critical runway length
     ls = np.zeros(len_airports)                             # Available weekly landing slots at each airport
     g = np.ones(len_airports)                               # Hub indicator (0 if hub, 1 otherwise)    
     
@@ -37,23 +39,22 @@ def load_airport_params(airport_data):
 
         if( airport_data[porti]['Hub'] == 'Yes' ):
             g[i] = 0
-            ls[i] = 10000
+            ls[i] = 10000           # No limit (big M value set) on landing slots at hub
         else:
             ls[i] = airport_data[porti]['Available slots']
 
         for j, portj in enumerate(airports):
             if i == j:
-                distance[i, j] = 0
+                distance[i, j] = 0  # Distance from/to same airport is zero
             else:
                 distance[i, j] = compute_dij(airport_data, porti, portj)
 
-            r[i, j] = max(airport_data[porti]['Runway (m)'], airport_data[portj]['Runway (m)'])
+            r[i, j] = min(airport_data[porti]['Runway (m)'], airport_data[portj]['Runway (m)']) # Min runway length for route ij
     
     return distance, r, ls, g
 
 
 def yields(distances):
-
     '''
     Compute the yield matrix based on the distance matrix.
     '''
@@ -61,14 +62,14 @@ def yields(distances):
     for i in range(distances.shape[0]):
         for j in range(distances.shape[0]):
             if i == j:
-                y[i,j] = 0
+                y[i,j] = 0      # No yield for same airport
             else:
                 y[i,j] = 5.9 * distances[i,j]**-0.76 + 0.043
     return y
 
 def load_aircraft_params(aircraft_data):
     """
-
+    Load aircraft parameters from aircraft data Excel file.
     """
     aircraft_types = aircraft_data.columns          # List of aircraft types
 
@@ -101,6 +102,11 @@ def load_aircraft_params(aircraft_data):
 
 def operating_costs(airport_data, aircraft_data, distances, sp, FUEL, C_X, c_T, c_F):
 
+    """
+    Compute the operating cost matrix for all routes and aircraft types using Appendix B formulas.
+
+    """
+
     operating_costs = np.zeros((len(airport_data.columns), len(airport_data.columns), len(aircraft_data.columns)))
 
     for k, aircraft in enumerate(aircraft_data.columns):
@@ -109,7 +115,8 @@ def operating_costs(airport_data, aircraft_data, distances, sp, FUEL, C_X, c_T, 
 
                 operating_costs[i,j,k] = C_X[k] + c_T[k] * (distances[i,j] / sp[k]) + c_F[k] * FUEL / 1.5 * distances[i,j]
     
-    operating_costs = operating_costs * 0.7   # HUB DISCOUNT (Appendix B — 30% lower)
+    operating_costs = operating_costs * 0.7   # Apply hub discount of 30% to all flights
+
     return operating_costs
 
 

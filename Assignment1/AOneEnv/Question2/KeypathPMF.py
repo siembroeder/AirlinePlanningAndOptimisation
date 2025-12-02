@@ -61,7 +61,7 @@ def main():
 
 
     # Execute optimization
-    m.Params.TimeLimit = 1*60
+    m.Params.TimeLimit = 100*60
     m.optimize()
 
     if m.status == GRB.OPTIMAL or m.status == GRB.TIME_LIMIT:

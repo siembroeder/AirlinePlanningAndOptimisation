@@ -50,8 +50,8 @@ def solve_master_problem(itins, flight_idx, delta, capacity, Q, revenue, b, curr
         m.optimize()
         print("Refined status:", m.Status)
 
-    m.computeIIS()
-    m.write("master_infeasible.ilp")
+    # m.computeIIS()
+    # m.write("master_infeasible.ilp")
     
     # Extract dual values
     pi = {i: cap_constrs[i].Pi for i in flight_idx}
@@ -84,9 +84,7 @@ def find_negative_columns(itins, flight_idx, delta, revenue, b, pi, sigma, thres
     - max_columns: maximum number of columns to return (None = all) """
 
     negative_cols = []
-    ncols_rc_zero = 0
-    rc_negative = False
-    cols_rc_zero = []
+    
     for p in itins:
         for r in itins:
             if r == p:
@@ -94,72 +92,24 @@ def find_negative_columns(itins, flight_idx, delta, revenue, b, pi, sigma, thres
             
             rc = compute_reduced_cost(p, r, itins, flight_idx, delta, revenue, b, pi, sigma)
 
-            if rc == 0.0:
-                ncols_rc_zero += 1
-
-
             if rc < threshold:
                 negative_cols.append((p, r, rc))
-                rc_negative = True # Assume threshold = 0
 
-
-            if rc_negative == False and rc == 0.0:
-                cols_rc_zero.append((p,r,rc))
-
-    print(f"Columns with rc=0: {ncols_rc_zero}")
-    
-    # Sort by reduced cost (most negative first)
+    # Sort by reduced cost
     negative_cols.sort(key=lambda x: x[2])
-    
 
-    if max_columns is not None and rc_negative == True:
+    if max_columns is not None:
         return negative_cols[:max_columns]
-    elif max_columns is not None and rc_negative == False: # In this case add columns with rc=0
-        return cols_rc_zero[:max_columns]
     else:
         return negative_cols
 
 
    
-def column_generation(flights, itins, recaps, flight_idx, capacity, demand, revenue, delta, Q, b, 
+def column_generation(flights, itins, recaps, flight_idx, capacity, demand, revenue, delta, Q, b, DUMMY, 
                       threshold=0.0, columns_per_iteration=None):
-    # Initialize columns
-    current_columns = set()
-    # for p in itins:
-    #     for r in itins:
-    #         if r != p and b[p][r] > 0:  # Only if recapture rate exists
-    #             current_columns.add((p, r))
-    #             break  # Just add one per itinerary to start
-    # print(f"Starting with {len(current_columns)} initial columns\n")
-
-    # New: ensure for each flight with RHS>0 we add at least one (p,r) that uses that flight
-    rhs_by_flight = {i: Q[i] - capacity[i] for i in flight_idx}
-    for i in flight_idx:
-        if rhs_by_flight[i] > 0:
-            # find an itinerary p that uses flight i
-            for p in itins:
-                if delta[p][i] > 0:
-                    # find an r != p with a positive recapture rate
-                    found = False
-                    for r in itins:
-                        if r != p and b[p][r] > 0:
-                            current_columns.add((p, r))
-                            found = True
-                            break
-                    # if no positive recapture exists, you might still add (p, some r) or handle separately
-                    if found:
-                        break
-    
-    
-    # as a fallback add one column per itinerary as before (optional)
-    for p in itins:
-        if not any(pp == p for (pp,rr) in current_columns):
-            for r in itins:
-                if r != p and b[p][r] > 0:
-                    current_columns.add((p, r))
-                    break
-
-    print(f"CurrentColumns: {current_columns}")
+    # Initialize columns with spill only
+    current_columns = {(p,DUMMY) for p in itins if p!=DUMMY}
+    print(f"Starting with {len(current_columns)}, spill columns only")
 
     iteration = 0
     max_iterations = 1000
@@ -172,27 +122,29 @@ def column_generation(flights, itins, recaps, flight_idx, capacity, demand, reve
         master, pi, sigma = solve_master_problem(itins, flight_idx, delta, capacity, Q, revenue, b, current_columns)
         
         if master is not None:
-            print(f"  Master objective: {master.ObjVal:.2f}")
+            print(f"  Master objective: {master.ObjVal}")
         else:
             print(f"  Master objective: 0.00 (no columns yet)")
         
         negative_cols = find_negative_columns(itins, flight_idx, delta, revenue, b, pi, sigma, 
-            threshold=threshold, 
-            max_columns=columns_per_iteration)
+                                              threshold=threshold, 
+                                              max_columns=columns_per_iteration)
         
         # Add new columns
         added_count = 0
         for (p, r, rc) in negative_cols:
             if (p, r) not in current_columns:
-                print(f"Adding Column ({p}, {r}): RC = {rc:.4f}")
+                print(f"Adding Column ({p}, {r}): RC = {rc}")
                 current_columns.add((p, r))
                 added_count += 1
+        
+        print(f"  Added {added_count} new columns. Total columns: {len(current_columns)}")
 
         if added_count == 0 or len(negative_cols) == 0:
             print("Column Generation Converged")
             break
 
-        print(f"  Added {added_count} new columns. Total columns: {len(current_columns)}")
+
        
     print(f"\nFinal number of columns: {len(current_columns)}")
     
@@ -218,7 +170,7 @@ def column_generation(flights, itins, recaps, flight_idx, capacity, demand, reve
     m_final.optimize()
     
     if m_final.status == GRB.OPTIMAL:
-        print(f"\nFinal Integer Objective: {m_final.ObjVal:.2f}")
+        print(f"\nFinal Integer Objective: {m_final.ObjVal}")
         print("\nPassenger reallocations:")
         for (p, r) in sorted(t.keys()):
             if t[p,r].X > 0.001:
@@ -253,11 +205,31 @@ def main():
         old_itin = int(row['OldItin'])
         new_itin = int(row['NewItin'])
         b[old_itin][new_itin] = row['RecapRate']
+
+
+    # Define dummy itineray for proper initialization
+    DUMMY = 0
+    itins[DUMMY]   = {'Demand': 1e10, 'Fare':0, 'Leg1':None, 'Leg2':None}
+    revenue[DUMMY] = 0
+    delta[DUMMY]   = {i:0 for i in flight_idx}
+    b[DUMMY] = {r:0 for r in itins}
+    for p in itins:
+        b[p][DUMMY] = 0
         
     
     # Run column generation
-    final_model, final_columns = column_generation(flights, itins, recaps, flight_idx, capacity, demand, revenue, delta, Q, b,
+    final_model, final_columns = column_generation(flights, itins, recaps, flight_idx, capacity, demand, revenue, delta, Q, b, DUMMY,
                                                    threshold = thrshld, columns_per_iteration=clmns_iter)
+    
+
+    # PMF: optimal obj value: 1506914.58, 1 min
+    # PMF: optimal obj value: 1506857.06, 7 min,  incumbent 1506646.79
+    # PMF: optimal obj value: 1506821.25, 15 min, incumbent 1506646.79
+    # CG:  optimal obj value: 1506748.80, (thr,ncol) = (0,1)
+    # CG:  optimal obj value: 1506786.06, (thr,ncol) = (0,10)
+    # CG:  optimal obj value: 1506780.64, (thr,ncol) = (0,100)
+
+
 
 if __name__ == '__main__':
     main()

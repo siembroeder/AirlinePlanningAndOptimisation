@@ -26,6 +26,7 @@ def load_assignment_data():
     itins      = itins.set_index('Itinerary').to_dict('index')
     flight_idx = flights['Flight No.'].tolist()     # Can't use flights as indices as their labels include Letters
 
+
     return flights, itins, recaps, flight_idx
 
 def load_exercise_data():

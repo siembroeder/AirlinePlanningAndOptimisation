@@ -1,0 +1,9 @@
+\ Model master_copy
+\ LP format - for model browsing. Use MPS format to capture full model detail.
+\ Signature: 0x267ae670d661db46
+Minimize
+ 
+Subject To
+ cap_NA1490: >= 28
+Bounds
+End

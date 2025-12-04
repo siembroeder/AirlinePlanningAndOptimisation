@@ -1,0 +1,448 @@
+
+Gurobi 13.0.0 (win64) logging started Thu Dec  4 08:18:54 2025
+
+Set parameter LogFile to value "Question2/log_files/basicPMF.log"
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 8 threads
+
+Optimize a model with 25 rows, 32 columns and 77 nonzeros (Max)
+Model fingerprint: 0xebe4504a
+Model has 32 linear objective coefficients
+Variable types: 0 continuous, 32 integer (0 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+01]
+  Objective range  [5e+01, 2e+02]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 2e+02]
+Found heuristic solution: objective 86115.000000
+Presolve removed 25 rows and 32 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 1 (of 8 available processors)
+
+Solution count 2: 116345 86115 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.163450000000e+05, best bound 1.163450000000e+05, gap 0.0000%
+
+Gurobi 13.0.0 (win64) logging started Thu Dec  4 08:19:32 2025
+
+Set parameter LogFile to value "Question2/log_files/basicPMF.log"
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 8 threads
+
+Optimize a model with 25 rows, 32 columns and 77 nonzeros (Max)
+Model fingerprint: 0xebe4504a
+Model has 32 linear objective coefficients
+Variable types: 0 continuous, 32 integer (0 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+01]
+  Objective range  [5e+01, 2e+02]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 2e+02]
+Found heuristic solution: objective 86115.000000
+Presolve removed 25 rows and 32 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.01 seconds (0.00 work units)
+Thread count was 1 (of 8 available processors)
+
+Solution count 2: 116345 86115 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.163450000000e+05, best bound 1.163450000000e+05, gap 0.0000%
+
+Gurobi 13.0.0 (win64) logging started Thu Dec  4 08:23:43 2025
+
+Set parameter LogFile to value "Question2/log_files/basicPMF.log"
+
+Gurobi 13.0.0 (win64) logging started Thu Dec  4 08:25:58 2025
+
+Set parameter LogFile to value "Question2/log_files/basicPMF.log"
+
+Gurobi 13.0.0 (win64) logging started Thu Dec  4 08:28:28 2025
+
+Set parameter LogFile to value "Question2/log_files/basicPMF.log"
+
+Gurobi 13.0.0 (win64) logging started Thu Dec  4 08:31:30 2025
+
+Set parameter LogFile to value "Question2/log_files/basicPMF.log"
+
+Gurobi 13.0.0 (win64) logging started Thu Dec  4 08:32:06 2025
+
+Set parameter LogFile to value "Question2/log_files/basicPMF.log"
+
+Gurobi 13.0.0 (win64) logging started Thu Dec  4 08:32:11 2025
+
+Set parameter LogFile to value "Question2/log_files/basicPMF.log"
+
+Gurobi 13.0.0 (win64) logging started Thu Dec  4 08:32:26 2025
+
+Set parameter LogFile to value "Question2/log_files/basicPMF.log"
+
+Gurobi 13.0.0 (win64) logging started Thu Dec  4 08:33:32 2025
+
+Set parameter LogFile to value "Question2/log_files/basicPMF.log"
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 8 threads
+
+Optimize a model with 25 rows, 210 columns and 297 nonzeros (Max)
+Model fingerprint: 0x268f00f1
+Model has 210 linear objective coefficients
+Variable types: 0 continuous, 210 integer (0 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+01]
+  Objective range  [5e+01, 2e+02]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 2e+02]
+Found heuristic solution: objective 91080.000000
+Presolve removed 25 rows and 210 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.01 seconds (0.00 work units)
+Thread count was 1 (of 8 available processors)
+
+Solution count 2: 142200 91080 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.422000000000e+05, best bound 1.422000000000e+05, gap 0.0000%
+
+Gurobi 13.0.0 (win64) logging started Thu Dec  4 08:36:58 2025
+
+Set parameter LogFile to value "Question2/log_files/basicPMF.log"
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 8 threads
+
+Optimize a model with 25 rows, 210 columns and 297 nonzeros (Max)
+Model fingerprint: 0x268f00f1
+Model has 210 linear objective coefficients
+Variable types: 0 continuous, 210 integer (0 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+01]
+  Objective range  [5e+01, 2e+02]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 2e+02]
+Found heuristic solution: objective 91080.000000
+Presolve removed 25 rows and 210 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 1 (of 8 available processors)
+
+Solution count 2: 142200 91080 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.422000000000e+05, best bound 1.422000000000e+05, gap 0.0000%
+
+Gurobi 13.0.0 (win64) logging started Thu Dec  4 08:38:39 2025
+
+Set parameter LogFile to value "Question2/log_files/basicPMF.log"
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 8 threads
+
+Optimize a model with 25 rows, 225 columns and 317 nonzeros (Max)
+Model fingerprint: 0x4a4b0c23
+Model has 225 linear objective coefficients
+Variable types: 0 continuous, 225 integer (0 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+01]
+  Objective range  [5e+01, 2e+02]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 2e+02]
+Found heuristic solution: objective 98280.000000
+Presolve removed 25 rows and 225 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.01 seconds (0.00 work units)
+Thread count was 1 (of 8 available processors)
+
+Solution count 2: 142200 98280 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.422000000000e+05, best bound 1.422000000000e+05, gap 0.0000%
+
+Gurobi 13.0.0 (win64) logging started Thu Dec  4 09:34:23 2025
+
+Set parameter LogFile to value "Question2/log_files/basicPMF.log"
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 8 threads
+
+Optimize a model with 25 rows, 225 columns and 317 nonzeros (Max)
+Model fingerprint: 0x4a4b0c23
+Model has 225 linear objective coefficients
+Variable types: 0 continuous, 225 integer (0 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+01]
+  Objective range  [5e+01, 2e+02]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 2e+02]
+Found heuristic solution: objective 98280.000000
+Presolve removed 25 rows and 225 columns
+Presolve time: 0.02s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.03 seconds (0.00 work units)
+Thread count was 1 (of 8 available processors)
+
+Solution count 2: 142200 98280 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.422000000000e+05, best bound 1.422000000000e+05, gap 0.0000%
+
+Gurobi 13.0.0 (win64) logging started Thu Dec  4 09:36:39 2025
+
+Set parameter LogFile to value "Question2/log_files/basicPMF.log"
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 8 threads
+
+Optimize a model with 25 rows, 225 columns and 317 nonzeros (Max)
+Model fingerprint: 0x4a4b0c23
+Model has 225 linear objective coefficients
+Variable types: 0 continuous, 225 integer (0 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+01]
+  Objective range  [5e+01, 2e+02]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 2e+02]
+Found heuristic solution: objective 98280.000000
+Presolve removed 25 rows and 225 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.01 seconds (0.00 work units)
+Thread count was 1 (of 8 available processors)
+
+Solution count 2: 142200 98280 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.422000000000e+05, best bound 1.422000000000e+05, gap 0.0000%
+
+Gurobi 13.0.0 (win64) logging started Thu Dec  4 09:38:40 2025
+
+Set parameter LogFile to value "Question2/log_files/basicPMF.log"
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 8 threads
+
+Optimize a model with 25 rows, 225 columns and 317 nonzeros (Max)
+Model fingerprint: 0x4a4b0c23
+Model has 225 linear objective coefficients
+Variable types: 0 continuous, 225 integer (0 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+01]
+  Objective range  [5e+01, 2e+02]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 2e+02]
+Found heuristic solution: objective 98280.000000
+Presolve removed 25 rows and 225 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 1 (of 8 available processors)
+
+Solution count 2: 142200 98280 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.422000000000e+05, best bound 1.422000000000e+05, gap 0.0000%
+
+Gurobi 13.0.0 (win64) logging started Thu Dec  4 09:40:34 2025
+
+Set parameter LogFile to value "Question2/log_files/basicPMF.log"
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 8 threads
+
+Optimize a model with 25 rows, 225 columns and 317 nonzeros (Max)
+Model fingerprint: 0x4a4b0c23
+Model has 225 linear objective coefficients
+Variable types: 0 continuous, 225 integer (0 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+01]
+  Objective range  [5e+01, 2e+02]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 2e+02]
+Found heuristic solution: objective 98280.000000
+Presolve removed 25 rows and 225 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 1 (of 8 available processors)
+
+Solution count 2: 142200 98280 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.422000000000e+05, best bound 1.422000000000e+05, gap 0.0000%
+
+Gurobi 13.0.0 (win64) logging started Thu Dec  4 16:07:53 2025
+
+Set parameter LogFile to value "Question2/log_files/basicPMF.log"
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 8 threads
+
+Optimize a model with 25 rows, 225 columns and 317 nonzeros (Max)
+Model fingerprint: 0x4a4b0c23
+Model has 225 linear objective coefficients
+Variable types: 0 continuous, 225 integer (0 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+01]
+  Objective range  [5e+01, 2e+02]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 2e+02]
+Found heuristic solution: objective 98280.000000
+Presolve removed 25 rows and 225 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 1 (of 8 available processors)
+
+Solution count 2: 142200 98280 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.422000000000e+05, best bound 1.422000000000e+05, gap 0.0000%
+
+Gurobi 13.0.0 (win64) logging started Thu Dec  4 16:08:41 2025
+
+Set parameter LogFile to value "Question2/log_files/basicPMF.log"
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 8 threads
+
+Optimize a model with 25 rows, 225 columns and 317 nonzeros (Max)
+Model fingerprint: 0x4a4b0c23
+Model has 225 linear objective coefficients
+Variable types: 0 continuous, 225 integer (0 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+01]
+  Objective range  [5e+01, 2e+02]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 2e+02]
+Found heuristic solution: objective 98280.000000
+Presolve removed 25 rows and 225 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 1 (of 8 available processors)
+
+Solution count 2: 142200 98280 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.422000000000e+05, best bound 1.422000000000e+05, gap 0.0000%
+
+Gurobi 13.0.0 (win64) logging started Thu Dec  4 16:10:20 2025
+
+Set parameter LogFile to value "Question2/log_files/basicPMF.log"
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 8 threads
+
+Optimize a model with 25 rows, 225 columns and 317 nonzeros (Max)
+Model fingerprint: 0x4a4b0c23
+Model has 225 linear objective coefficients
+Variable types: 0 continuous, 225 integer (0 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+01]
+  Objective range  [5e+01, 2e+02]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 2e+02]
+Found heuristic solution: objective 98280.000000
+Presolve removed 25 rows and 225 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.01 seconds (0.00 work units)
+Thread count was 1 (of 8 available processors)
+
+Solution count 2: 142200 98280 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.422000000000e+05, best bound 1.422000000000e+05, gap 0.0000%
+
+Gurobi 13.0.0 (win64) logging started Thu Dec  4 16:15:38 2025
+
+Set parameter LogFile to value "Question2/log_files/basicPMF.log"
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 8 threads
+
+Optimize a model with 25 rows, 225 columns and 317 nonzeros (Max)
+Model fingerprint: 0x4a4b0c23
+Model has 225 linear objective coefficients
+Variable types: 0 continuous, 225 integer (0 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+01]
+  Objective range  [5e+01, 2e+02]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 2e+02]
+Found heuristic solution: objective 98280.000000
+Presolve removed 25 rows and 225 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.01 seconds (0.00 work units)
+Thread count was 1 (of 8 available processors)
+
+Solution count 2: 142200 98280 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.422000000000e+05, best bound 1.422000000000e+05, gap 0.0000%
+
+Gurobi 13.0.0 (win64) logging started Thu Dec  4 16:18:27 2025
+
+Set parameter LogFile to value "Question2/log_files/basicPMF.log"
+Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 8 threads
+
+Optimize a model with 25 rows, 225 columns and 317 nonzeros (Max)
+Model fingerprint: 0x4a4b0c23
+Model has 225 linear objective coefficients
+Variable types: 0 continuous, 225 integer (0 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+01]
+  Objective range  [5e+01, 2e+02]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [3e+01, 2e+02]
+Found heuristic solution: objective 98280.000000
+Presolve removed 25 rows and 225 columns
+Presolve time: 0.01s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.02 seconds (0.00 work units)
+Thread count was 1 (of 8 available processors)
+
+Solution count 2: 142200 98280 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.422000000000e+05, best bound 1.422000000000e+05, gap 0.0000%

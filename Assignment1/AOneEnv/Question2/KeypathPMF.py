@@ -5,6 +5,7 @@ from gurobipy import *
 
 from Question1A.Read_input import read_excel_pandas
 from Question2.load_pmf_data import load_assignment_data, load_exercise_data
+from Question2.calc_profit import calculate_profit_difference, calculate_total_profit
 
 
 def main():
@@ -63,20 +64,27 @@ def main():
     # Execute optimization
     m.Params.TimeLimit = 100*60
     m.optimize()
+    results = calculate_total_profit(m, t, revenue, itins, demand, 
+                                        b=b, verbose=True)
+    print(f"\nFinal Total Profit: ${results['total_profit']:.2f}")
 
     if m.status == GRB.OPTIMAL or m.status == GRB.TIME_LIMIT:
         m.write('Question2/log_files/KeypathModel.lp')
         print("\nOptimal objective value:", m.objVal)
-        print("\nPassenger reallocation (t^r_p):")
-        for (p,r) in sorted(t):
-            if t[p,r].X > 0.001:
-                print(f"{t[p,r].X:.2f} passengers originally on {p} reallocated to {r}")
+        # print("\nPassenger reallocation (t^r_p):")
+        # for (p,r) in sorted(t):
+        #     if t[p,r].X > 0.001:
+        #         print(f"{t[p,r].X:.2f} passengers originally on {p} reallocated to {r}")
+
+        
+        
+
     else:
         print("Model not solved to optimality, status:", m.status)
 
     
 
-
+    """ 
     # Perform postprocessing on optimization results.
 
     tolerance = 1e-6  # floating-point tolerance
@@ -181,7 +189,7 @@ def main():
     # inspect_constraint(m, "demand_380")
     inspect_constraint(m, "demand_381")
 
-
+ """
     # total_revenue = 0.0
     # stay_rev      = 0.0
     # recap_rev     = 0.0

@@ -3,8 +3,7 @@ import numpy as np
 from gurobipy import *
 from Question1A.Read_input import read_excel_pandas
 from Question2.load_pmf_data import load_assignment_data, load_exercise_data
-
-
+from Question2.calc_profit import calculate_total_profit, calculate_profit_difference
 
 def solve_master_problem(itins, flight_idx, delta, capacity, Q, revenue, b, current_columns):
     """
@@ -45,10 +44,6 @@ def solve_master_problem(itins, flight_idx, delta, capacity, Q, revenue, b, curr
     
     m.optimize()
 
-    if m.Status == GRB.INF_OR_UNBD:
-        m.Params.DualReductions = 0
-        m.optimize()
-        print("Refined status:", m.Status)
 
     # m.computeIIS()
     # m.write("master_infeasible.ilp")
@@ -61,9 +56,6 @@ def solve_master_problem(itins, flight_idx, delta, capacity, Q, revenue, b, curr
 
 
 def compute_reduced_cost(p, r, itins, flight_idx, delta, revenue, b, pi, sigma):
-    """
-    Compute reduced cost for column (p,r) according to slide formula
-    """
     # Modified fare in itinerary p
     modified_fare_p = revenue[p] - sum(pi[i] for i in flight_idx if delta[p][i] > 0)
     
@@ -150,6 +142,7 @@ def column_generation(flights, itins, recaps, flight_idx, capacity, demand, reve
     
     # Solve final master as integer problem
     m_final = Model('final')
+    m_final.params.LogFile = 'Question2/log_files/CG.log'
     
     t = {}
     for (p, r) in current_columns:
@@ -168,13 +161,22 @@ def column_generation(flights, itins, recaps, flight_idx, capacity, demand, reve
         m_final.addConstr(lhs <= itins[p]['Demand'], name=f"demand_{p}")
     
     m_final.optimize()
+
+    results = calculate_total_profit(m_final, t, revenue, itins, demand, 
+                                        b=b, verbose=True)
+    print(f"\nFinal Total Profit: ${results['total_profit']:.2f}")
     
-    if m_final.status == GRB.OPTIMAL:
+    if m_final.status == GRB.OPTIMAL:          
+        m_final.write('Question2/log_files/CG.lp')
         print(f"\nFinal Integer Objective: {m_final.ObjVal}")
-        print("\nPassenger reallocations:")
-        for (p, r) in sorted(t.keys()):
-            if t[p,r].X > 0.001:
-                print(f"  {t[p,r].X:.2f} passengers from itinerary {p} to {r}")
+        # print("\nPassenger reallocations:")
+        # for (p, r) in sorted(t.keys()):
+        #     if t[p,r].X > 0.001:
+        #         print(f"  {t[p,r].X:.2f} passengers from itinerary {p} to {r}")
+        
+
+
+
     else:
         print(f"\nModel status: {m_final.status}")
         if m_final.status == GRB.INFEASIBLE:
@@ -191,8 +193,8 @@ def main():
     flights, itins, recaps, flight_idx = load_assignment_data()
     # print(flights,itins,recaps, flight_idx)
 
-    thrshld    = 0.0
-    clmns_iter = 10
+    thrshld    = -0.0001 # Only add meaningful negative columns -> numerical precision
+    clmns_iter = 100000 # If large number, add all negative rc columns -> Suggested by teacher.
     
     capacity = dict(zip(flight_idx, flights['Capacity']))
     demand   = {p: itins[p]['Demand'] for p in itins}
@@ -221,6 +223,8 @@ def main():
     final_model, final_columns = column_generation(flights, itins, recaps, flight_idx, capacity, demand, revenue, delta, Q, b, DUMMY,
                                                    threshold = thrshld, columns_per_iteration=clmns_iter)
     
+
+
 
     # PMF: optimal obj value: 1506914.58, 1 min
     # PMF: optimal obj value: 1506857.06, 7 min,  incumbent 1506646.79

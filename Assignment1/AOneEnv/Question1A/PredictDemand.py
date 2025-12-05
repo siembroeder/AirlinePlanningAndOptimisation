@@ -104,7 +104,7 @@ def plot_demand_routes(dem_21, dem_24, dem_26, routes):
     plt.legend()
     plt.show()
 
-def check_fit_route(ij_data, coeffs):
+def check_fit_route(ij_data, coeffs, plot=False):
     '''
     Loops through all ij pairs, computes the difference between the known demand and the 2021 demand as fitted by the gravity model.
     output: percentage difference between fit and known demand.
@@ -130,6 +130,20 @@ def check_fit_route(ij_data, coeffs):
 
     total_difference += diff_route
     total_known_demand += known_demand
+
+    if plot:
+        fit_demand  = sorted(demand_df['fitDij'].values)
+        true_demand = sorted(demand_df['Dij'].values)
+
+        x_axis = np.arange(0, len(true_demand))
+
+        fig, ax = plt.subplots(figsize=(8,6))
+
+        ax.scatter(x_axis, true_demand, s=2, label='true')
+        ax.scatter(x_axis, fit_demand,  s=2, label='fit')
+        # ax.set_yscale('log')
+        plt.legend()
+        plt.show()
 
     return total_difference / total_known_demand
 

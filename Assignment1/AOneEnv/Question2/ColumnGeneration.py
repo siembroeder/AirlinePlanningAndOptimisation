@@ -191,7 +191,6 @@ def column_generation(flights, itins, recaps, flight_idx, capacity, demand, reve
 def main():
     # flights, itins, recaps, flight_idx = load_exercise_data()
     flights, itins, recaps, flight_idx = load_assignment_data()
-    # print(flights,itins,recaps, flight_idx)
 
     thrshld    = -0.0001 # Only add meaningful negative columns -> numerical precision
     clmns_iter = 100000 # If large number, add all negative rc columns -> Suggested by teacher.

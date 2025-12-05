@@ -68,19 +68,11 @@ def main():
     m.optimize()
     
 
-    # if m.status == GRB.OPTIMAL or m.status == GRB.TIME_LIMIT:
-
-    #     m.write('Question2/exercise_lec4/basic_pmf/PMF_model.lp')
-
-    #     print("\nOptimal revenue:", m.objVal)
-    #     print("\nAccepted passengers per recapture flow (p -> r):")
-    #     for (p,r) in sorted(x):  # sort for readability
-    #         # if x[p,r].X > 0.001:  # only print non-zero flows
-    #         print(f"Passengers originally on itinerary {p} traveling on itinerary {r}: {x[p,r].X:.2f}")
-    # else:
-    #     print("Model not solved to optimality, status:", m.status)
-
-
+    results = calculate_total_profit(m, x, revenue, itins, demand, 
+                                        b=recap_rates, verbose=True)
+    print(f"\nFinal Total Profit: ${results['total_profit']:.2f}")
+    
+    
     if m.status == GRB.OPTIMAL or m.status == GRB.TIME_LIMIT:
         m.write('Question2/log_files/basicPMF.lp')
 
@@ -88,46 +80,6 @@ def main():
                                         b=recap_rates, verbose=True)
         print(f"\nOptimal Total Profit: ${results['total_profit']:.2f}")
         
-        # Separate revenue streams
-        # original_revenue = 0.0
-        # recaptured_revenue = 0.0
-        
-        # original_pax = []
-        # recaptured_pax = []
-                
-        # print("\n--- ORIGINAL ITINERARY PASSENGERS (p == r) ---")
-        # for (p, r) in sorted(x):
-        #     if p == r and x[p,r].X > 0.001:
-        #         pax = x[p,r].X
-        #         rev = revenue[r] * pax
-        #         original_revenue += rev
-        #         original_pax.append((p, pax, rev))
-        #         print(f"Itinerary {p}: {pax:.2f} passengers, Revenue: ${rev:.2f}")
-        
-        # print(f"\nTotal Original Revenue: ${original_revenue:.2f}")
-        # print(f"Total Original Passengers: {sum([p[1] for p in original_pax]):.2f}")
-        
-        # print("\n--- RECAPTURED PASSENGERS (p != r) ---")
-        # for (p, r) in sorted(x):
-        #     if p != r and x[p,r].X > 0.001:
-        #         pax = x[p,r].X
-        #         rev = revenue[r] * pax
-        #         recaptured_revenue += rev
-        #         recaptured_pax.append((p, r, pax, rev))
-        #         print(f"Itin {p} → Itin {r}: {pax:.2f} passengers, Revenue: ${rev:.2f}")
-        
-        # print(f"\nTotal Recaptured Revenue: ${recaptured_revenue:.2f}")
-        # print(f"Total Recaptured Passengers: {sum([p[2] for p in recaptured_pax]):.2f}")
-        
-        # print("\n" + "="*80)
-        # print("SUMMARY")
-        # print("="*80)
-        # total_revenue = original_revenue + recaptured_revenue
-        # print(f"Original Itinerary Revenue:    ${original_revenue:>12.2f} ({original_revenue/total_revenue*100:.1f}%)")
-        # print(f"Recaptured Itinerary Revenue:  ${recaptured_revenue:>12.2f} ({recaptured_revenue/total_revenue*100:.1f}%)")
-        # print(f"Total Revenue:                 ${total_revenue:>12.2f}")
-        # print("="*80)
-
 
         
     else:

@@ -53,7 +53,6 @@ y = yields(distance)                                                # Yield matr
 C = operating_costs(airport_data, aircraft_data, distance, sp, FUEL, C_X, c_T, c_F)   # Operating cost matrix for all routes and aircraft types
 
 # Variables for dummy constraints:
-
 a = np.empty((len_airports, len_airports, len_aircraft_types), dtype=int)      # Dummy variable for range constraint
 b = np.empty((len_airports, len_airports, len_aircraft_types), dtype=int)      # Dummy variable for runway length constraint
 
@@ -72,10 +71,10 @@ for i, porti in enumerate(airports):
 
 # Start modelling optimization problem
 m = Model('question1B')
-x = {}  # Direct flow variables
-z = {}  # Flight frequency variables
-w = {}  # Transfer flow variables
-ac = {}  # Aircraft count variables
+x = {}      # Direct flow variables
+z = {}      # Flight frequency variables
+w = {}      # Transfer flow variables
+ac = {}     # Aircraft count variables
 
 # Define decision variables
 for i,porti in enumerate(airports):
@@ -136,7 +135,7 @@ if status == GRB.Status.UNBOUNDED:
 
 elif status == GRB.Status.OPTIMAL or True:
     f_objective = m.objVal
-    print('***** RESULTS ******')
+    print('\n***** RESULTS ******')
     print('\nObjective Function Value: \t %g' % f_objective)
 
 elif status != GRB.Status.INF_OR_UNBD and status != GRB.Status.INFEASIBLE:

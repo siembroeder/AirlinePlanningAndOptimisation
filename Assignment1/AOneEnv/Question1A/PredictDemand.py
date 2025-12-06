@@ -139,10 +139,11 @@ def check_fit_route(ij_data, coeffs, plot=False):
 
         fig, ax = plt.subplots(figsize=(8,6))
 
-        ax.scatter(x_axis, true_demand, s=2, label='true')
-        ax.scatter(x_axis, fit_demand,  s=2, label='fit')
+        ax.scatter(x_axis, true_demand, s=2, label='True')
+        ax.scatter(x_axis, fit_demand,  s=2, label='Fit')
         # ax.set_yscale('log')
         plt.legend()
+        plt.title("Comparison of Fitted vs. Observed Route demand")
         plt.show()
 
     return total_difference / total_known_demand

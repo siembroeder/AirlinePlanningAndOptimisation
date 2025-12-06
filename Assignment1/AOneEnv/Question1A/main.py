@@ -45,6 +45,8 @@ def main():
 
     """Calibrate the gravity model by using the 2021 data and OLS fitting to find the coeffs"""
     ij_data_2021   = convert_to_ij_format(airport_data, GDP_data, pop_data, year=2021, f=FUEL, demand_data=demand_data_2021)
+    # print(f"ij_data_2021:\n{ij_data_2021}")
+
     gravity_coeffs = execute_OLS_fit(ij_data_2021)
 
 
@@ -78,5 +80,5 @@ def main():
 
 
 if __name__ == "__main__":
-    print(f"Question1A.main is runned!")
+    print(f"Question1A.main is run!")
     main()

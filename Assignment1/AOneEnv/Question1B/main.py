@@ -15,18 +15,13 @@ aircraft_sheet = ["AircraftTypes"]
 In order to run the code, first set the working directory to Assignment1/AOneEnv by running:
 
 cd "C:/Users/pop_r/OneDrive - Delft University of Technology/Documents/SVV/AirlinePlanningAndOptimisation/Assignment1/AOneEnv"
-
 cd "C:/Users/jobru/Documents/TU Delft/MSc AE/Year 1/Courses Q2/APandO/Assignment files/AirlinePlanningAndOptimisation/Assignment1/AOneEnv"
 
 And then run:
-
 python -m uv run -m Question1B.main
-
 """
 
 # Parameters
-
-# Constants:
 FUEL = 1.42                     # Eur/Gallon
 LF = 0.75                       # Average load factor assumed 75%           
 BT = 10 * 7                     # Assumed 10 hours of block time per day per aircraft

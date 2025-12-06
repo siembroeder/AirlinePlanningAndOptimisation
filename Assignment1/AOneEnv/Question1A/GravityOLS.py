@@ -19,7 +19,8 @@ def convert_to_ij_format(airport_data, gdp_data, pop_data, f=0, year = '2000', d
     for i, porti in enumerate(airports):
         for j, portj in enumerate(airports):
 
-            if i == j:      # Skip when both airports are the same.
+            # Skip when both airports are the same.
+            if i == j:      
                 continue
 
             dij = compute_dij(airport_data, porti, portj)

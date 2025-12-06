@@ -101,6 +101,9 @@ def plot_demand_routes(dem_21, dem_24, dem_26, routes):
 
     max_demand = dem_26['Dij'].max()
     plt.ylim((0, max_demand*1.1 ))
+    plt.xlabel("Year")
+    plt.ylabel("Demand (number of passengers)")
+    plt.title("Projected Route Demand Over Time")
     plt.legend()
     plt.show()
 
@@ -144,6 +147,8 @@ def check_fit_route(ij_data, coeffs, plot=False):
         # ax.set_yscale('log')
         plt.legend()
         plt.title("Comparison of Fitted vs. Observed Route demand")
+        plt.xlabel("Route number (sorted by demand)")
+        plt.ylabel("Demand (number of passengers)")
         plt.show()
 
     return total_difference / total_known_demand

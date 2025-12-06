@@ -5,6 +5,7 @@ from Question1A.Read_input import read_excel_pandas
 from Question2.load_pmf_data import load_assignment_data, load_exercise_data
 from Question2.calc_profit import calculate_total_profit, calculate_profit_difference
 
+
 def solve_master_problem(itins, flight_idx, delta, capacity, Q, revenue, b, current_columns):
     """
     Solve the restricted master problem with current columns

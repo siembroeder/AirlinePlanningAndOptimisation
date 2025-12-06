@@ -120,6 +120,13 @@ def operating_costs(airport_data, aircraft_data, distances, sp, FUEL, C_X, c_T, 
     return operating_costs
 
 
+def main():
+    print(f"ComputeParameters_1B is runned!")
+
+if __name__ == "__main__":
+    main()
+
+
 # def C_T_ij_k(d_ij, ac_type, aircraft_params):
 #     """  
 #     :param d_ij: The distance in km between origin i and destination j

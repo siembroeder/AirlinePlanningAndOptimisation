@@ -4,84 +4,88 @@ import matplotlib.pyplot as plt
 from gurobipy import *
 
 from Question1A.Read_input import read_excel_pandas
-from Question2.calc_profit import calculate_profit_difference, calculate_total_profit
+from Question2.calc_profit import calculate_total_profit_keypath, calculate_total_profit_pathbased, calculate_total_profit_basic
+from Question2.load_pmf_data import load_assignment_data, load_exercise_data
 
 
 def main():
-
-    # Load Exercise data from lecture 4
-    ex_path = r"C:\Users\siemb\Documents\Year5\AirlinePlannningOptimisation\Assignments\Assignment1\Data\AE4423_PMF_Exercise_Input.xlsx"
-    ex_sheets = ["Flights", "Itineraries", "Recapture"]
-    flights, itins, recaps    = read_excel_pandas(ex_path, ex_sheets)
-
-    # Standardize column names
-    flights.rename(columns={"O":"Origin", "D":"Destination", "DTime":"DepartureTime", "RTime":"ArrivalTime", "Cap":"Capacity"}, inplace=True)
-    recaps.rename(columns={"From":"OldItin", "To":"NewItin", "Rate":"RecapRate"}, inplace=True)
+    # flights, itins, recaps, flight_idx = load_exercise_data() # optimal spillage 198
+    flights, itins, recaps, flight_idx = load_assignment_data()
 
     # print(flights.head())
     # print(itins.head())
     # print(recaps.head())
 
-    flight_nums = flights.index
-    capacity    = flights["Capacity"]
-    itins       = itins.to_dict('index')
+    capacity = dict(zip(flight_idx, flights['Capacity']))
 
-    revenue     = {i: itins[i]['Fare'] for i in itins}      # Revenue per itinerary
-    demand      = {i: itins[i]['Demand'] for i in itins}    # Demand per itinerary
+    revenue = {i: itins[i]['Fare'] for i in itins}      # Revenue per itinerary
+    demand  = {i: itins[i]['Demand'] for i in itins}    # Demand per itinerary
+    delta   = {i: {f: int(f in [itins[i]['Leg1'], itins[i]['Leg2']]) for f in flight_idx} for i in itins} # Incidence matrix =1 if itin i uses flight f, else 0
 
-    A = {i: {f: int(f in [itins[i]['Leg1'], itins[i]['Leg2']]) for f in flight_nums} for i in itins} # Incidence matrix =1 if itin i uses flight f, else 0
+    
+    print(f'Total capacity: {sum(capacity.values())}')
+    total_demand = sum(demand[p] for p in itins)
+    print(f'Total demand: {total_demand}')
+    print(f'Optimal spillage: {sum(demand[p] for p in itins) - sum(capacity.values())}')
 
-    recap_rates = {p: {r:0.0 for r in itins} for p in itins} # Build recapture matrix, zero except for given data
+    recap_rates = {p: {r:(1.0 if p==r else 0.0) for r in itins} for p in itins} # Build recapture matrix, zero except for given data
     for idx, row in recaps.iterrows():
         old_itin = int(row['OldItin'])
         new_itin = int(row['NewItin'])
         recap_rates[old_itin][new_itin] = row['RecapRate']
 
     # Initialize model
-    m = Model('ex4')
+    m = Model('basicPMF')
     m.params.LogFile = 'Question2/log_files/basicPMF.log'
 
     x = {}
     for p in itins:
         for r in itins:
-            # if r == p or (r in recap_rates[p] and recap_rates[p][r] > 0):
-            # if r != p:
-            x[p,r] = m.addVar(lb=0.0, ub= GRB.INFINITY, vtype=GRB.INTEGER, name=f"x_{p}_{r}") 
+            if recap_rates[p][r] > 0.0:
+                x[p,r] = m.addVar(lb=0.0, ub= GRB.INFINITY, vtype=GRB.INTEGER, name=f"x_{p}_{r}") 
                 
     m.setObjective(quicksum(revenue[r]*x[p,r] for (p,r) in x), GRB.MAXIMIZE)
 
     # Capacity constraint
-    for f in flight_nums:
-        m.addConstr(quicksum(A[r][f] * x[p,r] for (p,r) in x) <= capacity[f], name = f"cap_{f}")
+    for f in flight_idx:
+        m.addConstr(quicksum(delta[r][f] * x[p,r] for (p,r) in x) <= capacity[f], name = f"cap_{f}")
 
     # Demand constraint
-    # for r in itins:
-    #     lhs = quicksum(x[p,r] / (recap_rates[p][r] if p != r else 1) for p in itins if (p,r) in x)
-    #     rhs = demand[r]
-    #     m.addConstr(lhs <= rhs, name = f'recap_{r}')
-    for r in itins:
-        lhs = quicksum(x[p,r] / recap_rates[p][r] for p in itins if (p,r) in x and recap_rates[p][r]!=0.0)
-        rhs = demand[r]
-        m.addConstr(lhs <= rhs, name = f'recap_{r}')
+    for p in itins:
+        lhs = quicksum(x[p,r] / recap_rates[p][r] for r in itins if (p,r) in x) # and recap_rates[p][r]<1.0
+        rhs = demand[p]
+        m.addConstr(lhs <= rhs, name = f'recap_{p}')
 
     
     m.optimize()
     
 
-    results = calculate_total_profit(m, x, revenue, itins, demand, 
-                                        b=recap_rates, verbose=True)
-    print(f"\nFinal Total Profit: ${results['total_profit']:.2f}")
+    print(f"\nObjective value: {m.ObjVal}")
     
+    j = 0
+    for (p,r) in x:
+        if x[p,r].X > 0.001:
+            j +=1
+            print(f"x[{p},{r}] = {x[p,r].X:.2f}")
+    print(f"Non-zero variables: {j}")
     
+    results = calculate_total_profit_basic(m,x,revenue,itins,demand,b=recap_rates,verbose=False)
+    print(f'Final Total Profit: {results}')
+
+    spilled = {}
+    total_served = 0
+
+    for p in itins:
+        # Calculate how many from demand p were served
+        served = sum(x[p,r].X for r in itins if (p,r) in x) # /recap_rates[p][r]
+
+        total_served += served
+    print(f"\nTotal served passengers: {total_served:.2f}")
+    print(f'Total spilled passengers: {total_demand - total_served}')
+    
+
     if m.status == GRB.OPTIMAL or m.status == GRB.TIME_LIMIT:
         m.write('Question2/log_files/basicPMF.lp')
-
-        results = calculate_total_profit(m, x, revenue, itins, demand, 
-                                        b=recap_rates, verbose=True)
-        print(f"\nOptimal Total Profit: ${results['total_profit']:.2f}")
-        
-
-        
     else:
         print("Model not solved to optimality, status:", m.status)
 

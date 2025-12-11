@@ -3,7 +3,8 @@ import numpy as np
 from gurobipy import *
 from Question1A.Read_input import read_excel_pandas
 from Question2.load_pmf_data import load_assignment_data, load_exercise_data
-from Question2.calc_profit import calculate_total_profit, calculate_profit_difference
+from Question2.calc_profit import calculate_total_profit_pathbased, get_first_five_flight_duals, get_first_five_itins, dv_first_five
+import time
 
 def solve_master_problem(itins, flight_idx, delta, capacity, Q, revenue, b, current_columns):
     """
@@ -134,6 +135,10 @@ def column_generation(flights, itins, recaps, flight_idx, capacity, demand, reve
 
         if added_count == 0 or len(negative_cols) == 0:
             print("Column Generation Converged")
+            # duals_info = get_first_five_duals(master, itins, pi, sigma)
+            t = {(p,r): master.getVarByName(f"t_{p}_{r}") for (p,r) in current_columns}
+            duals_info = get_first_five_itins(master, itins, pi, sigma, t, revenue, b, delta, flight_idx)
+            flight_duals = get_first_five_flight_duals(pi, capacity, Q, flight_idx, delta, itins, t)
             break
 
 
@@ -162,10 +167,13 @@ def column_generation(flights, itins, recaps, flight_idx, capacity, demand, reve
     
     m_final.optimize()
 
-    results = calculate_total_profit(m_final, t, revenue, itins, demand, 
+    results = calculate_total_profit_pathbased(m_final, t, revenue, itins, demand, 
                                         b=b, verbose=True)
     print(f"\nFinal Total Profit: ${results['total_profit']:.2f}")
     
+
+    dv_first_five(m_final, t, revenue, itins, demand, b=b, verbose=True)
+
     if m_final.status == GRB.OPTIMAL:          
         m_final.write('Question2/log_files/CG.lp')
         print(f"\nFinal Integer Objective: {m_final.ObjVal}")
@@ -189,6 +197,7 @@ def column_generation(flights, itins, recaps, flight_idx, capacity, demand, reve
 
 
 def main():
+    t1 = time.time()
     # flights, itins, recaps, flight_idx = load_exercise_data()
     flights, itins, recaps, flight_idx = load_assignment_data()
 
@@ -206,6 +215,13 @@ def main():
         old_itin = int(row['OldItin'])
         new_itin = int(row['NewItin'])
         b[old_itin][new_itin] = row['RecapRate']
+        
+
+
+    print(f'Total capacity: {sum(capacity.values())}')
+    print(f'Total demand: {sum(demand[p] for p in itins)}')
+    print(f'Optimal spillage: {sum(demand[p] for p in itins) - sum(capacity.values())}')
+
 
 
     # Define dummy itineray for proper initialization
@@ -222,6 +238,9 @@ def main():
     final_model, final_columns = column_generation(flights, itins, recaps, flight_idx, capacity, demand, revenue, delta, Q, b, DUMMY,
                                                    threshold = thrshld, columns_per_iteration=clmns_iter)
     
+    t2 = time.time()
+
+    print(f'CG took: {(t2-t1):.2f} seconds')
 
 
 

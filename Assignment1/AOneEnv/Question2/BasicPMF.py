@@ -2,14 +2,15 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from gurobipy import *
+import time
 
-from Question1A.Read_input import read_excel_pandas
-from Question2.calc_profit import calculate_total_profit_keypath, calculate_total_profit_pathbased, calculate_total_profit_basic
+from Question2.calc_profit import calculate_total_profit_basic
 from Question2.load_pmf_data import load_assignment_data, load_exercise_data
 
 
 def main():
     # flights, itins, recaps, flight_idx = load_exercise_data() # optimal spillage 198
+    t1 = time.time()
     flights, itins, recaps, flight_idx = load_assignment_data()
 
     # print(flights.head())
@@ -39,10 +40,26 @@ def main():
     m.params.LogFile = 'Question2/log_files/basicPMF.log'
 
     x = {}
+    num_x = 0
+    num_p = 0
     for p in itins:
         for r in itins:
             if recap_rates[p][r] > 0.0:
                 x[p,r] = m.addVar(lb=0.0, ub= GRB.INFINITY, vtype=GRB.INTEGER, name=f"x_{p}_{r}") 
+                num_x +=1
+
+    num_pr = 0
+
+    for p in itins:
+        num_p +=1    
+        for idx,row in recaps.iterrows():
+            if p == row['OldItin']:
+                num_pr += 1
+
+
+    print(f'\n\n\n Total number of x variables: {num_x}')
+    print(f'|P| + sum_pinP |P_p|  = {num_p} + {num_pr} = {num_p + num_pr}')
+
                 
     m.setObjective(quicksum(revenue[r]*x[p,r] for (p,r) in x), GRB.MAXIMIZE)
 
@@ -63,18 +80,26 @@ def main():
     print(f"\nObjective value: {m.ObjVal}")
     
     j = 0
+    recap_pax = 0
+    stay_pax  = 0
     for (p,r) in x:
-        if x[p,r].X > 0.001:
+        if x[p,r].X > 0.001 and p != r:
             j +=1
             print(f"x[{p},{r}] = {x[p,r].X:.2f}")
+            recap_pax += x[p,r].X
+        elif x[p,r].X > 0.001 and p == r:
+            j +=1
+            print(f"x[{p},{r}] = {x[p,r].X:.2f}")
+            stay_pax += x[p,r].X
     print(f"Non-zero variables: {j}")
-    
+    print(f'Recaptured Pax: {recap_pax}')
+    print(f'Stay Pax: {stay_pax}')    
+
+
     results = calculate_total_profit_basic(m,x,revenue,itins,demand,b=recap_rates,verbose=False)
     print(f'Final Total Profit: {results}')
 
-    spilled = {}
     total_served = 0
-
     for p in itins:
         # Calculate how many from demand p were served
         served = sum(x[p,r].X for r in itins if (p,r) in x) # /recap_rates[p][r]
@@ -82,6 +107,9 @@ def main():
         total_served += served
     print(f"\nTotal served passengers: {total_served:.2f}")
     print(f'Total spilled passengers: {total_demand - total_served}')
+
+    t2 = time.time()
+    print(f'Script took {t2-t1} seconds to run')
     
 
     if m.status == GRB.OPTIMAL or m.status == GRB.TIME_LIMIT:

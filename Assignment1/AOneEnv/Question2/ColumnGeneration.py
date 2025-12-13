@@ -1,9 +1,9 @@
 import pandas as pd
 import numpy as np
 from gurobipy import *
-from Question1A.Read_input import read_excel_pandas
 from Question2.load_pmf_data import load_assignment_data, load_exercise_data
-from Question2.calc_profit import calculate_total_profit, calculate_profit_difference
+from Question2.calc_profit import calculate_total_profit_pathbased, get_first_five_flight_duals, get_first_five_itins, first_five_vars
+import time
 
 
 def solve_master_problem(itins, flight_idx, delta, capacity, Q, revenue, b, current_columns):
@@ -135,6 +135,10 @@ def column_generation(flights, itins, recaps, flight_idx, capacity, demand, reve
 
         if added_count == 0 or len(negative_cols) == 0:
             print("Column Generation Converged")
+            # duals_info = get_first_five_duals(master, itins, pi, sigma)
+            t = {(p,r): master.getVarByName(f"t_{p}_{r}") for (p,r) in current_columns}
+            duals_info = get_first_five_itins(master, itins, pi, sigma, t, revenue, b, delta, flight_idx)
+            flight_duals = get_first_five_flight_duals(pi, capacity, Q, flight_idx, delta, itins, t)
             break
 
 
@@ -163,10 +167,16 @@ def column_generation(flights, itins, recaps, flight_idx, capacity, demand, reve
     
     m_final.optimize()
 
-    results = calculate_total_profit(m_final, t, revenue, itins, demand, 
-                                        b=b, verbose=True)
-    print(f"\nFinal Total Profit: ${results['total_profit']:.2f}")
-    
+    # results = calculate_total_profit_pathbased(m_final, t, revenue, itins, demand, b=b, verbose=True)
+    # print(f"\nFinal Total Profit: ${results['total_profit']:.2f}")
+
+    for (p,r) in t:
+        if r== 1 or p == 1:
+            print(f't_{p}^{r} = {t[p,r].X}')
+            print(itins[p])
+
+    first_five_vars(m_final, t, revenue, itins, demand, b=b, verbose=False)
+
     if m_final.status == GRB.OPTIMAL:          
         m_final.write('Question2/log_files/CG.lp')
         print(f"\nFinal Integer Objective: {m_final.ObjVal}")
@@ -190,7 +200,9 @@ def column_generation(flights, itins, recaps, flight_idx, capacity, demand, reve
 
 
 def main():
+    t1 = time.time()
     # flights, itins, recaps, flight_idx = load_exercise_data()
+    # flights, itins, recaps, flight_idx = load_assignment_data(modified=True)
     flights, itins, recaps, flight_idx = load_assignment_data()
 
     thrshld    = -0.0001 # Only add meaningful negative columns -> numerical precision
@@ -207,10 +219,17 @@ def main():
         old_itin = int(row['OldItin'])
         new_itin = int(row['NewItin'])
         b[old_itin][new_itin] = row['RecapRate']
+        
+
+
+    print(f'Total capacity: {sum(capacity.values())}')
+    print(f'Total demand: {sum(demand[p] for p in itins)}')
+    print(f'Optimal spillage: {sum(demand[p] for p in itins) - sum(capacity.values())}')
+
 
 
     # Define dummy itineray for proper initialization
-    DUMMY = 0
+    DUMMY = 999
     itins[DUMMY]   = {'Demand': 1e10, 'Fare':0, 'Leg1':None, 'Leg2':None}
     revenue[DUMMY] = 0
     delta[DUMMY]   = {i:0 for i in flight_idx}
@@ -223,16 +242,9 @@ def main():
     final_model, final_columns = column_generation(flights, itins, recaps, flight_idx, capacity, demand, revenue, delta, Q, b, DUMMY,
                                                    threshold = thrshld, columns_per_iteration=clmns_iter)
     
+    t2 = time.time()
 
-
-
-    # PMF: optimal obj value: 1506914.58, 1 min
-    # PMF: optimal obj value: 1506857.06, 7 min,  incumbent 1506646.79
-    # PMF: optimal obj value: 1506821.25, 15 min, incumbent 1506646.79
-    # CG:  optimal obj value: 1506748.80, (thr,ncol) = (0,1)
-    # CG:  optimal obj value: 1506786.06, (thr,ncol) = (0,10)
-    # CG:  optimal obj value: 1506780.64, (thr,ncol) = (0,100)
-
+    print(f'CG took: {(t2-t1):.2f} seconds')
 
 
 if __name__ == '__main__':

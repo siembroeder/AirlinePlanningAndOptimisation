@@ -8,9 +8,13 @@ from Question1A.Read_input import read_excel_pandas
 
 
 
-def load_assignment_data():
+def load_assignment_data(modified=None):
     ex_sheets   = ["Flights", "Itineraries", "Recapture"]
-    ex_path = r"..\..\Assignment1\Data\Group_7_PMF.xlsx"
+    if modified==True:
+        print(f'Using MODIFIED DATA')
+        ex_path = r"..\..\Assignment1\Data\Group_7_PMF_modified.xlsx"
+    else:
+        ex_path = r"..\..\Assignment1\Data\Group_7_PMF.xlsx"
     flights, itins, recaps    = read_excel_pandas(ex_path, ex_sheets, indx = None)
 
     # Standardize column names
@@ -19,9 +23,9 @@ def load_assignment_data():
     recaps.rename(columns={"From Itinerary":"OldItin", "To Itinerary":"NewItin", "Recapture Rate":"RecapRate"}, inplace=True)
 
     # Shift indices by 1, in input data (only in assignment) they start at 0
-    itins['Itinerary'] = itins['Itinerary'] + 1
-    recaps['OldItin'] = recaps['OldItin'] + 1
-    recaps['NewItin'] = recaps['NewItin'] + 1
+    itins['Itinerary'] = itins['Itinerary']
+    recaps['OldItin'] = recaps['OldItin'] 
+    recaps['NewItin'] = recaps['NewItin'] 
 
     itins      = itins.set_index('Itinerary').to_dict('index')
     flight_idx = flights['Flight No.'].tolist()     # Can't use flights as indices as their labels include Letters

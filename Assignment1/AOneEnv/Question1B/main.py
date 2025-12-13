@@ -1,6 +1,7 @@
 from gurobipy import *
 import numpy as np
 import pandas  as pd
+import matplotlib.pyplot as plt
 
 # Functions imports
 from Question1A.main import main
@@ -62,7 +63,6 @@ for i, porti in enumerate(airports):
                 b[i][j][k] = 10000
             else:
                 b[i][j][k] = 0
-
 
 # Start modelling optimization problem
 m = Model('question1B')
@@ -137,26 +137,85 @@ elif status != GRB.Status.INF_OR_UNBD and status != GRB.Status.INFEASIBLE:
     print('Optimization was stopped with status %d' % status)
 
 
-# Print out Solutions
-print()
-print("Frequencies:----------------------------------")
-print()
+# # Print out Solutions
+# print()
+# print("Frequencies:----------------------------------")
+# print()
 
-# Print aircraft counts, flows and frequencies
-for k, aircraft in enumerate(aircraft_types):
-    print(f'Total number of aircraft of type {aircraft}: {ac[aircraft].X:.0f}')
+# # Print aircraft counts, flows and frequencies
+# for k, aircraft in enumerate(aircraft_types):
+#     print(f'Total number of aircraft of type {aircraft}: {ac[aircraft].X:.0f}')
 
-for i,porti in enumerate(airports):
-    for j,portj in enumerate(airports):
-        if x[porti, portj].X > 0 :
-            print(f"Direct flow from {porti} to {portj}: {x[porti, portj].X:.0f} passengers")
-        if w[porti, portj].X > 0 :
-            print(f"Transfer flow from {porti} to {portj}: {w[porti, portj].X:.0f} passengers")
+# for i,porti in enumerate(airports):
+#     sum_transfer = 0
+#     for j,portj in enumerate(airports):
+#         if x[porti, portj].X > 0 :
+#             print(f"Direct flow from {porti} to {portj}: {x[porti, portj].X:.0f} passengers")
+#         if w[porti, portj].X > 0 :
+#             print(f"Transfer flow from {porti} to {portj}: {w[porti, portj].X:.0f} passengers")
+#         sum_transfer += w[porti, portj]
+#     print (f"Tranfer flow from {porti} to all destinations: {sum_transfer} passengers")
 
-for i, porti in enumerate(airports):
-    for j, portj in enumerate(airports):
-        for aircraft in aircraft_types:
-            if z[porti, portj, aircraft].X > 0: 
-                print(f"{porti} -> {portj} : {z[porti, portj, aircraft].X:.0f} flights using {aircraft}")
-           
+# for i, porti in enumerate(airports):
+#     for j, portj in enumerate(airports):
+#         for aircraft in aircraft_types:
+#             if z[porti, portj, aircraft].X > 0: 
+#                 print(f"{porti} -> {portj} : {z[porti, portj, aircraft].X:.0f} flights using {aircraft}")
 
+# for k, aircraft in enumerate(aircraft_types):
+
+#     if ac[aircraft].X > 0:
+
+#         usage_per_actype = 0
+
+#         for i, porti in enumerate(airports):
+#             for j, portj in enumerate(airports):
+#                 usage_per_actype += (distance[i][j]/sp[k]+TAT[k]*(1 + 0.5 * (1 - g[j])))*z[porti,portj,aircraft].X
+
+#         usage = usage_per_actype / (BT * ac[aircraft].X) * 100
+
+#         print(f'Aircraft type {aircraft} is used at {usage:.2f}% of its available block time.')
+
+
+#         # Create bar chart of direct flows and transfer flows by airport
+#         direct_flows = {}
+#         transfer_flows = {}
+
+#         for i, porti in enumerate(airports):
+#             direct_flows[porti] = 0
+#             transfer_flows[porti] = 0
+#             for j, portj in enumerate(airports):
+#                 direct_flows[porti] += x[porti, portj].X
+#                 transfer_flows[porti] += w[porti, portj].X
+
+#         # Filter: only include airports with direct flows > 0 and exclude Amsterdam
+#         filtered_flows = {airport: direct_flows[airport] for airport in direct_flows 
+#              if direct_flows[airport] > 0 and airport != 'Amsterdam'}
+        
+#         airport_names = list(filtered_flows.keys())
+#         direct_values = [filtered_flows[airport] for airport in airport_names]
+#         transfer_values = [transfer_flows[airport] for airport in airport_names]
+
+#         x_pos = np.arange(len(airport_names))
+#         width = 0.35
+
+#         plt.figure(figsize=(12, 6))
+#         bars1 = plt.bar(x_pos - width/2, direct_values, width, label='Direct Flows', alpha=0.8)
+#         bars2 = plt.bar(x_pos + width/2, transfer_values, width, label='Transfer Flows', alpha=0.8)
+
+#         plt.xlabel('Departing Airport')
+#         plt.ylabel('Passengers')
+#         plt.title('Direct and Transfer Flows by Airport')
+#         plt.xticks(x_pos, airport_names, rotation=45, ha='right')
+#         plt.legend()
+
+#         # Add value labels on bars with default color
+#         for bar in bars1:
+#             yval = bar.get_height()
+#             plt.text(bar.get_x() + bar.get_width()/2, yval, int(yval), va='bottom', ha='center')
+#         for bar in bars2:
+#             yval = bar.get_height()
+#             plt.text(bar.get_x() + bar.get_width()/2, yval, int(yval), va='bottom', ha='center')
+
+#         plt.tight_layout()
+#         plt.show()

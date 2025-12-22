@@ -11,10 +11,10 @@ hours_path    = BASE_DIR / "Data" / "HourCoefficients.xlsx"
 # Build data 
 data = build_problem_data(airports_path, hours_path, aircraft_path)
 
-# Examples for usage:
+# Examples for usage (aircraft types are called T1, T2, T3):
 print(f"distance London-Helsinki: {data.distance_km.loc["London", "Helsinki"]}")
 print(f"Operating cost type 1 London-Helsinki: {data.operating_cost["T2"].loc["London", "Helsinki"]}")   # (type name depends on your Excel column header)
-print(f"Hourly demand London-Helsinki: {data.hourly_demand.loc[("London", "Helsinki"), "demand"]}")
+print(f"Hourly demand London-Helsinki: {data.hourly_demand.loc[("Madrid", "Helsinki"), "demand"]}")
 
 # Print toal obtained data
 # print(f"Total data: {data}")

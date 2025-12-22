@@ -4,7 +4,7 @@ import numpy as np
 from pathlib import Path
 
 # Import functions
-from compute_parameters import load_data_routes, comp_distances, comp_yield, comp_hourly_demand, load_data_aicraft, comp_operating_costs
+from compute_parameters import load_data_routes, comp_distances, comp_yield, comp_hourly_demand, load_aircraft_data, comp_operating_costs
 
 # Define paths of input data
 BASE_DIR = Path(__file__).resolve().parent
@@ -25,10 +25,11 @@ y = comp_yield(distance)
 hourly_demand = comp_hourly_demand(demand, hours)
 
 # Load aircraft data for fleet
-speed, seats, TAT, range, runway_req, lease_cost =  load_data_aicraft(aircraft_path)[0:6]
-n_ac_in_fleet = load_data_aicraft(aircraft_path)[-1]
+speed, seats, TAT, range, runway_req, lease_cost =  load_aircraft_data(aircraft_path)[0:6]
+n_ac_in_fleet = load_aircraft_data(aircraft_path)[-1]
 
 # Compute total operating cost per flight leg for each aircraft
 operating_cost = comp_operating_costs(aircraft_path, distance)
 
-print(f"operating cost: {operating_cost}")
+
+

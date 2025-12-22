@@ -1,4 +1,5 @@
 # Import modules
+from dataclasses import dataclass
 import pandas as pd
 import numpy as np
 
@@ -85,7 +86,7 @@ def comp_hourly_demand(demand, hours):
     return hourly_demand
 
 
-def load_data_aicraft(aircraft_path):
+def load_aircraft_data(aircraft_path):
     """This function loads the data of different aircraft and returns their parameters"""
 
     # Create dataframe from aircraft data excel
@@ -110,8 +111,8 @@ def comp_operating_costs(aircraft_path, distance):
     """This function computes the operating cost per aircraft for each flight leg"""
 
     # Define cost and speed parameters
-    speed = load_data_aicraft(aircraft_path)[0]
-    fixed_operating_cost, hourly_cost, fuel_cost = load_data_aicraft(aircraft_path)[6:9]
+    speed = load_aircraft_data(aircraft_path)[0]
+    fixed_operating_cost, hourly_cost, fuel_cost = load_aircraft_data(aircraft_path)[6:9]
     FUEL = 1.42 # Fuel price in USD/gallon
 
     # Set up dummy array with zeroes

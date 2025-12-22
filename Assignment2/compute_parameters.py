@@ -1,12 +1,16 @@
+# Imports
 import pandas as pd
 import numpy as np
+
+
 
 def read_file(file_path, skiprows, usecols):
 
     # Read EXCEL file
-
     df = pd.read_excel(file_path, skiprows=skiprows, usecols=usecols)
+
     return df
+
 
 def load_data_routes(airports_path, hours_path):
 
@@ -21,7 +25,6 @@ def load_data_routes(airports_path, hours_path):
     coord = np.array(data.iloc[2:4, :])
     runways = np.array(data.iloc[4, :])
     demand = np.array(data.iloc[8:28, :])
-
     hours = np.array(hours)
 
     return names, coord, runways, demand, hours
@@ -30,7 +33,6 @@ def load_data_routes(airports_path, hours_path):
 def comp_distances(coord):
     
     distance = np.zeros(shape=(20,20))
-    
     RE = 6371 # Radius of Earth in km
 
     for i in range(20):
@@ -65,6 +67,7 @@ def comp_yield(distance):
 
     return y
 
+
 def comp_hourly_demand(demand, hours):
 
     hourly_demand = np.zeros(shape=(20,20,24))
@@ -74,6 +77,7 @@ def comp_hourly_demand(demand, hours):
             for k in range(24):
                 hourly_demand[i][j][k] = demand[i][j] * hours[i][k]
     return hourly_demand
+
 
 def load_data_aicraft(aircraft_path):
 
@@ -91,6 +95,7 @@ def load_data_aicraft(aircraft_path):
     fleet = np.array(data.iloc[9, :])
 
     return speed, seats, TAT, range, runway_req, lease_cost, fixed_operating_cost, hourly_cost, fuel_cost, fleet
+
 
 def comp_operating_costs(aircraft_path, distance):
 

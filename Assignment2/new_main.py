@@ -68,6 +68,10 @@ for ac_type in reversed(data['aircraft_types']):                 # loop over air
 
             hour = int(t / 60)
 
+            # Cap hour to 23 for demand indexing
+            if hour >= 24:
+                hour = 23
+
             for i in AIRPORTS:                  # for each airport
                 for b in BLOCK_STATES:          # for each block time state
 

@@ -207,15 +207,17 @@ for ac in final_routes:
         print(f)
 
 
-# Function to convert minutes to HH:MM format
+# Convert minutes to HH:MM format
 def min_to_hhmm(t):
     h = t // 60
     m = t % 60
     return f"{int(h):02d}:{int(m):02d}"
 
 
+# =========================
+# Plot 1: Gantt chart visualization of aircraft schedules
+# =========================
 
-# Gantt chart visualization
 fig, ax = plt.subplots(figsize=(18, max(6, len(final_routes) * 0.7)))
 
 route_colors = {}
@@ -269,10 +271,10 @@ ax.legend(
 plt.tight_layout()
 plt.show()
 
+# =========================
+# Plot 2: Bar chart of net profit per aircraft
+# =========================
 
-# =========================
-# VISUALIZATION 2: PROFIT
-# =========================
 labels, profits = [], []
 
 for ac in final_routes:
@@ -296,7 +298,7 @@ plt.show()
 
 
 # =========================
-# VISUALIZATION 3: SUMMARY TABLE
+# Summary table of aircraft performance in csv format
 # =========================
 rows = []
 
@@ -343,7 +345,7 @@ for ac in final_routes:
     total_block = sum(f['arr_time'] - f['dep_time'] for f in ac)
     utilization = total_block / 60  # h/day
 
-    # Add one row per flight (like your table)
+    # Add one row per flight 
     for f in ac:
         rows.append({
             "Aircraft": f"Aircraft {ac_id}",

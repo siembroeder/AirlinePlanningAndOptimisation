@@ -26,6 +26,11 @@ MIN_BLOCK = 360  # 6 hours minimum total block time
 # Initialize final routes list
 final_routes = []
 
+
+
+
+
+
 # Main loop over aircraft types and individual aircraft
 
 for ac_type in reversed(data['aircraft_types']):                    # loop over aircraft types

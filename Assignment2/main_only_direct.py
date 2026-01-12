@@ -1,5 +1,5 @@
 # Imports
-from new_compute_parameters import build_problem_data
+from compute_parameters import build_problem_data
 from pathlib import Path
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
@@ -25,11 +25,6 @@ MIN_BLOCK = 360  # 6 hours minimum total block time
 
 # Initialize final routes list
 final_routes = []
-
-
-
-
-
 
 # Main loop over aircraft types and individual aircraft
 
@@ -142,6 +137,7 @@ for ac_type in reversed(data['aircraft_types']):                    # loop over 
                 t = action[2]
             elif action[0] == 'fly':          # if fly, record flight details
                 _, dest, t_next, pax, profit, block = action
+                
                 route.append({
                     'aircraft_type': ac_type,
                     'aircraft_id': ac_id,
@@ -205,11 +201,11 @@ for ac in final_routes:
 print(f"\nTotal network profit (after lease): {total_profit:,.0f}\n")
 
 
-# Print all routes
-for ac in final_routes:
-    print(f"\nRoute for aircraft type {ac[0]['aircraft_type']} ID {ac[0]['aircraft_id']}:")
-    for f in ac:
-        print(f)
+# # Print all routes
+# for ac in final_routes:
+#     print(f"\nRoute for aircraft type {ac[0]['aircraft_type']} ID {ac[0]['aircraft_id']}:")
+#     for f in ac:
+#         print(f)
 
 
 # Convert minutes to HH:MM format
@@ -218,60 +214,77 @@ def min_to_hhmm(t):
     m = t % 60
     return f"{int(h):02d}:{int(m):02d}"
 
-
 # =========================
 # Plot 1: Gantt chart visualization of aircraft schedules
 # =========================
 
-fig, ax = plt.subplots(figsize=(18, max(6, len(final_routes) * 0.7)))
+# Dictionary mapping for IATA codes
+iata_map = {
+    'London': 'LHR', 'Paris': 'CDG', 'Amsterdam': 'AMS', 'Frankfurt': 'FRA',
+    'Madrid': 'MAD', 'Barcelona': 'BCN', 'Munich': 'MUC', 'Rome': 'FCO',
+    'Dublin': 'DUB', 'Stockholm': 'ARN', 'Lisbon': 'LIS', 'Berlin': 'BER',
+    'Helsinki': 'HEL', 'Warsaw': 'WAW', 'Edinburgh': 'EDI', 'Bucharest': 'OTP',
+    'Heraklion': 'HER', 'Reykjavik': 'KEF', 'Palermo': 'PMO', 'Madeira': 'FNC'
+}
+
+# Define start time in minutes (04:00 = 4 * 60)
+START_DISPLAY = 4 * 60
+
+fig, ax = plt.subplots(figsize=(18, max(6, len(final_routes) * 0.8)))
 
 route_colors = {}
 color_idx = 0
-colors = plt.cm.tab20.colors
+colors = plt.cm.tab20.colors + plt.cm.tab20b.colors
 
-for idx, ac in enumerate(final_routes):
+for idx, ac in enumerate(reversed(final_routes)):
     label = f"{ac[0]['aircraft_type']} #{ac[0]['aircraft_id']}"
 
     for f in ac:
+        # Generate route key for coloring
         route_key = f"{f['origin']}→{f['dest']}"
         if route_key not in route_colors:
             route_colors[route_key] = colors[color_idx % len(colors)]
             color_idx += 1
 
+        duration = f['arr_time'] - f['dep_time']
+        midpoint = f['dep_time'] + duration / 2
+        
+        # Draw the bar
         ax.barh(
             label,
-            f['arr_time'] - f['dep_time'],
+            duration,
             left=f['dep_time'],
             color=route_colors[route_key],
-            edgecolor='black'
+            edgecolor='black',
+            height=0.6
         )
 
-        # passenger count outside bar
+        # Get IATA codes and format as single line ORG - DES
+        org_iata = iata_map.get(f['origin'], f['origin'][:3].upper())
+        des_iata = iata_map.get(f['dest'], f['dest'][:3].upper())
+        cell_text = f"{org_iata} - {des_iata}"
+
+        # Place route text centered inside the bar 
         ax.text(
-            f['arr_time'] + 5,
+            midpoint,
             label,
-            f"{f['passengers']} pax",
+            cell_text,
+            ha='center',
             va='center',
-            fontsize=8
+            fontsize=8,
+            fontweight='normal',
+            color='black',
+            clip_on=True
         )
 
-# Time axis
-ax.set_xticks(range(0, 1441, 120))
-ax.set_xticklabels([min_to_hhmm(t) for t in range(0, 1441, 120)])
-ax.set_xlabel("Time (HH:MM)")
-ax.set_title("Aircraft Schedules (Hub–Spoke)")
-ax.grid(axis='x', alpha=0.4)
+# Time axis - Adjusted to start from 04:00
+ax.set_xticks(range(START_DISPLAY, 1441, 120))
+ax.set_xticklabels([min_to_hhmm(t) for t in range(START_DISPLAY, 1441, 120)])
+ax.set_xlim(START_DISPLAY, TOTAL_TIME) # Graph starts at 04:00
 
-# Legend
-legend_patches = [
-    mpatches.Patch(color=c, label=r) for r, c in route_colors.items()
-]
-ax.legend(
-    handles=legend_patches,
-    title="Routes",
-    bbox_to_anchor=(1.02, 1),
-    loc='upper left'
-)
+ax.set_xlabel("Time (HH:MM)")
+ax.set_title("Aircraft Schedules")
+ax.grid(axis='x', alpha=0.3, linestyle='--')
 
 plt.tight_layout()
 plt.show()
@@ -311,14 +324,15 @@ for ac in final_routes:
     ac_type = ac[0]['aircraft_type']
     ac_id   = ac[0]['aircraft_id']
 
-    block = sum(f['arr_time'] - f['dep_time'] for f in ac)
-    pax   = sum(f['passengers'] for f in ac)
+    # Sum of actual flight durations (excluding TAT)
+    flight_time_mins = sum(f['arr_time'] - f['dep_time'] for f in ac)
+    pax    = sum(f['passengers'] for f in ac)
     profit = sum(f['profit'] for f in ac)
-    lease = data['aircraft'].loc[ac_type, 'lease_cost']
+    lease  = data['aircraft'].loc[ac_type, 'lease_cost']
 
     rows.append({
         "Aircraft": f"{ac_type} #{ac_id}",
-        "Block Time (h)": round(block / 60, 2),
+        "Total Block Time (h)": round(flight_time_mins / 60, 2),
         "Passengers": pax,
         "Flight Profit (€)": round(profit, 0),
         "Lease Cost (€)": lease,
@@ -329,9 +343,17 @@ df = pd.DataFrame(rows)
 print("\n=== AIRCRAFT SUMMARY ===\n")
 print(df)
 
-
-
+# =========================
 # Export detailed schedule to CSV
+# =========================
+iata_map = {
+    'London': 'LHR', 'Paris': 'CDG', 'Amsterdam': 'AMS', 'Frankfurt': 'FRA',
+    'Madrid': 'MAD', 'Barcelona': 'BCN', 'Munich': 'MUC', 'Rome': 'FCO',
+    'Dublin': 'DUB', 'Stockholm': 'ARN', 'Lisbon': 'LIS', 'Berlin': 'BER',
+    'Helsinki': 'HEL', 'Warsaw': 'WAW', 'Edinburgh': 'EDI', 'Bucharest': 'OTP',
+    'Heraklion': 'HER', 'Reykjavik': 'KEF', 'Palermo': 'PMO', 'Madeira': 'FNC'
+}
+
 rows = []
 
 for ac in final_routes:
@@ -339,37 +361,34 @@ for ac in final_routes:
         continue
 
     ac_type = ac[0]['aircraft_type']
-    ac_id   = ac[0]['aircraft_id']
+    ac_id = ac[0]['aircraft_id']
 
-    # Flight-level totals
+    # Totals for the aircraft
     total_flight_profit = sum(f['profit'] for f in ac)
     lease_cost = data['aircraft'].loc[ac_type, 'lease_cost']
     net_profit = total_flight_profit - lease_cost
+    total_flight_time = sum(f['arr_time'] - f['dep_time'] for f in ac)
 
-    # Block time (sum of flight durations only)
-    total_block = sum(f['arr_time'] - f['dep_time'] for f in ac)
-    utilization = total_block / 60  # h/day
-
-    # Add one row per flight 
     for f in ac:
+        org_iata = iata_map.get(f['origin'], f['origin'])
+        des_iata = iata_map.get(f['dest'], f['dest'])
+        duration = f['arr_time'] - f['dep_time']
+
         rows.append({
-            "Aircraft": f"Aircraft {ac_id}",
-            "Type": ac_type,
+            "Aircraft": f"{ac_type} #{ac_id}",  
+            "Origin": org_iata,
+            "Destination": des_iata,
             "Departure Time": min_to_hhmm(f['dep_time']),
-            "Route": f"{f['origin']}–{f['dest']}",
             "Arrival Time": min_to_hhmm(f['arr_time']),
+            "Flight Duration": min_to_hhmm(duration),
             "Passengers": f['passengers'],
             "Load factor": round(
                 f['passengers'] / (0.8 * data['aircraft'].loc[ac_type, 'seats']), 2
             ),
-            "Flight profit [$]": round(f['profit'], 1),
-            "Total profit [$]": round(net_profit, 1),
-            "Utilization [h/day]": round(utilization, 2)
+            "Flight profit [€]": round(f['profit'], 1),
         })
 
+df_export = pd.DataFrame(rows)
+df_export.to_csv("aircraft_schedules.csv", index=False)
 
-df = pd.DataFrame(rows)
-
-df.to_csv("aircraft_schedules.csv", index=False)
-
-print("CSV exported: aircraft_schedules.csv")
+print("CSV exported: aircraft_schedules_direct.csv")

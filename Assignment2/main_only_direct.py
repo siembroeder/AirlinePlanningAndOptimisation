@@ -392,3 +392,4 @@ df_export = pd.DataFrame(rows)
 df_export.to_csv("aircraft_schedules.csv", index=False)
 
 print("CSV exported: aircraft_schedules_direct.csv")
+

@@ -1,9 +1,16 @@
+"""
+GROUP 7
+
+Siem Broeder - 6565662
+Job Ruijters - 5073138
+Radu Pop - 5716527
+
+"""
 
 # Imports
 from compute_parameters import build_problem_data
 from pathlib import Path
 import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
 import pandas as pd
 
 # Define paths of input data
@@ -15,14 +22,6 @@ hours_path    = BASE_DIR / "Data" / "HourCoefficients.xlsx"
 # Build data 
 data = build_problem_data(airports_path, hours_path, aircraft_path)
 
-# Store original demand for verification
-original_demand = {}
-for orig in data['distance'].index:
-    for dest in data['distance'].index:
-        if orig != dest:
-            total = sum(data['hourly_demand'].loc[(orig, dest, h)] for h in range(24))
-            original_demand[(orig, dest)] = total
-
 # Parameters
 TIME_STEP   = 6                 # minutes
 TOTAL_TIME = 24 * 60            # total time in minutes
@@ -33,11 +32,10 @@ HUB = 'Amsterdam'
 MIN_BLOCK = 360  # 6 hours minimum total block time
 
 # Transfer parameters
-MIN_CONNECTION = 0   # minimum connection time (minutes)
-MAX_CONNECTION = 180# maximum connection time (4 hours)
+MIN_CONNECTION = 40 # minimum connection time in minutes
+MAX_CONNECTION = 180 # maximum connection time in minutes
 
-# Initialize transfer demand tracking (spoke -> spoke demand)
-# This tracks remaining transfer demand between spoke airports
+# Initialize transfer demand tracking (spoke to spoke demand)
 transfer_demand = {}
 for orig in AIRPORTS:
     if orig == HUB:
@@ -55,11 +53,10 @@ for orig in AIRPORTS:
 # Initialize final routes list
 final_routes = []
 
-# Track arriving passengers at hub for transfer opportunities
-# Structure: {(origin_spoke, arrival_time): passengers_available}
+# Initialize arriving passengers at hub for transfering
 hub_arrivals = {}
 
-# Main loop over aircraft types and individual aircraft
+# Main loop over aircraft types
 for ac_type in reversed(data['aircraft_types']):
     fleet_size = int(data['aircraft']['fleet'][ac_type])
     speed      = data['aircraft'].loc[ac_type, 'speed']
@@ -69,40 +66,45 @@ for ac_type in reversed(data['aircraft_types']):
     runway_req = data['aircraft'].loc[ac_type, 'runway']
     lease_cost = data['aircraft'].loc[ac_type, 'lease_cost']
 
+    # Loop over individual planes
     for ac_id in range(fleet_size):
-        # Initialize lists for storing optimal value function and policy
+
+        # Initialize value and policy to obtain that value
         V = {}
         policy = {}
 
-        # Terminal condition: only allow ending at hub
+        # Terminal condition: only allow ending at hub, if not penalize
         for a in AIRPORTS:
             if a == HUB:
-                V[(TOTAL_TIME, a)] = 0
+                V[(TOTAL_TIME, a)] = 0         
             else:
-                V[(TOTAL_TIME, a)] = -1e9
+                V[(TOTAL_TIME, a)] = -1e9       
 
         # Backward DP
         for t in reversed(TIMES[:-1]):
-            hour = min(int(t / 60), 23)
 
+            hour = min(int(t / 60), 23)         # current hour (0-23), 24 not included
+
+            # Loop over all airports
             for i in AIRPORTS:
-                # Initial condition: only allow starting at hub
+
+                # Initial condition: only allow starting at hub, if not penalize
                 if t == 0 and i != HUB:
                     V[(t, i)] = -1e9
                     policy[(t, i)] = ('invalid',)
                     continue
-
+                
                 # Option 1: Stay idle
                 best_value = V[(t + TIME_STEP, i)]
                 best_action = ('stay', i, t + TIME_STEP)
 
                 # Option 2: Fly to another airport
                 for j in AIRPORTS:
-                    if i == j:
+                    if i == j:                      # no self-loops
                         continue
-                    if i != HUB and j != HUB:
+                    if i != HUB and j != HUB:       # no spoke-to-spoke flights
                         continue
-
+                    
                     dist = data['distance'].loc[i, j]
 
                     # Check range and runway constraints
@@ -111,83 +113,85 @@ for ac_type in reversed(data['aircraft_types']):
                     if data['airport_info'].loc[j, 'runway'] < runway_req:
                         continue
 
-                    flight_time = int((dist / speed) * 60 + 30)
-                    t_ready = ((t + flight_time + TAT + TIME_STEP - 1) // TIME_STEP) * TIME_STEP
+                    flight_time = int((dist / speed) * 60 + 30)         # flight time in minutes + 15 min for climb and 15 min for descent
 
+                    t_ready = ((t + flight_time + TAT + TIME_STEP - 1) // TIME_STEP) * TIME_STEP        # next available time (including TAT), rounded up to next time step
+
+                    # Cannot arrive after end of day
                     if t_ready > TOTAL_TIME:
                         continue
-
-                    # === DIRECT DEMAND (existing logic) ===
+                    
+                    # Demand (last 3 hours)
                     total_direct_demand = sum(
                         data['hourly_demand'].loc[(i, j, h)]
                         for h in range(max(0, hour - 2), hour + 1)
                     )
 
-                    required_pax = int(seats * 0.8)  # EXACTLY 80% must be filled
-                    direct_pax = int(min(total_direct_demand, required_pax))
+                    required_pax = int(seats * 0.8)         # Assumed 80% load factor for all flights
+                    direct_pax = int(min(total_direct_demand, required_pax))       
                     
-                    # === TRANSFER DEMAND (NEW) ===
                     transfer_pax = 0
                     transfer_revenue = 0
-                    transfer_breakdown = {}  # Track transfer passengers by origin
+                    transfer_breakdown = {}                 # Initialize transfer origin/destination
                     
-                    # Calculate remaining capacity needed to reach 80%
-                    remaining_needed = required_pax - direct_pax
+                    remaining_needed = required_pax - direct_pax        # Check if there is place on-board for transfer passengers
                     
-                    # If departing FROM hub, check for transfer passengers to fill remaining seats
-                    if i == HUB and j != HUB and remaining_needed > 0:
-                        # Look for passengers arriving at hub who want to go to j
+                    # Get transfer passengers for OUTBOUND flights
+                    if i == HUB and j != HUB and remaining_needed > 0:    
+
+                        # Loop over all hub transfering arrivals (computed at a later stage)                      
                         for (origin_spoke, arr_time), available_pax in hub_arrivals.items():
+
                             if available_pax <= 0 or remaining_needed <= 0:
                                 continue
                             
                             connection_time = t - arr_time
                             
-                            # Check connection time window
-                            if MIN_CONNECTION <= connection_time <= MAX_CONNECTION:
-                                # Check if there's demand for this transfer route
-                                if (origin_spoke, j) in transfer_demand:
+                            if MIN_CONNECTION <= connection_time <= MAX_CONNECTION:          # Make sure the connection time is within set limits
+                                if (origin_spoke, j) in transfer_demand:                     # Check if there is demand between the spoke - spoke route
                                     available_transfer_demand = transfer_demand[(origin_spoke, j)]
                                     
                                     if available_transfer_demand > 0:
-                                        # How many transfer passengers can we take?
                                         can_transfer = min(
                                             available_pax,
                                             remaining_needed,
                                             available_transfer_demand
-                                        )
+                                        )                               # If there is, the pax that can transfer is the minimum between the transferring passengers waiting 
+                                                                        # at the hub, the empty seats on the flight for 80% LF and the demand
                                         
                                         if can_transfer > 0:
-                                            transfer_pax += can_transfer
-                                            remaining_needed -= can_transfer
-                                            transfer_breakdown[origin_spoke] = can_transfer
+                                            transfer_pax += can_transfer        # Track total number of transferring pax
+                                            remaining_needed -= can_transfer    # Remove taken seats from flight
+                                            transfer_breakdown[origin_spoke] = can_transfer     # Track origin of transferring passengers
                                             
-                                            # Calculate transfer revenue (origin -> hub -> dest)
-                                            leg1_dist = data['distance'].loc[origin_spoke, HUB]
+                                            # Compute revenue for transferring passengers: use the spoke - spoke yield but only 2nd leg distance 
                                             leg2_dist = data['distance'].loc[HUB, j]
-                                            total_transfer_dist = leg1_dist + leg2_dist
+                                            transfer_revenue += can_transfer * data['yield'].loc[origin_spoke, j] * leg2_dist
                                             
-                                            transfer_revenue += can_transfer * data['yield'].loc[origin_spoke, j] * total_transfer_dist
-                                            
+                                            # Make sure all transferring passengers have a seat
                                             if remaining_needed <= 0:
                                                 break
 
+                    # Compute total number of pax for the flight                                                  
                     total_pax = direct_pax + transfer_pax
                     
-                    # CRITICAL: Flight can only operate if EXACTLY 80% seats are filled
+                    # Force exactly 80% loading factor
                     if total_pax != required_pax:
                         continue
-
-                    # Calculate revenue
+                    
+                    # Compute total revenue
                     direct_revenue = direct_pax * data['yield'].loc[i, j] * dist
                     total_revenue = direct_revenue + transfer_revenue
                     
+                    # Compute operating cost and profit 
                     cost = data['operating_cost'][ac_type].loc[i, j]
                     profit = total_revenue - cost
 
-                    if profit <= 0:
+                    # Discard unprofitable flights
+                    if profit <= 0:         
                         continue
-
+                    
+                    # Update total value
                     value = profit + V[(t_ready, j)]
 
                     # Update best action if better
@@ -199,17 +203,17 @@ for ac_type in reversed(data['aircraft_types']):
                 policy[(t, i)] = best_action
 
         # Reconstruct routes using optimal policy
-        t = 0
-        loc = HUB
-        route = []
-        total_block = 0
+        t = 0                   # initialize time
+        loc = HUB               # initialize location
+        route = []              # initialize route list
+        total_block = 0         # initialize total block time
 
         while t < TOTAL_TIME:
-            action = policy[(t, loc)]
+            action = policy[(t, loc)]       # get optimal policy
 
-            if action[0] == 'stay':
+            if action[0] == 'stay':         # if stay, just update time
                 t = action[2]
-            elif action[0] == 'fly':
+            elif action[0] == 'fly':        # if fly, record flight details
                 _, dest, t_next, direct_pax, transfer_pax, profit, block, transfer_breakdown = action
                 
                 route.append({
@@ -224,15 +228,15 @@ for ac_type in reversed(data['aircraft_types']):
                     'total_passengers': direct_pax + transfer_pax,
                     'profit': profit,
                     'block_time': block,
-                    'transfer_from': transfer_breakdown  # Dict of {origin_spoke: pax_count}
+                    'transfer_from': transfer_breakdown
                 })
-                total_block += block
-                t = t_next
-                loc = dest
+                total_block += block        # update total block time
+                t = t_next                  # update time: arrival time at destination
+                loc = dest                  # update location: arrival airport
             else:
                 break
 
-        # Only keep aircraft that end at hub and meet minimum block
+        # Only keep aircraft that meet operational constraints
         if loc == HUB and total_block >= MIN_BLOCK and route:
             flight_profit = sum(f['profit'] for f in route)
             lease_cost = data['aircraft'].loc[ac_type, 'lease_cost']
@@ -244,39 +248,39 @@ for ac_type in reversed(data['aircraft_types']):
                 for f in route
             )
             
-            # Only include aircraft with positive net profit AND all flights at 80% LF
+            # Only include aircraft with positive net profit and correct load factor
             if net_profit > 0 and all_flights_at_80:
                 final_routes.append(route)
 
-                # Update demand and transfer tracking
+                # Update demand and transfer tracking for future aircraft
                 for r in route:
                     hour = int(r['dep_time'] / 60)
                     
-                    # Update direct demand (spoke->hub or hub->spoke)
+                    # Deduct served direct demand from available hourly demand
                     remaining_direct = r['direct_passengers']
-                    for h in range(hour, max(-1, hour - 3), -1):
+                    for h in range(hour, max(-1, hour - 3), -1):        # loop backwards through last 3 hours
                         if remaining_direct <= 0:
                             break
                         idx = (r['origin'], r['dest'], h)
                         available = data['hourly_demand'].loc[idx]
                         served = min(available, remaining_direct)
-                        data['hourly_demand'].loc[idx] -= served
+                        data['hourly_demand'].loc[idx] -= served        # update remaining demand
                         remaining_direct -= served
                     
-                    # Track hub arrivals for future transfers
+                    # Track passengers arriving at hub for potential transfers
                     if r['dest'] == HUB:
                         key = (r['origin'], r['arr_time'])
                         hub_arrivals[key] = r['direct_passengers']
                     
                     # Update transfer demand and hub arrivals when transfers are used
                     if r['origin'] == HUB and r['transfer_passengers'] > 0:
-                        # Process each origin in the transfer breakdown
                         for origin_spoke, transfer_count in r.get('transfer_from', {}).items():
-                            # Deduct from transfer demand
+
+                            # Deduct from spoke-spoke transfer demand
                             if (origin_spoke, r['dest']) in transfer_demand:
                                 transfer_demand[(origin_spoke, r['dest'])] -= transfer_count
                             
-                            # Deduct from hub arrivals
+                            # Deduct transferring passengers from hub arrivals
                             for (arr_origin, arr_time), available_pax in list(hub_arrivals.items()):
                                 if arr_origin == origin_spoke:
                                     connection_time = r['dep_time'] - arr_time
@@ -287,12 +291,14 @@ for ac_type in reversed(data['aircraft_types']):
                                         if transfer_count <= 0:
                                             break
 
-# Compute total profit and verify load factors
+# VERIFICATION OF RESULTS AND PRINTING
+# Compute total profit and verify load factors again
 total_profit = 0
 total_flights = 0
 total_pax = 0
 total_capacity = 0
 
+# Loop over all aircraft
 for ac in final_routes:
     ac_type = ac[0]['aircraft_type']
     seats = data['aircraft'].loc[ac_type, 'seats']
@@ -300,36 +306,35 @@ for ac in final_routes:
     lease_cost = data['aircraft'].loc[ac_type, 'lease_cost']
     total_profit += flight_profit - lease_cost
     
-    # Aggregate for network-wide load factor verification
+    # Sum to make sure all passengers are accounted for (all departing pax have arrived)
     for f in ac:
         total_flights += 1
         total_pax += f['total_passengers']
         total_capacity += seats * 0.8
 
-# Verify network-wide load factor (should be exactly 100% since each flight is at 80%)
-network_load_factor = total_pax / total_capacity if total_capacity > 0 else 0
+# Network used capacity should be 100% (pax vs seats - see comment above)
+network_used_capacity = total_pax / total_capacity if total_capacity > 0 else 0
 
+# Print summary statistics
 print(f"\nTotal network profit (after lease): {total_profit:,.0f}")
-print(f"Network-wide load factor verification: {network_load_factor:.2%} (should be 100%)")
+print(f"Network-wide load factor verification: {network_used_capacity:.2%} (should be 100%)")
 print(f"Total flights: {total_flights}")
 print(f"Total passengers: {total_pax:,}\n")
 
-print(f"\nTotal network profit (after lease): {total_profit:,.0f}\n")
-
-# Convert minutes to HH:MM format
+# Convert minutes to HH:MM format for display
 def min_to_hhmm(t):
     h = t // 60
     m = t % 60
     return f"{int(h):02d}:{int(m):02d}"
 
-# Summary statistics
+# Calculate passenger breakdown by type
 total_direct = sum(f['direct_passengers'] for ac in final_routes for f in ac)
 total_transfer = sum(f['transfer_passengers'] for ac in final_routes for f in ac)
 print(f"Total direct passengers: {total_direct:,}")
 print(f"Total transfer passengers: {total_transfer:,}")
 print(f"Transfer percentage: {100*total_transfer/(total_direct+total_transfer):.1f}%\n")
 
-# Summary table
+# Create summary table for each aircraft
 rows = []
 for ac in final_routes:
     ac_type = ac[0]['aircraft_type']
@@ -355,96 +360,78 @@ df = pd.DataFrame(rows)
 print("=== AIRCRAFT SUMMARY ===\n")
 print(df)
 
-# =========================
-# Plot 1: Gantt chart visualization of aircraft schedules
-# =========================
+# PLOTS AND CSV SAVING
+# Visualization 1: Gantt chart of the complete aircraft schedule
 
-# Dictionary mapping for IATA codes
+# Use IATA codes to save space
 iata_map = {
     'London': 'LHR', 'Paris': 'CDG', 'Amsterdam': 'AMS', 'Frankfurt': 'FRA',
     'Madrid': 'MAD', 'Barcelona': 'BCN', 'Munich': 'MUC', 'Rome': 'FCO',
-    'Dublin': 'DUB', 'Stockholm': 'ARN', 'Lisbon': 'LIS', 'Berlin': 'BER',
+    'Dublin': 'DUB', 'Stockholm': 'ARN', 'Lisbon': 'LIS', 'Berlin': 'TXL',
     'Helsinki': 'HEL', 'Warsaw': 'WAW', 'Edinburgh': 'EDI', 'Bucharest': 'OTP',
     'Heraklion': 'HER', 'Reykjavik': 'KEF', 'Palermo': 'PMO', 'Madeira': 'FNC'
 }
 
-# Define start time in minutes (04:00 = 4 * 60)
+# Define start time for visualization 
 START_DISPLAY = 4 * 60
 
+# Create Gantt chart
 fig, ax = plt.subplots(figsize=(18, max(6, len(final_routes) * 0.8)))
 
+# Color mapping for routes
 route_colors = {}
 color_idx = 0
 colors = plt.cm.tab20.colors + plt.cm.tab20b.colors
 
+# Plot each aircraft's schedule
 for idx, ac in enumerate(reversed(final_routes)):
     label = f"{ac[0]['aircraft_type']} #{ac[0]['aircraft_id']}"
-
+    
+    # Plot each flight as a horizontal bar
     for f in ac:
-        # Generate route key for coloring
+        # Assign same color to each route
         route_key = f"{f['origin']}→{f['dest']}"
         if route_key not in route_colors:
             route_colors[route_key] = colors[color_idx % len(colors)]
             color_idx += 1
-
+        
         duration = f['arr_time'] - f['dep_time']
         midpoint = f['dep_time'] + duration / 2
         
-        # Draw the bar
-        ax.barh(
-            label,
-            duration,
-            left=f['dep_time'],
-            color=route_colors[route_key],
-            edgecolor='black',
-            height=0.6
-        )
-
-        # Get IATA codes and format as single line ORG - DES
+        # Draw flight bar
+        ax.barh(label, duration, left=f['dep_time'], color=route_colors[route_key], 
+                edgecolor='black', height=0.6)
+        
+        # Add route label (IATA codes)
         org_iata = iata_map.get(f['origin'], f['origin'][:3].upper())
         des_iata = iata_map.get(f['dest'], f['dest'][:3].upper())
         cell_text = f"{org_iata} - {des_iata}"
+        ax.text(midpoint, label, cell_text, ha='center', va='center', 
+                fontsize=8, color='black', clip_on=True)
 
-        # Place route text centered inside the bar 
-        ax.text(
-            midpoint,
-            label,
-            cell_text,
-            ha='center',
-            va='center',
-            fontsize=8,
-            fontweight='normal',
-            color='black',
-            clip_on=True
-        )
-
-# Time axis - Adjusted to start from 04:00
+# Configure time axis
 ax.set_xticks(range(START_DISPLAY, 1441, 120))
 ax.set_xticklabels([min_to_hhmm(t) for t in range(START_DISPLAY, 1441, 120)])
-ax.set_xlim(START_DISPLAY, TOTAL_TIME) # Graph starts at 04:00
-
+ax.set_xlim(START_DISPLAY, TOTAL_TIME)
 ax.set_xlabel("Time (HH:MM)")
 ax.set_title("Aircraft Schedules")
 ax.grid(axis='x', alpha=0.3, linestyle='--')
-
 plt.tight_layout()
 plt.show()
 
-# =========================
-# Plot 2: Bar chart of net profit per aircraft
-# =========================
+# Visualization 2: Net profit per aircraft
 
+# Prepare data 
 labels, profits = [], []
-
 for ac in final_routes:
     ac_type = ac[0]['aircraft_type']
     ac_id   = ac[0]['aircraft_id']
     lease   = data['aircraft'].loc[ac_type, 'lease_cost']
     flight_profit = sum(f['profit'] for f in ac)
-
     labels.append(f"{ac_type} #{ac_id}")
     profits.append(flight_profit - lease)
 
+# Create bar chart
 plt.figure(figsize=(12,6))
 plt.bar(labels, profits, edgecolor='black')
 plt.axhline(0, color='red')
@@ -455,180 +442,103 @@ plt.grid(axis='y', alpha=0.4)
 plt.tight_layout()
 plt.show()
 
-# =========================
-# NEW: Build transfer connection mapping CORRECTLY
-# =========================
+# Save complete flight schedule as csv file CSV
 
-# Create mapping of inbound flights to their potential outbound connections
-inbound_to_outbound = {}  # {(ac_type, ac_id, flight_idx): [(dest_spoke, pax_count), ...]}
+# Create mapping of inbound flights to their outbound connections
+inbound_to_outbound = {}
 
 for ac_idx, ac in enumerate(final_routes):
     for flight_idx, f in enumerate(ac):
         flight_key = (ac[0]['aircraft_type'], ac[0]['aircraft_id'], flight_idx)
         
-        # For inbound flights (spoke -> hub), find where those passengers actually went
+        # For inbound flights (spoke - hub), find where passengers transferred to
         if f['dest'] == HUB and f['direct_passengers'] > 0:
-            outbound_connections = {}  # Use dict to aggregate by destination
+            outbound_connections = {}           # dictionary to store destinations
             origin_spoke = f['origin']
             arrival_time = f['arr_time']
             
-            # Find all outbound flights that took passengers from this origin
+            # Search all outbound flights for transfer passengers from this origin
             for other_ac in final_routes:
                 for other_f in other_ac:
                     if other_f['origin'] == HUB and other_f['dest'] != HUB:
-                        # Check connection time window
                         connection_time = other_f['dep_time'] - arrival_time
+                        
+                        # Check if connection time is valid
                         if MIN_CONNECTION <= connection_time <= MAX_CONNECTION:
-                            # Check if this outbound flight has transfer passengers from our origin
+                            # Check if outbound flight carried passengers from this origin
                             if origin_spoke in other_f.get('transfer_from', {}):
                                 pax_count = other_f['transfer_from'][origin_spoke]
                                 if pax_count > 0:
-                                    # Aggregate by destination
+                                    # Store passengers by destination
                                     if other_f['dest'] not in outbound_connections:
                                         outbound_connections[other_f['dest']] = 0
                                     outbound_connections[other_f['dest']] += pax_count
             
+            # Store connections if any exist
             if outbound_connections:
-                # Convert to list of tuples
                 inbound_to_outbound[flight_key] = list(outbound_connections.items())
 
-# =========================
-# Export detailed schedule to CSV with CORRECTED transfer information
-# =========================
-
+# Build detailed schedule with transfer information
 rows = []
-
 for ac_idx, ac in enumerate(final_routes):
-    if not ac:
-        continue
-
-    ac_type = ac[0]['aircraft_type']
-    ac_id = ac[0]['aircraft_id']
-
+    if not ac: continue
+    
+    ac_type, ac_id = ac[0]['aircraft_type'], ac[0]['aircraft_id']
+    
     for flight_idx, f in enumerate(ac):
+        # Get IATA codes
         org_iata = iata_map.get(f['origin'], f['origin'])
         des_iata = iata_map.get(f['dest'], f['dest'])
         duration = f['arr_time'] - f['dep_time']
         
         transfer_details = ""
         
-        # OUTBOUND from hub: show where transfer passengers came FROM
+        # For outbound flights (hub - spoke): show origin of transfer passengers
         if f['origin'] == HUB and f['transfer_passengers'] > 0:
             if f.get('transfer_from'):
-                origins_list = []
-                for origin_spoke, pax_count in f['transfer_from'].items():
-                    origin_iata = iata_map.get(origin_spoke, origin_spoke[:3].upper())
-                    origins_list.append(f"{origin_iata}({pax_count})")
+                origins_list = [f"{iata_map.get(o, o[:3].upper())}({p})" 
+                               for o, p in f['transfer_from'].items()]
                 transfer_details = f"From: {', '.join(origins_list)}"
         
-        # INBOUND to hub: show where passengers are going TO (and count them as transfer passengers)
+        # For inbound flights (spoke - hub): show destination of transfer passengers
         inbound_transfer_pax = 0
         if f['dest'] == HUB and f['direct_passengers'] > 0:
             flight_key = (ac_type, ac_id, flight_idx)
             if flight_key in inbound_to_outbound:
-                destinations_list = []
-                for dest_spoke, pax_count in inbound_to_outbound[flight_key]:
-                    dest_iata = iata_map.get(dest_spoke, dest_spoke[:3].upper())
-                    destinations_list.append(f"{dest_iata}({pax_count})")
-                    inbound_transfer_pax += pax_count
-                if destinations_list:
-                    if transfer_details:
-                        transfer_details += "; "
-                    transfer_details += f"To: {', '.join(destinations_list)}"
-
-        # For inbound flights to hub: passengers who will transfer are "transfer passengers"
-        # For outbound flights from hub: passengers are already correctly labeled
-        if f['dest'] == HUB and inbound_transfer_pax > 0:
-            # These passengers will connect onwards
+                destinations_list = [f"{iata_map.get(d, d[:3].upper())}({p})" 
+                                    for d, p in inbound_to_outbound[flight_key]]
+                inbound_transfer_pax = sum(p for _, p in inbound_to_outbound[flight_key])
+                if transfer_details: 
+                    transfer_details += "; "
+                transfer_details += f"To: {', '.join(destinations_list)}"
+        
+        # Recalculate passenger breakdown for inbound flights
+        if f['dest'] == HUB:
             actual_direct_pax = max(0, f['direct_passengers'] - inbound_transfer_pax)
             actual_transfer_pax = inbound_transfer_pax
         else:
-            # Use the values from the DP algorithm
             actual_direct_pax = f['direct_passengers']
             actual_transfer_pax = f['transfer_passengers']
-
-        row = {
-            "Aircraft": f"{ac_type} #{ac_id}",  
-            "Origin": org_iata,
+        
+        # Build row
+        rows.append({
+            "Aircraft": f"{ac_type} #{ac_id}", 
+            "Origin": org_iata, 
             "Destination": des_iata,
-            "Departure Time": min_to_hhmm(f['dep_time']),
+            "Departure Time": min_to_hhmm(f['dep_time']), 
             "Arrival Time": min_to_hhmm(f['arr_time']),
-            "Flight Duration": min_to_hhmm(duration),
+            "Flight Duration": min_to_hhmm(duration), 
             "Direct Passengers": actual_direct_pax,
-            "Transfer Passengers": actual_transfer_pax,
+            "Transfer Passengers": actual_transfer_pax, 
             "Total Passengers": f['total_passengers'],
             "Transfer Details": transfer_details,
-            "Load Factor": round(
-                f['total_passengers'] / (0.8 * data['aircraft'].loc[ac_type, 'seats']), 2
-            ) if (0.8 * data['aircraft'].loc[ac_type, 'seats']) > 0 else 0,
+            "Load Factor": round(f['total_passengers'] / (0.8 * data['aircraft'].loc[ac_type, 'seats']), 2) 
+                          if (0.8 * data['aircraft'].loc[ac_type, 'seats']) > 0 else 0,
             "Flight Profit [€]": round(f['profit'], 1),
-        }
-        
-        rows.append(row)
+        })
 
 df_export = pd.DataFrame(rows)
 
-# =========================
-# NEW: Add demand matrix verification - CREATE SEPARATE CSV
-# =========================
-
-# Calculate served demand
-served_demand = {}
-for orig in AIRPORTS:
-    for dest in AIRPORTS:
-        if orig != dest:
-            served_demand[(orig, dest)] = 0
-
-# Add up all passengers served on each route
-for ac in final_routes:
-    for f in ac:
-        # Direct passengers (hub <-> spoke only)
-        if f['origin'] == HUB or f['dest'] == HUB:
-            key = (f['origin'], f['dest'])
-            # Count only true direct passengers (not those who will transfer)
-            if f['dest'] == HUB:
-                # Inbound: subtract those who will transfer
-                flight_key = (f['aircraft_type'], f['aircraft_id'], ac.index(f))
-                transfer_out = sum(pax for _, pax in inbound_to_outbound.get(flight_key, []))
-                direct_only = f['direct_passengers'] - transfer_out
-                served_demand[key] += direct_only
-            else:
-                # Outbound: count only direct passengers
-                served_demand[key] += f['direct_passengers']
-        
-        # Transfer passengers (spoke -> hub -> spoke)
-        if f['origin'] == HUB and f['transfer_passengers'] > 0:
-            for origin_spoke, pax_count in f.get('transfer_from', {}).items():
-                key = (origin_spoke, f['dest'])
-                served_demand[key] += pax_count
-
-# Create 20x20 demand matrix
-demand_matrix_data = []
-airport_codes = [iata_map.get(a, a) for a in AIRPORTS]
-
-# Header row
-header_row = ['Origin/Dest'] + airport_codes
-demand_matrix_data.append(header_row)
-
-for orig in AIRPORTS:
-    row_data = [iata_map.get(orig, orig)]
-    for dest in AIRPORTS:
-        if orig == dest:
-            row_data.append('—')
-        else:
-            original = int(original_demand.get((orig, dest), 0))
-            served = int(served_demand.get((orig, dest), 0))
-            row_data.append(f"{served}/{original}")
-    demand_matrix_data.append(row_data)
-
-# Create DataFrame for demand matrix
-df_demand_matrix = pd.DataFrame(demand_matrix_data[1:], columns=demand_matrix_data[0])
-
-# Export to separate CSVs
+# Export schedule to CSV
 df_export.to_csv("aircraft_schedules.csv", index=False)
-df_demand_matrix.to_csv("demand_matrix.csv", index=False)
-
-print("\nCSVs exported:")
-print("  - aircraft_schedules_transfer.csv (detailed flight schedules)")
-print("  - demand_matrix.csv (20x20 served/original demand matrix)")
-print("\nDemand matrix format: Served/Original passengers for each O-D pair")
+print("\nCSV exported:\n - aircraft_schedules.csv")
